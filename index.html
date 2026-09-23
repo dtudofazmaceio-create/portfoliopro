@@ -2866,34 +2866,60 @@ function setupPWA(){
 const PEN_COLORS=[['Azul','#0d2a8f'],['Preto','#101113']];
 function openSignaturePad(){
  const m=openModal({wide:true,title:'Desenhar assinatura',html:`
-  <p class="hint" style="margin-top:0">Desenhe sua assinatura com o dedo, a caneta touch ou o mouse.</p>
+  <p class="hint" style="margin-top:0">Desenhe com o dedo, a caneta touch ou o mouse. O traço varia de espessura como uma caneta de verdade.</p>
   <div class="pencolors">${PEN_COLORS.map((c,i)=>`<button type="button" class="${i===0?'on':''}" data-pen="${c[1]}" style="background:${c[1]}" title="${c[0]}" aria-label="Caneta ${c[0]}"></button>`).join('')}</div>
   <div class="sigpad-wrap"><canvas id="sigcv" class="sigpad"></canvas><div class="sigpad-line"></div></div>
-  <div class="row gap" style="margin-top:10px"><button class="btn sm ghost" type="button" id="sigclear">${ico('trash')}Limpar</button></div>`,
+  <div class="row gap wrap" style="margin-top:10px"><button class="btn sm ghost" type="button" id="sigundo">${ico('left')}Desfazer traço</button><button class="btn sm ghost" type="button" id="sigclear">${ico('trash')}Limpar tudo</button></div>`,
   footer:`<button class="btn ghost" type="button" id="sigcancel">Cancelar</button><button class="btn primary" type="button" id="sigsave">Salvar assinatura</button>`,
   onClose:()=>{window.removeEventListener('pointerup',end);window.removeEventListener('pointercancel',end);}
  });
  const el=m.el,cv=$('#sigcv',el),ctx=cv.getContext('2d');
- let drawn=false,last=null,dpr=Math.max(2,window.devicePixelRatio||1),pen=PEN_COLORS[0][1];
- function size(){const r=cv.getBoundingClientRect();cv.width=Math.round(r.width*dpr);cv.height=Math.round(r.height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);ctx.lineWidth=3.6;ctx.lineCap='round';ctx.lineJoin='round';ctx.strokeStyle=pen;}
+ let pen=PEN_COLORS[0][1],dpr=Math.max(2,Math.min(3,window.devicePixelRatio||1));
+ let strokes=[],current=null,drawing=false,lastVel=0;
+ const BASE=4.0;
+ function size(){
+  const r=cv.getBoundingClientRect();
+  cv.width=Math.round(r.width*dpr);cv.height=Math.round(r.height*dpr);
+  ctx.setTransform(dpr,0,0,dpr,0,0);ctx.lineCap='round';ctx.lineJoin='round';
+  redraw();
+ }
  requestAnimationFrame(size);
- $$('.pencolors button',el).forEach(b=>b.onclick=()=>{pen=b.dataset.pen;ctx.strokeStyle=pen;$$('.pencolors button',el).forEach(x=>x.classList.toggle('on',x===b));});
- let lastMid=null;
- const pos=e=>{const r=cv.getBoundingClientRect();return {x:e.clientX-r.left,y:e.clientY-r.top};};
- const start=e=>{e.preventDefault();cv.setPointerCapture&&cv.setPointerCapture(e.pointerId);drawn=true;last=pos(e);lastMid=last;ctx.beginPath();ctx.moveTo(last.x-.01,last.y-.01);ctx.lineTo(last.x+.01,last.y+.01);ctx.stroke();};
+ $$('.pencolors button',el).forEach(b=>b.onclick=()=>{pen=b.dataset.pen;$$('.pencolors button',el).forEach(x=>x.classList.toggle('on',x===b));});
+ const pos=e=>{const r=cv.getBoundingClientRect();return {x:e.clientX-r.left,y:e.clientY-r.top,t:Date.now(),p:(e.pressure&&e.pressure>0)?e.pressure:0.5};};
+ const dot=(pt,color)=>{ctx.beginPath();ctx.arc(pt.x,pt.y,BASE*0.5,0,Math.PI*2);ctx.fillStyle=color;ctx.fill();};
+ const seg=(p0,p1,p2,w,color)=>{ctx.beginPath();ctx.moveTo((p0.x+p1.x)/2,(p0.y+p1.y)/2);ctx.quadraticCurveTo(p1.x,p1.y,(p1.x+p2.x)/2,(p1.y+p2.y)/2);ctx.strokeStyle=color;ctx.lineWidth=w;ctx.stroke();};
+ const start=e=>{e.preventDefault();cv.setPointerCapture&&cv.setPointerCapture(e.pointerId);drawing=true;const p=pos(e);current={color:pen,pts:[p]};lastVel=0;dot(p,pen);};
  const move=e=>{
-  if(!last)return;e.preventDefault();
-  const p=pos(e),mid={x:(last.x+p.x)/2,y:(last.y+p.y)/2};
-  ctx.beginPath();ctx.moveTo(lastMid.x,lastMid.y);ctx.quadraticCurveTo(last.x,last.y,mid.x,mid.y);ctx.stroke();
-  lastMid=mid;last=p;
+  if(!drawing||!current)return;e.preventDefault();
+  const p=pos(e);current.pts.push(p);
+  const n=current.pts.length;if(n<3)return;
+  const p0=current.pts[n-3],p1=current.pts[n-2],p2=current.pts[n-1];
+  const dt=Math.max(p2.t-p1.t,1),dx=p2.x-p1.x,dy=p2.y-p1.y,dist=Math.sqrt(dx*dx+dy*dy),vel=dist/dt;
+  lastVel=lastVel*0.6+vel*0.4;
+  const speed=Math.max(0.35,Math.min(1.5,1-lastVel*0.9));
+  const w=BASE*speed*(p2.p*1.1+0.4);
+  seg(p0,p1,p2,w,current.color);
  };
- const end=()=>{last=null;lastMid=null;};
+ const end=()=>{if(!drawing)return;drawing=false;if(current&&current.pts.length)strokes.push(current);current=null;};
  cv.addEventListener('pointerdown',start);cv.addEventListener('pointermove',move);
  window.addEventListener('pointerup',end);window.addEventListener('pointercancel',end);
- $('#sigclear',el).onclick=()=>{ctx.clearRect(0,0,cv.width,cv.height);drawn=false;};
+ function redraw(){
+  ctx.clearRect(0,0,cv.width,cv.height);
+  strokes.forEach(st=>{
+   const pts=st.pts;if(!pts.length)return;dot(pts[0],st.color);
+   for(let i=2;i<pts.length;i++){
+    const p0=pts[i-2],p1=pts[i-1],p2=pts[i];
+    const dt=Math.max(p2.t-p1.t,1),d=Math.sqrt((p2.x-p1.x)**2+(p2.y-p1.y)**2);
+    const w=BASE*Math.max(0.4,1-(d/dt)*0.7)*(p2.p*1.1+0.4);
+    seg(p0,p1,p2,w,st.color);
+   }
+  });
+ }
+ $('#sigundo',el).onclick=()=>{strokes.pop();redraw();};
+ $('#sigclear',el).onclick=()=>{strokes=[];ctx.clearRect(0,0,cv.width,cv.height);};
  $('#sigcancel',el).onclick=()=>m.close();
  $('#sigsave',el).onclick=async()=>{
-  if(!drawn){toast('Desenhe a assinatura antes de salvar.','err');return;}
+  if(!strokes.length){toast('Desenhe a assinatura antes de salvar.','err');return;}
   try{const id=await addPhotoFromDataURL(cv.toDataURL('image/png'),{trim:true,maxW:1400});state.profile.assinatura=id;touch();await gcPhotos();toast('Assinatura salva');m.close();rerender();}
   catch(e){toast('Não foi possível salvar a assinatura.','err');}
  };
