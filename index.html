@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -611,7 +612,7 @@ input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-vis
 .pencolors{display:flex;gap:10px;align-items:center;margin:0 0 12px}
 .pencolors button{width:30px;height:30px;border-radius:50%;border:2px solid transparent;cursor:pointer;padding:0}
 .pencolors button.on{border-color:var(--ink);box-shadow:0 0 0 2px var(--panel),0 0 0 4px var(--ink)}
-.pg-sigimg{display:inline-block;background-repeat:no-repeat;background-position:left center;background-size:contain;filter:drop-shadow(0 1px 1px rgba(0,0,0,.14))}
+.pg-sigimg{display:inline-block;background-repeat:no-repeat;background-position:left center;background-size:contain;image-rendering:-webkit-optimize-contrast}
 .pg-csig{margin-left:auto;padding-left:14px}
 .pg-rfoot{display:flex;align-items:center;gap:18px;margin-top:22px;padding-top:18px;border-top:1px solid var(--line);flex:none}
 .pg-rfsig{margin-bottom:-6px}
@@ -1813,7 +1814,7 @@ async function exportDoc(kind){
  exporting=true;cancelExport=false;await persistKV();
  const {W,H,P}=docSize(kind);
  const qf={leve:1.2,padrao:2,alta:3}[state.settings.qualidade]||2;const scale=qf*(P?1:.75);
- const jq={leve:.8,padrao:.9,alta:.94}[state.settings.qualidade]||.9;
+ const jq={leve:.85,padrao:.93,alta:.96}[state.settings.qualidade]||.93;
  showOverlay(true);$('#ovbar').style.width='0%';$('#ovtxt').textContent='Carregando fontes e imagens…';
  $('#overlay h3').textContent=D.ov;
  const stage=$('#stage');
@@ -2761,7 +2762,7 @@ function setupPWA(){
 }
 
 /* ---------- assinatura manual ---------- */
-const PEN_COLORS=[['Azul','#1c3fb0'],['Preto','#17181c']];
+const PEN_COLORS=[['Azul','#0d2a8f'],['Preto','#101113']];
 function openSignaturePad(){
  const m=openModal({wide:true,title:'Desenhar assinatura',html:`
   <p class="hint" style="margin-top:0">Desenhe sua assinatura com o dedo, a caneta touch ou o mouse.</p>
@@ -2773,7 +2774,7 @@ function openSignaturePad(){
  });
  const el=m.el,cv=$('#sigcv',el),ctx=cv.getContext('2d');
  let drawn=false,last=null,dpr=Math.max(2,window.devicePixelRatio||1),pen=PEN_COLORS[0][1];
- function size(){const r=cv.getBoundingClientRect();cv.width=Math.round(r.width*dpr);cv.height=Math.round(r.height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);ctx.lineWidth=2.8;ctx.lineCap='round';ctx.lineJoin='round';ctx.strokeStyle=pen;}
+ function size(){const r=cv.getBoundingClientRect();cv.width=Math.round(r.width*dpr);cv.height=Math.round(r.height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);ctx.lineWidth=3.6;ctx.lineCap='round';ctx.lineJoin='round';ctx.strokeStyle=pen;}
  requestAnimationFrame(size);
  $$('.pencolors button',el).forEach(b=>b.onclick=()=>{pen=b.dataset.pen;ctx.strokeStyle=pen;$$('.pencolors button',el).forEach(x=>x.classList.toggle('on',x===b));});
  const pos=e=>{const r=cv.getBoundingClientRect();return {x:e.clientX-r.left,y:e.clientY-r.top};};
@@ -2786,7 +2787,7 @@ function openSignaturePad(){
  $('#sigcancel',el).onclick=()=>m.close();
  $('#sigsave',el).onclick=async()=>{
   if(!drawn){toast('Desenhe a assinatura antes de salvar.','err');return;}
-  try{const id=await addPhotoFromDataURL(cv.toDataURL('image/png'),{trim:true});state.profile.assinatura=id;touch();await gcPhotos();toast('Assinatura salva');m.close();rerender();}
+  try{const id=await addPhotoFromDataURL(cv.toDataURL('image/png'),{trim:true,maxW:1400});state.profile.assinatura=id;touch();await gcPhotos();toast('Assinatura salva');m.close();rerender();}
   catch(e){toast('Não foi possível salvar a assinatura.','err');}
  };
 }
