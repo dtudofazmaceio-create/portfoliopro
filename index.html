@@ -2866,9 +2866,68 @@ function setupPWA(){
 
 /* ---------- assinatura manual ---------- */
 const PEN_COLORS=[['Azul','#0d2a8f'],['Preto','#101113']];
+
+/* renderizador profissional de traço: curva suave (Catmull-Rom) + preenchimento
+   único em forma de fita de largura variável — a mesma técnica usada em
+   assinaturas digitais profissionais. Sem costuras, sem falhas possíveis. */
+function catmullRomDense(pts,widths,perSpan){
+ if(pts.length<2)return {pts:pts.slice(),widths:widths.slice()};
+ if(pts.length===2){
+  const out=[],ow=[];
+  for(let s=0;s<=perSpan;s++){const t=s/perSpan;out.push({x:pts[0].x+(pts[1].x-pts[0].x)*t,y:pts[0].y+(pts[1].y-pts[0].y)*t});ow.push(widths[0]+(widths[1]-widths[0])*t);}
+  return {pts:out,widths:ow};
+ }
+ const g=i=>pts[Math.max(0,Math.min(pts.length-1,i))],gw=i=>widths[Math.max(0,Math.min(widths.length-1,i))];
+ const out=[],ow=[];
+ for(let i=0;i<pts.length-1;i++){
+  const p0=g(i-1),p1=g(i),p2=g(i+1),p3=g(i+2),w1=gw(i),w2=gw(i+1);
+  for(let s=0;s<perSpan;s++){
+   const t=s/perSpan,t2=t*t,t3=t2*t;
+   const x=0.5*((2*p1.x)+(-p0.x+p2.x)*t+(2*p0.x-5*p1.x+4*p2.x-p3.x)*t2+(-p0.x+3*p1.x-3*p2.x+p3.x)*t3);
+   const y=0.5*((2*p1.y)+(-p0.y+p2.y)*t+(2*p0.y-5*p1.y+4*p2.y-p3.y)*t2+(-p0.y+3*p1.y-3*p2.y+p3.y)*t3);
+   out.push({x,y});ow.push(w1+(w2-w1)*t);
+  }
+ }
+ out.push({x:pts[pts.length-1].x,y:pts[pts.length-1].y});ow.push(widths[widths.length-1]);
+ return {pts:out,widths:ow};
+}
+function strokeWidths(pts,baseW,minW){
+ const w=[];let lastVel=0;
+ for(let i=0;i<pts.length;i++){
+  if(i===0){w.push(baseW);continue;}
+  const a=pts[i-1],b=pts[i];
+  const dt=Math.max(b.t-a.t,1),dist=Math.hypot(b.x-a.x,b.y-a.y),vel=dist/dt;
+  lastVel=lastVel*0.72+vel*0.28;
+  const speed=Math.max(0.62,Math.min(1.25,1-lastVel*0.65));
+  const pr=b.p!=null?b.p:0.5;
+  w.push(Math.max(minW,baseW*speed*(pr*1.1+0.4)));
+ }
+ return w;
+}
+function fillRibbonStroke(ctx,rawPts,color,baseW,minW){
+ if(!rawPts||!rawPts.length)return;
+ if(rawPts.length===1){ctx.beginPath();ctx.arc(rawPts[0].x,rawPts[0].y,baseW*0.5,0,Math.PI*2);ctx.fillStyle=color;ctx.fill();return;}
+ const widths=strokeWidths(rawPts,baseW,minW);
+ const dense=catmullRomDense(rawPts,widths,10);
+ const pts=dense.pts,W=dense.widths,n=pts.length;
+ if(n<2)return;
+ const left=[],right=[];
+ for(let i=0;i<n;i++){
+  const p=pts[i],a=pts[Math.max(0,i-1)],b=pts[Math.min(n-1,i+1)];
+  const dx=b.x-a.x,dy=b.y-a.y,len=Math.hypot(dx,dy)||1,nx=-dy/len,ny=dx/len,hw=W[i]/2;
+  left.push({x:p.x+nx*hw,y:p.y+ny*hw});right.push({x:p.x-nx*hw,y:p.y-ny*hw});
+ }
+ ctx.beginPath();ctx.moveTo(left[0].x,left[0].y);
+ for(let i=1;i<n;i++)ctx.lineTo(left[i].x,left[i].y);
+ for(let i=n-1;i>=0;i--)ctx.lineTo(right[i].x,right[i].y);
+ ctx.closePath();ctx.fillStyle=color;ctx.fill();
+ ctx.beginPath();ctx.arc(pts[0].x,pts[0].y,W[0]/2,0,Math.PI*2);ctx.fill();
+ ctx.beginPath();ctx.arc(pts[n-1].x,pts[n-1].y,W[n-1]/2,0,Math.PI*2);ctx.fill();
+}
+
 function openSignaturePad(){
  const m=openModal({wide:true,title:'Desenhar assinatura',html:`
-  <p class="hint" style="margin-top:0">Desenhe com o dedo, a caneta touch ou o mouse. O traço varia de espessura como uma caneta de verdade.</p>
+  <p class="hint" style="margin-top:0">Desenhe com o dedo, a caneta touch ou o mouse. O traço é suavizado automaticamente ao soltar.</p>
   <div class="pencolors">${PEN_COLORS.map((c,i)=>`<button type="button" class="${i===0?'on':''}" data-pen="${c[1]}" style="background:${c[1]}" title="${c[0]}" aria-label="Caneta ${c[0]}"></button>`).join('')}</div>
   <div class="sigpad-wrap"><canvas id="sigcv" class="sigpad"></canvas><div class="sigpad-line"></div></div>
   <div class="row gap wrap" style="margin-top:10px"><button class="btn sm ghost" type="button" id="sigundo">${ico('left')}Desfazer traço</button><button class="btn sm ghost" type="button" id="sigclear">${ico('trash')}Limpar tudo</button></div>`,
@@ -2877,7 +2936,7 @@ function openSignaturePad(){
  });
  const el=m.el,cv=$('#sigcv',el),ctx=cv.getContext('2d');
  let pen=PEN_COLORS[0][1],dpr=Math.max(2,Math.min(3,window.devicePixelRatio||1));
- let strokes=[],current=null,drawing=false,lastVel=0;
+ let strokes=[],current=null,drawing=false,lastVelLive=0;
  const BASE=4.0,MINW=2.6;
  function size(){
   const r=cv.getBoundingClientRect();
@@ -2888,44 +2947,47 @@ function openSignaturePad(){
  requestAnimationFrame(size);
  $$('.pencolors button',el).forEach(b=>b.onclick=()=>{pen=b.dataset.pen;$$('.pencolors button',el).forEach(x=>x.classList.toggle('on',x===b));});
  const pos=e=>{const r=cv.getBoundingClientRect();return {x:e.clientX-r.left,y:e.clientY-r.top,t:Date.now(),p:(e.pressure&&e.pressure>0)?e.pressure:0.5};};
- const dot=(pt,color)=>{ctx.beginPath();ctx.arc(pt.x,pt.y,BASE*0.5,0,Math.PI*2);ctx.fillStyle=color;ctx.fill();};
- const seg=(p0,p1,p2,w,color)=>{ctx.beginPath();ctx.moveTo((p0.x+p1.x)/2,(p0.y+p1.y)/2);ctx.quadraticCurveTo(p1.x,p1.y,(p1.x+p2.x)/2,(p1.y+p2.y)/2);ctx.strokeStyle=color;ctx.lineWidth=w;ctx.stroke();};
- const start=e=>{e.preventDefault();cv.setPointerCapture&&cv.setPointerCapture(e.pointerId);drawing=true;const p=pos(e);current={color:pen,pts:[p]};lastVel=0;dot(p,pen);};
+ // desenho ao vivo: traço rápido e responsivo enquanto o dedo/mouse se move
+ const liveSeg=(p0,p1,p2,w,color)=>{ctx.beginPath();ctx.moveTo((p0.x+p1.x)/2,(p0.y+p1.y)/2);ctx.quadraticCurveTo(p1.x,p1.y,(p1.x+p2.x)/2,(p1.y+p2.y)/2);ctx.strokeStyle=color;ctx.lineWidth=w;ctx.stroke();};
+ const start=e=>{
+  e.preventDefault();cv.setPointerCapture&&cv.setPointerCapture(e.pointerId);drawing=true;
+  const p=pos(e);current={color:pen,pts:[p]};lastVelLive=0;
+  ctx.beginPath();ctx.arc(p.x,p.y,BASE*0.5,0,Math.PI*2);ctx.fillStyle=pen;ctx.fill();
+ };
  const move=e=>{
   if(!drawing||!current)return;e.preventDefault();
   const p=pos(e);current.pts.push(p);
   const n=current.pts.length;if(n<3)return;
   const p0=current.pts[n-3],p1=current.pts[n-2],p2=current.pts[n-1];
-  const dt=Math.max(p2.t-p1.t,1),dx=p2.x-p1.x,dy=p2.y-p1.y,dist=Math.sqrt(dx*dx+dy*dy),vel=dist/dt;
-  lastVel=lastVel*0.75+vel*0.25;
-  const speed=Math.max(0.62,Math.min(1.25,1-lastVel*0.7));
+  const dt=Math.max(p2.t-p1.t,1),dist=Math.hypot(p2.x-p1.x,p2.y-p1.y),vel=dist/dt;
+  lastVelLive=lastVelLive*0.75+vel*0.25;
+  const speed=Math.max(0.62,Math.min(1.25,1-lastVelLive*0.7));
   const w=Math.max(MINW,BASE*speed*(p2.p*1.1+0.4));
-  seg(p0,p1,p2,w,current.color);
+  liveSeg(p0,p1,p2,w,current.color);
  };
- const end=()=>{if(!drawing)return;drawing=false;if(current&&current.pts.length)strokes.push(current);current=null;};
+ // ao soltar: substitui o traço "ao vivo" pela versão profissional (fita vetorial suave)
+ const end=()=>{
+  if(!drawing)return;drawing=false;
+  if(current&&current.pts.length){strokes.push(current);redraw();}
+  current=null;
+ };
  cv.addEventListener('pointerdown',start);cv.addEventListener('pointermove',move);
  window.addEventListener('pointerup',end);window.addEventListener('pointercancel',end);
  function redraw(){
   ctx.clearRect(0,0,cv.width,cv.height);
-  strokes.forEach(st=>{
-   const pts=st.pts;if(!pts.length)return;dot(pts[0],st.color);
-   for(let i=2;i<pts.length;i++){
-    const p0=pts[i-2],p1=pts[i-1],p2=pts[i];
-    const dt=Math.max(p2.t-p1.t,1),d=Math.sqrt((p2.x-p1.x)**2+(p2.y-p1.y)**2);
-    const w=Math.max(MINW,BASE*Math.max(0.62,1-(d/dt)*0.55)*(p2.p*1.1+0.4));
-    seg(p0,p1,p2,w,st.color);
-   }
-  });
+  strokes.forEach(st=>fillRibbonStroke(ctx,st.pts,st.color,BASE,MINW));
  }
  $('#sigundo',el).onclick=()=>{strokes.pop();redraw();};
  $('#sigclear',el).onclick=()=>{strokes=[];ctx.clearRect(0,0,cv.width,cv.height);};
  $('#sigcancel',el).onclick=()=>m.close();
  $('#sigsave',el).onclick=async()=>{
   if(!strokes.length){toast('Desenhe a assinatura antes de salvar.','err');return;}
+  redraw();
   try{const id=await addPhotoFromDataURL(cv.toDataURL('image/png'),{trim:true,maxW:1400});state.profile.assinatura=id;touch();await gcPhotos();toast('Assinatura salva');m.close();rerender();}
   catch(e){toast('Não foi possível salvar a assinatura.','err');}
  };
 }
+
 async function openBgRemovalReview(rawDataUrl,onSave){
  setStatus('Analisando a imagem…');
  let prep;try{prep=await prepSignatureRemoval(rawDataUrl,1400);}catch(e){prep=null;}
