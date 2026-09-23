@@ -1931,9 +1931,18 @@ async function exportDoc(kind){
    $('#ovtxt').textContent=`Página ${i+1} de ${pages.length}`;$('#ovbar').style.width=Math.round(i/pages.length*100)+'%';
    stage.innerHTML=pages[i];const el=stage.firstElementChild;fitAll(el);
    await new Promise(r=>requestAnimationFrame(()=>setTimeout(r,30)));
+   // a assinatura nunca entra na foto (JPEG) da página: fica escondida na captura e é
+   // colada por cima depois, como imagem própria sem perda — traço sempre nítido, "vivo".
+   const prSig=el.getBoundingClientRect();
+   const sigEls=$$('.pg-sigimg',el);
+   const sigRects=sigEls.map(se=>{const r=se.getBoundingClientRect();const rc={x:r.left-prSig.left,y:r.top-prSig.top,w:r.width,h:r.height};se.style.visibility='hidden';return rc;});
    const canvas=await html2canvas(el,{scale,backgroundColor:'#ffffff',useCORS:false,logging:false,width:W,height:H,windowWidth:W,windowHeight:H,ignoreElements:n=>['app','overlay','toasts','modal-root'].includes(n.id)});
    if(i>0)pdf.addPage([W,H],P?'p':'l');
    pdf.addImage(canvas.toDataURL('image/jpeg',jq),'JPEG',0,0,W,H,undefined,'FAST');
+   if(sigRects.length){
+    const sigRec=state.profile.assinatura&&photos.get(state.profile.assinatura);
+    if(sigRec)sigRects.forEach(rc=>{if(rc.w>0&&rc.h>0){try{pdf.addImage(sigRec.full,'PNG',rc.x,rc.y,rc.w,rc.h,undefined,'FAST');}catch(e){}}});
+   }
    const pr=el.getBoundingClientRect();
    $$('[data-href]',el).forEach(a=>{const r=a.getBoundingClientRect();pdf.link(r.left-pr.left,r.top-pr.top,r.width,r.height,{url:a.dataset.href});});
    canvas.width=canvas.height=0;stage.innerHTML='';
