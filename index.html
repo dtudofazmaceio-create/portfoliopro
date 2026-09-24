@@ -1142,10 +1142,10 @@ const DEF_PROFILE={nome:'',marca:'',cargo:'',slogan:'',bio:'',cidade:'',reconhec
 const DEF_SET={template:'aurora',accent:'',formato:'P',ordem:'data',rotuloCapa:'Portfólio',ano:String(new Date().getFullYear()),cta:'Vamos criar o seu próximo grande evento?',qualidade:'padrao',fotoContato:null,designVisto:false,menuOculto:false,autoFix:true,spell:true,protegidos:'',secoes:{sobre:true,servicos:true,eventos:true,galerias:true,depoimentos:true,clientes:true,contato:true}};
 const DEF_RELEASE={titulo:'',subtitulo:'',local:'',data:'',selo:'Para divulgação imediata',lide:'',corpo:'',citacao:'',citacaoAutor:'',sobre:'',contatoNome:'',contatoCargo:'',contatoEmail:'',contatoTelefone:'',fotos:[],credito:'',agrupar:'tipo',template:'',imagens:true};
 const DEF_REPORT={titulo:'Relatório fotográfico de apresentações',subtitulo:'',periodo:'',intro:'',conclusao:'',respNome:'',respCargo:'',local:'',data:'',capa:null,formato:'P',template:'',ordem:'data-asc',legendas:true,metricas:true,indice:true};
-const DEF_DECL={fonte:'',cidade:'',data:'',testemunhas:false,aceite:false,template:'',wm:'suave',resp:{manual:false,v:{}},emp:{manual:false,v:{}},ctr:{manual:false,v:{}},evt:{manual:false,v:{}},ex:{antes:'30',depois:'30',territorio:'',extra:''},me:{elenco:true,figurantes:true,tecnica:true,apoio:true,eca:true,publico:true,comunicar:true}};
+const DEF_DECL={fonte:'',cidade:'',data:'',testemunhas:false,aceite:false,template:'',wm:'suave',resp:{manual:false,v:{}},emp:{manual:false,v:{}},ctr:{manual:false,v:{}},evt:{manual:false,v:{}},ex:{antes:'30',depois:'30',territorio:'',extra:''},me:{elenco:true,figurantes:true,tecnica:true,apoio:true,eca:true,publico:true,comunicar:true},reg:{idoneidade:true,trabalhoInfantil:true,pcd:true,lgpd:true,meEpp:true}};
 function mergeDecl(o){
  o=o||{};const r=Object.assign(clone(DEF_DECL),o);
- ['ex','me'].forEach(k=>{r[k]=Object.assign(clone(DEF_DECL[k]),o[k]||{});});
+ ['ex','me','reg'].forEach(k=>{r[k]=Object.assign(clone(DEF_DECL[k]),o[k]||{});});
  ['resp','emp','ctr','evt'].forEach(k=>{const s=o[k];r[k]=(s&&typeof s==='object'&&'manual' in s)?{manual:!!s.manual,v:Object.assign({},s.v||{})}:{manual:false,v:{}};});
  if(o.evt&&!('manual' in o.evt)&&o.evt.titulo){r.evt={manual:true,v:{titulo:o.evt.titulo||'',tipo:o.evt.tipo||'',data:o.evt.data||'',local:o.evt.local||'',cidade:o.evt.cidade||'',publico:o.evt.publico||''}};if(o.evt.contratante)r.ctr={manual:true,v:{nome:o.evt.contratante}};}
  if(o.nome||o.cpf||o.rg)r.resp={manual:true,v:{nome:o.nome||'',cpf:o.cpf||'',rg:o.rg||'',qual:'',funcao:''}};
@@ -1847,6 +1847,42 @@ function declBodyMe(r){
  if(me.comunicar)s+='<p>Comprometo-me a comunicar imediatamente o contratante caso haja qualquer alteração dessa condição antes da realização da apresentação.</p>';
  return s+`<p>${CLOSE_TRUE}</p>`;
 }
+function declIdentEmpresa(r){
+ const e=r.emp,a=r.resp;
+ let s='A empresa';
+ if(e.razao)s+=` <b>${esc(e.razao)}</b>`;
+ if(e.fantasia&&norm(e.fantasia)!==norm(e.razao||''))s+=` (nome fantasia <b>${esc(e.fantasia)}</b>)`;
+ if(e.cnpj)s+=`, inscrita no CNPJ sob o nº <b>${esc(fmtCNPJ(e.cnpj))}</b>`;
+ if(e.end)s+=`, com sede em <b>${esc(e.end)}</b>`;
+ let rep='vem, por meio de seu representante legal';
+ const rp=[];
+ if(a.nome)rp.push(`<b>${esc(a.nome)}</b>`);
+ if(a.cpf)rp.push(`CPF nº <b>${esc(fmtCPF(a.cpf))}</b>`);
+ if(rp.length)rep+=', '+rp.join(', ');
+ rep+=` (${esc(a.funcao||'representante legal')})`;
+ return s+', '+rep;
+}
+function declBodyReg(r){
+ const c=state.decl.reg,items=[];
+ if(c.idoneidade)items.push('Não foi declarada inidônea para licitar ou contratar com o poder público em qualquer de suas esferas.');
+ if(c.trabalhoInfantil)items.push('Não emprega menor de 18 anos em trabalho noturno, perigoso ou insalubre, nem menor de 16 anos, salvo na condição de aprendiz a partir de 14 anos, nos termos do art. 7º, inciso XXXIII, da Constituição Federal, e não possui, em sua cadeia produtiva, empregados executando trabalho degradante ou forçado, observado o disposto nos incisos III e IV do art. 1º e no inciso III do art. 5º da Constituição Federal.');
+ if(c.pcd)items.push('Cumpre as exigências de reserva de cargos para pessoa com deficiência e para reabilitado da Previdência Social, previstas em lei e em outras normas específicas.');
+ if(c.lgpd)items.push('Está adequada à Lei Geral de Proteção de Dados Pessoais (LGPD), Lei nº 13.709, de 14 de agosto de 2018.');
+ if(c.meEpp)items.push('Se enquadra como microempresa ou empresa de pequeno porte, nos termos do art. 3º da Lei Complementar nº 123, de 14 de dezembro de 2006, estando apta a fruir os benefícios e vantagens legalmente instituídos, por não se enquadrar em nenhuma das vedações previstas no § 4º do art. 3º da referida lei.');
+ const head=`<p>${declIdentEmpresa(r)}, para os devidos fins, DECLARAR:</p>`;
+ const list=items.length?`<ol>${items.map(i=>`<li>${i}</li>`).join('')}</ol>`:'<p style="color:var(--muted)">Nenhum item selecionado. Marque ao menos um item na aba Declarações.</p>';
+ return head+list+`<p>Por ser expressão da verdade, firma a presente.</p>`;
+}
+function declWarningsReg(){
+ const r=declR(),w=[];
+ if(!r.emp.razao)w.push('Falta a razão social da empresa. Essa informação será omitida do documento.');
+ if(!r.emp.cnpj)w.push('Falta o CNPJ da empresa. Essa informação será omitida do documento.');
+ if(!r.resp.nome)w.push('Falta o nome do representante legal. Essa informação será omitida do documento.');
+ if(!r.resp.cpf)w.push('Falta o CPF do representante legal. Essa informação será omitida do documento.');
+ const c=state.decl.reg;
+ if(!c.idoneidade&&!c.trabalhoInfantil&&!c.pcd&&!c.lgpd&&!c.meEpp)w.push('Nenhum item marcado: escolha ao menos um para o documento fazer sentido.');
+ return w;
+}
 function declSign(r,kind){
  const d=state.decl;
  const cid=S(d.cidade)||r.emp.cidade||r.evt.cidade;
@@ -1861,7 +1897,7 @@ function declSign(r,kind){
 function buildDeclPages(kind){
  return withDecl(()=>{
   const p=state.profile,d=state.decl,r=declR();
-  const title=kind==='ex'?'Declaração de exclusividade da apresentação':'Declaração de ausência de menores na apresentação';
+  const title=kind==='ex'?'Declaração de exclusividade da apresentação':kind==='me'?'Declaração de ausência de menores na apresentação':'Declaração de idoneidade e regularidade';
   const brandTxt=r.emp.fantasia||r.emp.razao||r.resp.nome||'';
   const lg=p.logo&&photos.get(p.logo);
   const ini=brandTxt.split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0]).join('').toUpperCase();
@@ -1870,7 +1906,7 @@ function buildDeclPages(kind){
   const wm=wmOp&&(lg||ini)?(lg?`<div class="pg-wm" style="background-image:url('${lg.full}');opacity:${wmOp}"></div>`:`<div class="pg-wm txt" style="opacity:${(wmOp*.7).toFixed(3)}">${esc(ini)}</div>`):'';
   const contacts=[p.email,p.whatsapp||p.telefone,p.site?p.site.replace(/^https?:\/\//,'').replace(/\/$/,''):''].filter(Boolean);
   const foot=`${(r.emp.razao||brandTxt)?`<div>${esc(r.emp.razao||brandTxt)}${r.emp.cnpj?`, CNPJ ${esc(fmtCNPJ(r.emp.cnpj))}`:''}</div>`:''}${r.emp.end?`<div>${esc(r.emp.end)}</div>`:''}`;
-  return [pageWrap('pg-doc',`${wm}<div class="pg-dband"></div><div class="pg-dframe"></div><div class="pg-dframe b"></div><div class="pg-inner">${(logoEl||brandTxt||p.cargo||contacts.length)?`<header class="pg-dhead"><div class="pg-dhl">${logoEl}${brandTxt||p.cargo?`<div class="pg-dbrandbox">${brandTxt?`<div class="pg-dbrand">${esc(brandTxt)}</div>`:''}${p.cargo?`<div class="pg-dtag">${esc(p.cargo)}</div>`:''}</div>`:''}</div><div class="pg-dcont">${contacts.map(c=>`<span>${esc(c)}</span>`).join('')}</div></header><div class="pg-dorn"><i></i><s></s><i></i></div>`:''}<h2 class="pg-dtitle fit" data-fit="16">${title}</h2><div class="pg-dbody fit" data-fit="9">${kind==='ex'?declBodyEx(r):declBodyMe(r)}</div>${declSign(r,kind)}</div>${foot?`<div class="pg-dfoot">${foot}</div>`:''}`,{ft:false})];
+  return [pageWrap('pg-doc',`${wm}<div class="pg-dband"></div><div class="pg-dframe"></div><div class="pg-dframe b"></div><div class="pg-inner">${(logoEl||brandTxt||p.cargo||contacts.length)?`<header class="pg-dhead"><div class="pg-dhl">${logoEl}${brandTxt||p.cargo?`<div class="pg-dbrandbox">${brandTxt?`<div class="pg-dbrand">${esc(brandTxt)}</div>`:''}${p.cargo?`<div class="pg-dtag">${esc(p.cargo)}</div>`:''}</div>`:''}</div><div class="pg-dcont">${contacts.map(c=>`<span>${esc(c)}</span>`).join('')}</div></header><div class="pg-dorn"><i></i><s></s><i></i></div>`:''}<h2 class="pg-dtitle fit" data-fit="16">${title}</h2><div class="pg-dbody fit" data-fit="9">${kind==='ex'?declBodyEx(r):kind==='me'?declBodyMe(r):declBodyReg(r)}</div>${declSign(r,kind)}</div>${foot?`<div class="pg-dfoot">${foot}</div>`:''}`,{ft:false})];
  });
 }
 function declWarnings(){
@@ -1907,6 +1943,7 @@ const DOCS={
 };
 DOCS['decl-ex']={file:'Declaracao-de-exclusividade',title:'Declaração de exclusividade - ',subject:'Declaração de exclusividade da apresentação',ov:'Gerando a declaração',done:'Declaração gerada',build:()=>buildDeclPages('ex'),fmt:()=>'P',tpl:()=>declTpl(),name:()=>`Declaracao-de-exclusividade-${slug(declR().evt.titulo||brandName())}`};
 DOCS['decl-me']={file:'Declaracao-sem-menores',title:'Declaração de ausência de menores - ',subject:'Declaração de ausência de menores na apresentação',ov:'Gerando a declaração',done:'Declaração gerada',build:()=>buildDeclPages('me'),fmt:()=>'P',tpl:()=>declTpl(),name:()=>`Declaracao-sem-menores-${slug(declR().evt.titulo||brandName())}`};
+DOCS['decl-reg']={file:'Declaracao-regularidade',title:'Declaração de idoneidade e regularidade - ',subject:'Declaração de idoneidade e regularidade',ov:'Gerando a declaração',done:'Declaração gerada',build:()=>buildDeclPages('reg'),fmt:()=>'P',tpl:()=>declTpl(),name:()=>`Declaracao-regularidade-${slug(declR().emp.razao||brandName())}`};
 const docSize=k=>DOCS[k].fmt()==='L'?{W:1280,H:720,P:false}:{W:794,H:1123,P:true};
 async function exportDoc(kind){
  if(exporting)return;
@@ -2468,7 +2505,7 @@ function declBlock(b){
  return `<section class="panel"><div class="row between wrap gap2"><div><h2 style="margin:0 0 4px">${B.title}</h2><p class="sub" style="margin:0">${B.sub}</p></div><div class="row gap wrap"><span class="tag ${man?'man':'auto'}">${man?'Preenchimento manual':'Dados do cadastro'}</span><button class="btn sm" data-action="blk-manual" data-b="${b}">${man?'Voltar ao cadastro':'Editar manualmente'}</button></div></div>${body}</section>`;
 }
 function renderDecl(){
- const d=state.decl;const w=declWarnings();
+ const d=state.decl;const w=declWarnings();const wReg=declWarningsReg();
  const docBtns=k=>`<div class="row gap wrap" style="margin-top:6px"><button class="btn" data-action="dc-preview" data-k="${k}">Pré-visualizar</button><button class="btn primary" data-action="dc-export" data-k="${k}">${ico('dl')}Baixar PDF</button></div>`;
  $('#view').innerHTML=`${pageHead('Declarações','Documentos temáticos, prontos para assinar. Tudo é preenchido com os dados já cadastrados do responsável, da empresa e do contratante, e você pode editar qualquer bloco manualmente.')}
  <section class="panel"><h2>Qual apresentação?</h2><p class="sub">Escolha a apresentação ou o evento que será declarado. Ao trocar, os dados da apresentação e do contratante são atualizados.</p>
@@ -2492,6 +2529,11 @@ function renderDecl(){
  <section class="panel"><h2>Declaração de ausência de menores na apresentação</h2><p class="sub">Você declara que não há crianças nem adolescentes participando. Marque onde a declaração vale.</p>
   <div class="swgrid">${chk('decl.me.elenco','Artistas, performers e elenco')}${chk('decl.me.figurantes','Figurantes')}${chk('decl.me.tecnica','Equipe técnica')}${chk('decl.me.apoio','Equipe de apoio e produção')}${chk('decl.me.eca','Citar o art. 149 do ECA (autorização judicial)')}${chk('decl.me.publico','Esclarecer que não abrange o público')}${chk('decl.me.comunicar','Comprometer-se a avisar sobre mudanças')}</div>
   ${docBtns('me')}
+ </section>
+ <section class="panel"><h2>Declaração de idoneidade e regularidade</h2><p class="sub">Modelo comum em licitações e contratos com o poder público ou grandes empresas: idoneidade, trabalho infantil, cotas para pessoa com deficiência, LGPD e enquadramento como micro ou pequena empresa. Usa os dados de Empresa e Responsável já preenchidos acima — marque só o que se aplica ao seu caso.</p>
+  <div class="swgrid">${chk('decl.reg.idoneidade','Não declarada inidônea para licitar com o poder público')}${chk('decl.reg.trabalhoInfantil','Não emprega menor de idade nem trabalho forçado ou degradante')}${chk('decl.reg.pcd','Cumpre a reserva de cargos para pessoa com deficiência')}${chk('decl.reg.lgpd','Está adequada à LGPD (Lei nº 13.709/2018)')}${chk('decl.reg.meEpp','Se enquadra como microempresa ou empresa de pequeno porte')}</div>
+  ${wReg.length?`<div class="warns" style="margin-top:16px"><b>Vale revisar antes de baixar</b><ul>${wReg.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`:''}
+  ${docBtns('reg')}
  </section>
  <p class="hint" style="margin:0 0 18px;max-width:70ch">Estes são modelos-padrão de uso geral. Alguns contratantes e órgãos exigem redação própria ou firma reconhecida. Em caso de dúvida, confirme o texto com um advogado antes de assinar.</p>
  <div class="pv" id="pv"></div>`;
@@ -3117,7 +3159,7 @@ function renderPdf(){
  <div class="pv" id="pv"><p class="muted">Montando as páginas…</p></div>`;
  buildPreview('portfolio');
 }
-const TABOF={portfolio:'pdf',release:'release',report:'relatorio','decl-ex':'declaracoes','decl-me':'declaracoes'};
+const TABOF={portfolio:'pdf',release:'release',report:'relatorio','decl-ex':'declaracoes','decl-me':'declaracoes','decl-reg':'declaracoes'};
 async function buildPreview(kind='portfolio'){
  await preloadFonts([DOCS[kind].tpl()]);
  const box=$('#pv');if(!box||state.tab!==TABOF[kind])return;
