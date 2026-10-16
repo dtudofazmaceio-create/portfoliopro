@@ -730,6 +730,7 @@ input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-vis
 .gx-usage i{display:block;height:100%;background:var(--brand);border-radius:99px}
 .gx-log{list-style:none;margin:0;padding:0;font-size:13.5px}
 .gx-log li{display:flex;gap:10px;align-items:baseline;padding:8px 0;border-top:1px solid var(--line)}
+.gx-log li>span:last-child{min-width:0;overflow-wrap:anywhere}
 .gx-log li:first-child{border-top:0}
 .gx-log time{flex:none;width:92px;color:var(--muted);font-size:12.5px}
 .gx-log .k{width:8px;height:8px;border-radius:50%;flex:none;background:var(--muted);transform:translateY(-1px)}
@@ -739,6 +740,19 @@ input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-vis
 .home-link{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .home-link .t{flex:1 1 260px}
 
+.gx-url .u.short{border-color:color-mix(in srgb,var(--brand) 55%,var(--line));background:var(--brand-soft);font-weight:600}
+.gx-short{display:flex;align-items:center;justify-content:space-between;gap:8px 14px;flex-wrap:wrap;margin:-2px 0 14px;font-size:13px;color:var(--muted)}
+.gx-short>span:first-child{min-width:0;flex:1 1 300px}
+.gx-full{color:var(--muted);word-break:break-all}
+@media(max-width:600px){.gx-top .gx-ico{display:none}.gx-top>div{min-width:0}.gx-link{padding:18px 16px}.gx-url .u{flex-basis:100%}.gx-url .btn{flex:1}}
+.shp{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.shp button{border:2px solid var(--line);border-radius:12px;background:var(--panel);color:var(--ink);padding:12px 14px;text-align:left;cursor:pointer;font:inherit}
+.shp button b{display:block;font-size:15px}
+.shp button span{display:block;font-size:12.5px;color:var(--muted);line-height:1.4;margin-top:3px}
+.shp button.on{border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+.shpre{display:flex;align-items:stretch;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--bg)}
+.shpre span{display:flex;align-items:center;padding:0 4px 0 12px;color:var(--muted);font-family:ui-monospace,Menlo,monospace;font-size:14px}
+.shpre input{border:0!important;border-radius:0!important;padding-left:2px!important;font-family:ui-monospace,Menlo,monospace!important;background:transparent!important;flex:1;min-width:0}
 /* ============ página do cliente (visualizador) ============ */
 .is-viewer body{background:var(--wvbg,#fff)}
 .is-viewer #app,.is-viewer #banner{display:none!important}
@@ -1432,7 +1446,10 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
 'use strict';
 /* modo de abertura: ?p=<gist> abre a página pública do cliente; ?ver=local abre a prévia ao vivo deste aparelho */
 const QS=new URLSearchParams(location.search);
-const VIEW_GIST=(QS.get('p')||'').replace(/[^\w]/g,''),VIEW_OWNER=(QS.get('u')||'').replace(/[^\w-]/g,''),VIEW_LOCAL=QS.get('ver')==='local';
+const B62='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+function hexToB62(h){let n=BigInt('0x1'+h),s='';while(n>0n){s=B62[Number(n%62n)]+s;n/=62n;}return s;}
+function b62ToHex(t){let n=0n;for(const ch of String(t)){const i=B62.indexOf(ch);if(i<0)return '';n=n*62n+BigInt(i);}return n.toString(16).slice(1);}
+const VIEW_GIST=(QS.get('p')||(QS.get('c')?b62ToHex(QS.get('c').replace(/[^0-9A-Za-z]/g,'')):'')||'').replace(/[^\w]/g,''),VIEW_OWNER=(QS.get('u')||'').replace(/[^\w-]/g,''),VIEW_LOCAL=QS.get('ver')==='local';
 const VIEWER=!!(VIEW_GIST||VIEW_LOCAL);
 if(VIEWER)document.documentElement.classList.add('is-viewer');
 /* ================= utilitários ================= */
@@ -1495,7 +1512,8 @@ const IC={
  key:'<circle cx="8" cy="15" r="4"/><path d="m11 12 8.5-8.5M16 7l2.5 2.5M14 9l2 2"/>',
  qr:'<rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><path d="M14 14h2v2h-2zM18 18h2v2h-2zM14 18h2M18 14h2"/>',
  ext:'<path d="M14 4.5h5.5V10M19.5 4.5 11 13"/><path d="M18 14v5.5H4.5V6H10"/>',
- desk:'<rect x="3" y="4.5" width="18" height="12" rx="2"/><path d="M8.5 20h7M12 16.5V20"/>'
+ desk:'<rect x="3" y="4.5" width="18" height="12" rx="2"/><path d="M8.5 20h7M12 16.5V20"/>',
+ cut:'<circle cx="6.5" cy="6.5" r="2.8"/><circle cx="6.5" cy="17.5" r="2.8"/><path d="M8.6 8.4 20 18M8.6 15.6 20 6"/>'
 };
 const ico=(n,c='')=>`<svg class="ic ${c}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[n]}</svg>`;
 
@@ -1540,7 +1558,7 @@ function setPath(p,v){const ks=p.split('.');const last=ks.pop();const o=ks.reduc
 const STORES=['kv','events','photos','services','testimonials','clients','facts','apres','packages','videos'];
 const COLS=['events','services','testimonials','clients','facts','apres','packages','videos'];
 const SYNC_KV=['profile','settings','release','report','decl'];
-const LOCAL_KV=new Set(['gh','syncCfg','pubCfg','actlog','device','tomb']);
+const LOCAL_KV=new Set(['gh','syncCfg','pubCfg','actlog','device','tomb','shortTok']);
 const store={db:null,mem:{},persistent:false,
  async init(){
   STORES.forEach(s=>this.mem[s]=new Map());
@@ -4239,7 +4257,7 @@ const Cloud={
   try{this.bc=new BroadcastChannel('portfolio-live');}catch(e){this.bc=null;}
   changeListeners.push(s=>this.onChange(s));
  },
- async reloadCfg(){this.gh=(await getLocal('gh'))||null;this.sync=(await getLocal('syncCfg'))||null;this.pub=(await getLocal('pubCfg'))||null;},
+ async reloadCfg(){this.gh=(await getLocal('gh'))||null;this.sync=(await getLocal('syncCfg'))||null;this.pub=(await getLocal('pubCfg'))||null;this.shortTok=(await getLocal('shortTok'))||{};},
  async saveCfg(w){if(w==='gh')await putLocal('gh',this.gh);if(w==='sync')await putLocal('syncCfg',this.sync);if(w==='pub')await putLocal('pubCfg',this.pub);},
  async migrateStamps(){
   const t=Date.now();
@@ -4247,7 +4265,10 @@ const Cloud={
   for(const k of SYNC_KV){if(!kvMeta[k]){const r=await store.get('kv',k);if(r&&r.value!=null){r._u=t;kvMeta[k]=t;await rawStore.put('kv',r);}}}
  },
  token(){return this.gh&&this.gh.token||'';},
- link(){const p=this.pub;if(!p||!p.dataId)return '';const b=publicBase();if(!b)return '';return `${b}?p=${p.dataId}${p.owner?`&u=${encodeURIComponent(p.owner)}`:''}`;},
+ link(){const p=this.pub;if(!p||!p.dataId)return '';const b=publicBase();if(!b)return '';return `${b.replace(/\/index\.html?$/i,'/')}?c=${hexToB62(p.dataId)}`;},
+ fullLink(){const p=this.pub;if(!p||!p.dataId)return '';const b=publicBase();if(!b)return '';return `${b}?p=${p.dataId}${p.owner?`&u=${encodeURIComponent(p.owner)}`:''}`;},
+ shortInfo(){const p=this.pub,l=this.link();const sh=p&&p.short;if(!sh||!sh.url)return null;return Object.assign({},sh,{stale:sh.target!==l});},
+ shareLink(){const sh=this.shortInfo();if(sh&&!sh.stale&&sh.use!==false)return sh.url;return this.link();},
  summary(){return {gh:!!this.token(),sync:!!(this.sync&&this.sync.dataId),pub:!!(this.pub&&this.pub.dataId),link:this.link()};},
  start(){
   clearInterval(this.timers.poll);this.timers.poll=setInterval(()=>this.poll(),20000);
@@ -4318,8 +4339,8 @@ const Cloud={
      const R=await gistFileJSON(g,SYNC_FILE);
      if(!R||R.app!=='portfolio-eventos'||R.kind!=='sync')throw new GhError('Esse Gist não contém dados de sincronização deste sistema.',0);
      c.packs=Object.assign({},c.packs||{},R.media||{});
-     if(R.pub&&R.pub.dataId&&(!this.pub||!this.pub.dataId)){this.pub={dataId:R.pub.dataId,owner:R.pub.owner,packs:R.pub.packs||{},auto:true,dirty:false,hash:R.pub.hash||null,lastPubAt:R.pub.lastPubAt||null};await this.saveCfg('pub');}
-     else if(R.pub&&this.pub&&R.pub.dataId===this.pub.dataId){this.pub.packs=Object.assign({},R.pub.packs||{},this.pub.packs||{});}
+     if(R.pub&&R.pub.dataId&&(!this.pub||!this.pub.dataId)){this.pub={dataId:R.pub.dataId,owner:R.pub.owner,packs:R.pub.packs||{},auto:true,dirty:false,hash:R.pub.hash||null,lastPubAt:R.pub.lastPubAt||null,short:R.pub.short||null};await this.saveCfg('pub');}
+     else if(R.pub&&this.pub&&R.pub.dataId===this.pub.dataId){this.pub.packs=Object.assign({},R.pub.packs||{},this.pub.packs||{});if(R.pub.short&&(!this.pub.short||(R.pub.short.at||0)>(this.pub.short.at||0)))this.pub.short=R.pub.short;await this.saveCfg('pub');}
      changedLocal=await applyRemote(R,{preferRemote:!!c.join,progress:s=>this.setBusy(s)});
      c.remoteHash=payloadHash(R);c.remoteVer=v;c.join=false;
      if(changedLocal)this.addLog('in','Alterações recebidas de outro aparelho');
@@ -4328,7 +4349,7 @@ const Cloud={
    const mine=buildSyncPayload();const h=payloadHash(mine);
    if(h!==c.remoteHash){
     mine.media=await ensurePacks(c,[...photos.keys()],'Sincronização',s=>this.setBusy(s),()=>this.saveCfg('sync'));
-    if(this.pub&&this.pub.dataId)mine.pub={dataId:this.pub.dataId,owner:this.pub.owner,packs:this.pub.packs||{},hash:this.pub.hash,lastPubAt:this.pub.lastPubAt};
+    if(this.pub&&this.pub.dataId)mine.pub={dataId:this.pub.dataId,owner:this.pub.owner,packs:this.pub.packs||{},hash:this.pub.hash,lastPubAt:this.pub.lastPubAt,short:this.pub.short||null};
     this.setBusy('Enviando dados…');
     const body={description:'Portfólio · sincronização entre aparelhos (não apague)',files:{[SYNC_FILE]:{content:JSON.stringify(mine)}}};
     const first=!c.dataId;
@@ -4426,7 +4447,7 @@ function renderCloudBadge(){
    ===================================================================== */
 let gxDev='m';
 function gxLinkHTML(){
- const C=Cloud,p=C.pub,link=C.link(),base=publicBase(),busy=C.publishing;
+ const C=Cloud,p=C.pub,link=C.link(),base=publicBase(),busy=C.publishing,sh=C.shortInfo(),share=C.shareLink();
  if(!C.token())return `<div class="gx-top"><div class="gx-ico">${ico('link')}</div><div><h2>Link para o cliente</h2><p>Envie um link e o cliente vê seu portfólio no celular ou no computador, sem baixar nada, com fotos em tela cheia e vídeos tocando na própria página. Para gerar o link, conecte uma conta gratuita do GitHub logo abaixo (leva dois minutos).</p><div class="gx-acts" style="margin-top:14px"><button class="btn primary" data-action="gx-scroll" data-to="gxGh">${ico('key')}Conectar o GitHub</button><button class="btn" data-action="gx-openprev">${ico('eye')}Ver como o cliente vai ver</button></div></div></div>`;
  if(!p||!p.dataId)return `<div class="gx-top"><div class="gx-ico">${ico('link')}</div><div><h2>Link para o cliente <span class="badge">Não publicado</span></h2><p>Publique para gerar um endereço exclusivo. Depois disso, toda alteração que você fizer aparece para o cliente em tempo real, sem precisar enviar o link de novo.</p>
   ${p&&p.error?`<div class="gx-err">${esc(p.error)}</div>`:''}
@@ -4434,13 +4455,20 @@ function gxLinkHTML(){
   ${base?'':`<div class="gx-warn">Você está usando o sistema direto do arquivo. Antes de enviar o link, informe o <b>endereço público do sistema</b> em “Página do cliente”, mais abaixo.</div>`}</div></div>`;
  const st=busy?['busy',C.busyMsg||'Publicando…']:p.error?['err','Erro na última atualização']:p.dirty?(p.auto!==false?['busy','Atualizando em instantes…']:['busy','Alterações não publicadas']):['live','No ar · atualizado '+ago(p.lastPubAt)];
  return `<div class="gx-top"><div class="gx-ico">${ico('link')}</div><div style="flex:1;min-width:0"><h2>Link para o cliente <span class="badge ${st[0]}"><i></i>${esc(st[1])}</span></h2><p>Envie este endereço ao cliente. Ele abre no navegador, sem baixar nada, e mostra sempre a versão mais recente.</p>
-  ${link?`<div class="gx-url"><div class="u">${ico('link')}<span id="gxUrl">${esc(link)}</span></div><button class="btn primary" data-action="copy-link">${ico('copy')}Copiar</button><a class="btn" href="${esc(link)}" target="_blank" rel="noopener">${ico('ext')}Abrir</a></div>
+  ${link?`<div class="gx-url"><div class="u${sh&&!sh.stale&&sh.use!==false?' short':''}">${ico(sh&&!sh.stale&&sh.use!==false?'cut':'link')}<span id="gxUrl">${esc(share)}</span></div><button class="btn primary" data-action="copy-link">${ico('copy')}Copiar</button><a class="btn" href="${esc(share)}" target="_blank" rel="noopener">${ico('ext')}Abrir</a></div>
+  ${gxShortHTML(sh,link)}
   <div class="gx-acts"><button class="btn sm" data-action="share-wa">${ico('wa')}Enviar no WhatsApp</button><button class="btn sm" data-action="share-mail">${ico('mail')}Enviar por e-mail</button><button class="btn sm" data-action="share-qr">${ico('qr')}QR code</button>${navigator.share?`<button class="btn sm" data-action="share-native">${ico('share')}Compartilhar…</button>`:''}</div>`
   :`<div class="gx-warn">O portfólio já está publicado, mas falta o <b>endereço público do sistema</b> para montar o link. Preencha em “Página do cliente”, mais abaixo.</div>`}
   ${p.error?`<div class="gx-err">${esc(p.error)}</div>`:''}
   <div class="gx-meta"><span><b>${p.nPhotos||0}</b> imagens publicadas</span><span>Dados: <b>${fmtBytes(p.size||0)}</b></span><span>Gist: <a href="https://gist.github.com/${esc(p.owner||'')}/${esc(p.dataId)}" target="_blank" rel="noopener">${esc(p.dataId.slice(0,8))}…</a></span></div>
   <div class="row wrap gap2" style="margin-top:16px;justify-content:space-between"><label class="sw"><input type="checkbox" data-action="pub-auto" ${p.auto!==false?'checked':''}><span><b>Tempo real:</b> atualizar o link automaticamente a cada alteração</span></label>
   <div class="gx-acts"><button class="btn sm" data-action="pub-now" ${busy?'disabled':''}>${ico('sync')}Publicar agora</button><button class="btn sm ghost danger" data-action="pub-off">Tirar do ar</button></div></div></div></div>`;
+}
+function gxShortHTML(sh,link){
+ if(!sh)return `<div class="gx-short"><span>Link grande para mandar? Crie um endereço curto, como <b>is.gd/${esc(aliasFrom(brandName())||'seu_nome')}</b>.</span><button class="btn sm" data-action="short-open">${ico('cut')}Encurtar link</button></div>`;
+ if(sh.stale)return `<div class="gx-warn" style="margin:0 0 12px">O link curto <b>${esc(sh.url)}</b> aponta para um endereço antigo do portfólio. <button class="btn sm" data-action="short-open" style="margin-left:6px">${ico('cut')}Encurtar de novo</button> <button class="btn sm ghost danger" data-action="short-del">Remover</button></div>`;
+ return `<div class="gx-short"><span>${sh.use!==false?`Link curto via <b>${esc((SHORTS[sh.prov]||{}).nome||sh.prov)}</b>. Link completo:`:`Compartilhando o link completo. Link curto (${esc((SHORTS[sh.prov]||{}).nome||sh.prov)}):`} <a href="${esc(sh.use!==false?link:sh.url)}" target="_blank" rel="noopener" class="gx-full">${esc(sh.use!==false?link:sh.url)}</a></span>
+  <span class="gx-acts"><label class="sw" style="padding:0"><input type="checkbox" data-action="short-use" ${sh.use!==false?'checked':''}><span>Usar o curto</span></label><button class="btn sm ghost" data-action="short-open">Trocar</button><button class="btn sm ghost danger" data-action="short-del">Remover</button></span></div>`;
 }
 function gxGhHTML(){
  const C=Cloud;
@@ -4537,6 +4565,87 @@ function updateGestaoLive(){
 }
 AFTER.gx=debounce(()=>{const L=$('#gxLink');if(L)L.innerHTML=gxLinkHTML();},300);
 
+/* encurtador de link (sem servidor: is.gd/v.gd por JSONP, Bitly pela API, ou link próprio) */
+const SHORTS={
+ isgd:{nome:'is.gd',host:'https://is.gd',d:'Grátis e sem cadastro. Aceita apelido: is.gd/seu_nome.',alias:true},
+ vgd:{nome:'v.gd',host:'https://v.gd',d:'Do mesmo serviço do is.gd, mostra uma prévia do destino antes de abrir.',alias:true},
+ bitly:{nome:'Bitly',d:'Precisa de uma conta gratuita e de um token. Mostra estatísticas de cliques no site do Bitly.',token:true},
+ manual:{nome:'Link próprio',d:'Já criou o link curto em outro lugar (seu domínio, Bitly, TinyURL)? Cole aqui.'}
+};
+function aliasFrom(s){return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^A-Za-z0-9_]+/g,'_').replace(/^_+|_+$/g,'').replace(/_+/g,'_').slice(0,30).replace(/_+$/,'');}
+function jsonp(url,ms=15000){
+ return new Promise((res,rej)=>{
+  const cb='__curto_'+uid().replace(/\W/g,'');const sc=document.createElement('script');
+  const done=()=>{clearTimeout(t);try{delete window[cb];}catch(e){window[cb]=undefined;}sc.remove();};
+  const t=setTimeout(()=>{done();rej(new Error('O encurtador não respondeu. Tente de novo em instantes.'));},ms);
+  window[cb]=d=>{done();res(d);};
+  sc.onerror=()=>{done();const e=new Error('rejeitado');e.http=true;rej(e);};
+  sc.src=url+(url.includes('?')?'&':'?')+'callback='+cb;document.head.appendChild(sc);
+ });
+}
+async function shortenLink(prov,long,{alias='',token='',manual=''}={}){
+ if(prov==='manual'){
+  let u=String(manual||'').trim();if(!u)throw new Error('Cole o link curto que você criou.');
+  u=normUrl(u);try{new URL(u);}catch(e){throw new Error('Esse link não parece válido.');}
+  return u;
+ }
+ if(prov==='isgd'||prov==='vgd'){
+  if(/^https?:\/\/(localhost|127\.|10\.|192\.168\.|\[?::1)/i.test(long))throw new Error('Endereços locais (do seu computador) não podem ser encurtados. Hospede o sistema e informe o endereço público.');
+  let q=`${SHORTS[prov].host}/create.php?format=json&logstats=0&url=${encodeURIComponent(long)}`;
+  if(alias)q+=`&shorturl=${encodeURIComponent(alias)}`;
+  let d;
+  try{d=await jsonp(q);}
+  catch(e){if(e.http)throw new Error(alias?`O ${SHORTS[prov].nome} recusou o pedido. O apelido “${alias}” provavelmente já está em uso: tente outro.`:`O ${SHORTS[prov].nome} recusou o pedido. Tente de novo em instantes.`);throw e;}
+  if(d&&d.shorturl)return d.shorturl;
+  const c=d&&+d.errorcode;
+  throw new Error(c===2?`O apelido “${alias}” já está em uso ou não é aceito. Use de 5 a 30 letras, números ou _.`:c===3?'Muitos pedidos seguidos. Aguarde um minuto e tente de novo.':c===1?'O encurtador recusou este endereço.':((d&&d.errormessage)||'O encurtador não conseguiu criar o link.'));
+ }
+ if(prov==='bitly'){
+  if(!token)throw new Error('Cole o token do Bitly.');
+  let r;try{r=await fetchT('https://api-ssl.bitly.com/v4/shorten',20000,{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify({long_url:long})});}
+  catch(e){throw new Error('Não foi possível falar com o Bitly. Verifique a internet.');}
+  let j=null;try{j=await r.json();}catch(e){}
+  if(r.ok&&j&&j.link)return j.link;
+  throw new Error(r.status===401||r.status===403?'Token do Bitly inválido.':r.status===429?'Limite do Bitly atingido. Tente mais tarde.':((j&&(j.description||j.message))||`Erro do Bitly (${r.status}).`));
+ }
+ throw new Error('Encurtador desconhecido.');
+}
+function openShortModal(){
+ const long=Cloud.link();if(!long){toast('Publique o portfólio antes de encurtar o link.','err');return;}
+ const cur=Cloud.shortInfo();let prov=cur&&SHORTS[cur.prov]?cur.prov:'isgd';
+ const al=cur&&cur.alias?cur.alias:aliasFrom(brandName());
+ const m=openModal({wide:true,title:'Encurtar o link do cliente',html:`
+  <p class="hint" style="margin-top:0">O link curto aponta para o seu portfólio e continua valendo para sempre: as atualizações em tempo real não mudam o endereço.</p>
+  <div class="shp" role="radiogroup" aria-label="Encurtador">${Object.entries(SHORTS).map(([k,v])=>`<button type="button" role="radio" class="${k===prov?'on':''}" aria-checked="${k===prov}" data-sp="${k}"><b>${v.nome}</b><span>${v.d}</span></button>`).join('')}</div>
+  <div id="shAlias" class="field" style="margin-top:16px"><label for="sh_al">Apelido (opcional)</label><div class="shpre"><span id="shHost">is.gd/</span><input id="sh_al" maxlength="30" value="${esc(al)}" placeholder="seu_nome" spellcheck="false" autocomplete="off"></div><div class="hint">De 5 a 30 caracteres: letras, números e _. Deixe em branco para um código aleatório.</div></div>
+  <div id="shTok" class="field" style="margin-top:16px"><label for="sh_tk">Token do Bitly</label><input id="sh_tk" type="password" value="${esc((Cloud.shortTok||{}).bitly||'')}" placeholder="Cole o token" autocomplete="off" spellcheck="false"><div class="hint">Gere em <a href="https://app.bitly.com/settings/api/" target="_blank" rel="noopener">app.bitly.com › Settings › API</a>. Fica salvo só neste aparelho.</div></div>
+  <div id="shMan" class="field" style="margin-top:16px"><label for="sh_mn">Seu link curto</label><input id="sh_mn" type="url" value="${esc(cur&&cur.prov==='manual'?cur.url:'')}" placeholder="https://seudominio.com.br/portfolio"><div class="hint">Configure-o para redirecionar para: <span style="word-break:break-all">${esc(long)}</span></div></div>
+  <div class="err" id="shErr" style="margin-top:10px"></div>`,
+  footer:`<button class="btn ghost" type="button" id="shc">Cancelar</button><button class="btn primary" type="button" id="shok">${ico('cut')}Criar link curto</button>`});
+ const el=m.el;
+ const sync=()=>{const S=SHORTS[prov];const show=(id,on)=>{$(id,el).style.display=on?'':'none';};show('#shAlias',S.alias);show('#shTok',S.token);show('#shMan',prov==='manual');if(S.host)$('#shHost',el).textContent=S.host.replace('https://','')+'/';$('#shok',el).innerHTML=prov==='manual'?`${ico('check')}Salvar link`:`${ico('cut')}Criar link curto`;$$('[data-sp]',el).forEach(b=>{b.classList.toggle('on',b.dataset.sp===prov);b.setAttribute('aria-checked',String(b.dataset.sp===prov));});$('#shErr',el).textContent='';};
+ sync();
+ el.addEventListener('click',e=>{const b=e.target.closest('[data-sp]');if(b){prov=b.dataset.sp;sync();}});
+ $('#sh_al',el).addEventListener('input',e=>{const v=aliasFrom(e.target.value.replace(/\s/g,'_'));if(v!==e.target.value)e.target.value=v;$('#shErr',el).textContent='';});
+ $('#shc',el).onclick=()=>m.close();
+ $('#shok',el).onclick=async()=>{
+  const btn=$('#shok',el),err=$('#shErr',el);err.textContent='';
+  const alias=SHORTS[prov].alias?aliasFrom($('#sh_al',el).value):'';
+  if(alias&&alias.length<5){err.textContent='O apelido precisa ter pelo menos 5 caracteres.';return;}
+  const token=$('#sh_tk',el).value.trim();
+  btn.disabled=true;const old=btn.innerHTML;btn.textContent='Criando…';
+  try{
+   const url=await shortenLink(prov,long,{alias,token,manual:$('#sh_mn',el).value});
+   if(prov==='bitly'){Cloud.shortTok=Object.assign({},Cloud.shortTok,{bitly:token});await putLocal('shortTok',Cloud.shortTok);}
+   Cloud.pub.short={url,prov,alias,target:long,at:Date.now(),use:true};await Cloud.saveCfg('pub');
+   Cloud.addLog('ok','Link curto criado: '+url);
+   if(Cloud.sync&&Cloud.sync.auto!==false){Cloud.sync.remoteHash=null;Cloud.scheduleSync(800);}
+   m.close();updateGestaoLive();
+   if(await copyText(url))toast('Link curto criado e copiado: '+url);else toast('Link curto criado: '+url);
+  }catch(e){err.textContent=e.message;btn.disabled=false;btn.innerHTML=old;}
+ };
+}
+
 /* compartilhar */
 function shareText(link){return `Olá! Preparei uma apresentação do meu trabalho para você. É só abrir: ${link}`;}
 let qrLib=null;
@@ -4549,21 +4658,24 @@ async function showQR(link){
  catch(e){$('#qrb',m.el).innerHTML='<span class="muted">Não foi possível gerar o QR code sem internet.</span>';}
 }
 function shareQuick(){
- const link=Cloud.link();
+ const link=Cloud.shareLink();
  if(!link){go('gestao');toast(Cloud.token()?'Publique o portfólio para gerar o link do cliente.':'Conecte o GitHub e publique para gerar o link do cliente.');return;}
  const m=openModal({title:'Enviar portfólio ao cliente',html:`<p class="hint" style="margin-top:0">O cliente abre no navegador, sem baixar nada, e vê sempre a versão mais recente.</p><div class="gx-url" style="margin-top:6px"><div class="u">${ico('link')}<span>${esc(link)}</span></div></div>
-  <div class="gx-acts"><button class="btn primary" type="button" data-action="copy-link">${ico('copy')}Copiar link</button><button class="btn" type="button" data-action="share-wa">${ico('wa')}WhatsApp</button><button class="btn" type="button" data-action="share-mail">${ico('mail')}E-mail</button><button class="btn" type="button" data-action="share-qr">${ico('qr')}QR code</button><a class="btn" href="${esc(link)}" target="_blank" rel="noopener">${ico('ext')}Abrir</a></div>
+  <div class="gx-acts"><button class="btn primary" type="button" data-action="copy-link">${ico('copy')}Copiar link</button><button class="btn" type="button" data-action="share-wa">${ico('wa')}WhatsApp</button><button class="btn" type="button" data-action="share-mail">${ico('mail')}E-mail</button><button class="btn" type="button" data-action="share-qr">${ico('qr')}QR code</button><a class="btn" href="${esc(link)}" target="_blank" rel="noopener">${ico('ext')}Abrir</a>${Cloud.shortInfo()&&!Cloud.shortInfo().stale?'':`<button class="btn" type="button" data-action="short-open">${ico('cut')}Encurtar</button>`}</div>
   ${Cloud.pub&&Cloud.pub.dirty?`<p class="hint" style="margin:14px 0 0">${Cloud.pub.auto!==false?'Há alterações sendo enviadas ao link agora.':'Há alterações que ainda não foram publicadas. Abra Gestão para publicar.'}</p>`:''}`});
 }
 
 /* ações novas */
 Object.assign(ACT,{
  'share-quick':()=>shareQuick(),
- 'copy-link':async()=>{const l=Cloud.link();if(l&&await copyText(l))toast('Link copiado');else toast('Não foi possível copiar. Selecione e copie o link manualmente.','err');},
- 'share-wa':()=>{const l=Cloud.link();if(l)window.open('https://wa.me/?text='+encodeURIComponent(shareText(l)),'_blank','noopener');},
- 'share-mail':()=>{const l=Cloud.link();if(l)location.href=`mailto:?subject=${encodeURIComponent('Portfólio de '+(brandName()||''))}&body=${encodeURIComponent(shareText(l))}`;},
- 'share-native':async()=>{const l=Cloud.link();try{await navigator.share({title:'Portfólio de '+brandName(),text:shareText(l),url:l});}catch(e){}},
- 'share-qr':()=>{const l=Cloud.link();if(l)showQR(l);},
+ 'short-open':()=>{const mr=$('#modal-root');const top=mr.lastElementChild;if(top&&top._api&&!top.querySelector('#sh_al'))top._api.close();openShortModal();},
+ 'short-use':async el=>{if(!Cloud.pub||!Cloud.pub.short)return;Cloud.pub.short.use=el.checked;await Cloud.saveCfg('pub');toast(el.checked?'O link curto será usado ao compartilhar':'O link completo será usado ao compartilhar');updateGestaoLive();},
+ 'short-del':async()=>{if(!Cloud.pub||!Cloud.pub.short)return;if(!await confirmBox({title:'Remover link curto',text:'O sistema volta a compartilhar o link completo. O link curto que você já enviou continua funcionando, pois o encurtador não permite apagá-lo.',ok:'Remover'}))return;Cloud.pub.short=null;Cloud.pub.short={url:'',at:Date.now()};await Cloud.saveCfg('pub');if(Cloud.sync&&Cloud.sync.auto!==false){Cloud.sync.remoteHash=null;Cloud.scheduleSync(800);}updateGestaoLive();},
+ 'copy-link':async()=>{const l=Cloud.shareLink();if(l&&await copyText(l))toast('Link copiado');else toast('Não foi possível copiar. Selecione e copie o link manualmente.','err');},
+ 'share-wa':()=>{const l=Cloud.shareLink();if(l)window.open('https://wa.me/?text='+encodeURIComponent(shareText(l)),'_blank','noopener');},
+ 'share-mail':()=>{const l=Cloud.shareLink();if(l)location.href=`mailto:?subject=${encodeURIComponent('Portfólio de '+(brandName()||''))}&body=${encodeURIComponent(shareText(l))}`;},
+ 'share-native':async()=>{const l=Cloud.shareLink();try{await navigator.share({title:'Portfólio de '+brandName(),text:shareText(l),url:l});}catch(e){}},
+ 'share-qr':()=>{const l=Cloud.shareLink();if(l)showQR(l);},
  'gx-scroll':el=>{const t=document.getElementById(el.dataset.to);if(t){t.scrollIntoView({behavior:'smooth',block:'start'});const i=$('input',t);if(i)setTimeout(()=>i.focus(),400);}},
  'gx-openprev':()=>window.open('?ver=local','_blank','noopener'),
  'gx-dev':el=>{gxDev=el.dataset.v;const f=$('#gxFrame');if(f){f.className='gx-frame '+gxDev;f.style.removeProperty('--s');layoutGxFrame();}$$('.seg2 [data-action="gx-dev"]').forEach(b=>b.classList.toggle('on',b.dataset.v===gxDev));},
