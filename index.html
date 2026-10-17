@@ -753,6 +753,158 @@ input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-vis
 .shpre{display:flex;align-items:stretch;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--bg)}
 .shpre span{display:flex;align-items:center;padding:0 4px 0 12px;color:var(--muted);font-family:ui-monospace,Menlo,monospace;font-size:14px}
 .shpre input{border:0!important;border-radius:0!important;padding-left:2px!important;font-family:ui-monospace,Menlo,monospace!important;background:transparent!important;flex:1;min-width:0}
+
+/* ============ coach de carreira ============ */
+.co-top{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin:6px 0 14px}
+.co-h1{font-size:30px;margin:0}
+@media(max-width:719px){.co-h1{display:none}}
+.co-over{display:block;color:#B45309;font-size:12.5px;margin-top:2px}
+.co-tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--line);margin:0 0 20px;-webkit-overflow-scrolling:touch}
+.co-tabs::-webkit-scrollbar{display:none}
+.co-tabs button{flex:none;display:inline-flex;align-items:center;gap:7px;border:0;background:transparent;color:var(--muted);font:inherit;font-weight:600;font-size:14px;padding:10px 12px 12px;border-bottom:2.5px solid transparent;cursor:pointer;position:relative;white-space:nowrap}
+.co-tabs button .ic{width:17px;height:17px}
+.co-tabs button.on{color:var(--brand);border-bottom-color:var(--brand)}
+.co-dot{font-style:normal;background:var(--danger);color:#fff;font-size:11px;font-weight:700;min-width:18px;height:18px;border-radius:99px;display:inline-grid;place-items:center;padding:0 5px}
+.co-intro{display:flex;gap:20px;align-items:flex-start}
+.co-hero-ic{width:60px;height:60px;border-radius:18px;background:var(--brand);color:var(--on-brand);display:grid;place-items:center;flex:none}
+.co-hero-ic .ic{width:30px;height:30px}
+.co-intro h2{margin:0 0 6px;font-size:22px}
+@media(max-width:560px){.co-intro{flex-direction:column}}
+.co-today{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-bottom:18px;display:flex;flex-direction:column;gap:14px}
+.co-sum{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.co-sum h2{margin:0;font-size:20px}
+.co-sum p{margin:2px 0 0}
+.co-ringw{position:relative;width:64px;height:64px;flex:none}
+.co-ring{width:64px;height:64px}
+.co-ringw b{position:absolute;inset:0;display:grid;place-items:center;font-size:14.5px}
+.co-kpis{display:flex;gap:18px;margin-left:auto}
+.co-kpis>div{display:flex;flex-direction:column;align-items:flex-start;min-width:70px}
+.co-kpis b{font-family:'Bricolage Grotesque',sans-serif;font-size:22px;line-height:1.1;display:flex;align-items:center;gap:4px}
+.co-kpis small{font-size:12px;color:var(--muted)}
+.co-kpis>div:first-child{flex-direction:row;align-items:center;gap:6px;flex-wrap:wrap;max-width:120px}
+.co-kpis>div:first-child small{width:100%;margin-top:-2px}
+.co-fire .ic{width:22px;height:22px;color:#F26B1D;fill:color-mix(in srgb,#F26B1D 25%,transparent)}
+@media(max-width:560px){.co-kpis{margin-left:0;width:100%}}
+.co-week{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;align-items:end;height:62px;border-top:1px solid var(--line);padding-top:10px}
+.co-week div{display:flex;flex-direction:column;align-items:center;gap:4px;justify-content:flex-end;height:100%}
+.co-week i{display:block;width:100%;max-width:34px;border-radius:6px;background:var(--brand)}
+.co-week span{font-size:11.5px;color:var(--muted)}
+.co-cols{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:18px;align-items:start}
+@media(max-width:980px){.co-cols{grid-template-columns:1fr}}
+.co-list{display:flex;flex-direction:column;gap:8px}
+.co-task{display:flex;gap:12px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--ac);border-radius:12px;padding:12px 14px}
+.co-task.late{border-color:color-mix(in srgb,var(--danger) 45%,var(--line));border-left-color:var(--danger)}
+.co-task.done{opacity:.62}
+.co-task.done .co-tt b{text-decoration:line-through}
+.co-chk{width:28px;height:28px;border-radius:8px;border:2px solid var(--line);background:var(--bg);flex:none;display:grid;place-items:center;cursor:pointer;color:var(--on-brand);margin-top:2px;padding:0}
+.co-chk:hover{border-color:var(--brand)}
+.co-task.done .co-chk{background:var(--brand);border-color:var(--brand)}
+.co-chk .ic{width:16px;height:16px}
+.co-tb{flex:1;min-width:0}
+.co-tt{display:flex;flex-direction:column;align-items:flex-start;gap:2px;border:0;background:transparent;padding:0;text-align:left;cursor:pointer;color:var(--ink);font:inherit;width:100%}
+.co-tt b{font-size:15px;line-height:1.35}
+.co-ar{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;color:var(--ac);letter-spacing:.02em}
+.co-ar .ic{width:13px;height:13px}
+.co-sub{font-size:13px;color:var(--muted)}
+.co-task.late .co-sub{color:var(--danger);font-weight:600}
+.co-how{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-size:14px}
+.co-how ol{margin:0 0 12px;padding-left:20px}
+.co-how li{margin-bottom:5px}
+.co-h3{font-size:15px;margin:22px 0 10px;color:var(--muted);font-family:'Figtree',sans-serif;font-weight:700}
+.co-side{padding:16px 18px;margin-bottom:14px}
+.co-side h3{margin:0 0 6px;font-size:15.5px}
+.co-ul{margin:0;padding-left:18px;font-size:14px}
+.co-ul li{margin-bottom:6px}
+.co-ul.co-bad li::marker{color:var(--danger)}
+.co-ag{display:flex;flex-direction:column;width:100%;text-align:left;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:9px 12px;margin-top:8px;cursor:pointer;font:inherit;color:var(--ink)}
+.co-ag:hover{border-color:var(--brand)}
+.co-ag span{font-size:12.5px;color:var(--muted)}
+.co-pipe{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:8px;margin-bottom:16px}
+.co-pipe button{border:1px solid var(--line);border-top:4px solid var(--ec);background:var(--panel);border-radius:10px;padding:9px 12px;text-align:left;cursor:pointer;font:inherit;color:var(--ink)}
+.co-pipe button.on{box-shadow:0 0 0 3px color-mix(in srgb,var(--ec) 30%,transparent)}
+.co-pipe b{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:21px;line-height:1.1}
+.co-pipe span{font-size:12px;color:var(--muted)}
+.co-av{width:42px;height:42px;border-radius:50%;color:#fff;display:grid;place-items:center;font-weight:700;font-size:17px;flex:none}
+.co-badge{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:99px;background:color-mix(in srgb,var(--ec) 16%,transparent);color:var(--ec)}
+.co-sel{font:inherit;font-size:13px;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:var(--ink);padding:7px 8px;max-width:150px}
+.co-date{width:54px;height:54px;border-radius:12px;background:var(--brand-soft);color:var(--brand);display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none}
+.co-date b{font-size:20px;line-height:1}
+.co-date span{font-size:11.5px;font-weight:700;text-transform:uppercase}
+.chip-btn.on{background:var(--brand);color:var(--on-brand);border-color:var(--brand)}
+.co-pb .co-lead{font-size:15.5px;margin:4px 0 14px;max-width:72ch}
+.co-energy{display:flex;gap:6px;align-items:flex-end;height:92px;padding:10px 12px 0;background:var(--bg);border:1px solid var(--line);border-radius:12px;margin-bottom:16px}
+.co-energy div{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;min-width:0}
+.co-energy i{display:block;width:100%;max-width:46px;border-radius:6px 6px 0 0;background:linear-gradient(180deg,var(--brand),color-mix(in srgb,var(--brand) 45%,transparent))}
+.co-energy span{font-size:10.5px;color:var(--muted);padding:4px 0 6px;height:24px;line-height:16px;flex:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.co-pbg{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+@media(max-width:400px){.co-pbg{grid-template-columns:1fr}}
+.co-pbg section{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--panel)}
+.co-pbg section.co-hl{border-color:color-mix(in srgb,var(--brand) 40%,var(--line));background:color-mix(in srgb,var(--brand) 5%,var(--panel))}
+.co-pbg h3{display:flex;align-items:center;gap:8px;margin:0 0 10px;font-size:15.5px}
+.co-pbg h3 .ic{width:18px;height:18px;color:var(--brand)}
+.co-tl{list-style:none;margin:0;padding:0;counter-reset:t}
+.co-tl li{position:relative;padding:0 0 10px 30px;font-size:13.5px;counter-increment:t}
+.co-tl li::before{content:counter(t);position:absolute;left:0;top:0;width:21px;height:21px;border-radius:50%;background:var(--brand-soft);color:var(--brand);font-size:11.5px;font-weight:700;display:grid;place-items:center}
+.co-tl b{display:block;font-size:14px}
+.co-tl span{color:var(--muted)}
+.co-cki{list-style:none;margin-left:-18px}
+.co-cki label{display:flex;gap:9px;align-items:flex-start;cursor:pointer}
+.co-cki input{margin-top:3px;width:17px;height:17px;accent-color:var(--brand);flex:none}
+.co-cki input:checked+span{color:var(--muted);text-decoration:line-through}
+.co-src{margin:12px 0 0}
+.co-src a{color:var(--muted)}
+.co-strats{display:flex;flex-direction:column;gap:8px}
+.co-st{background:var(--panel);border:1px solid var(--line);border-radius:12px}
+.co-st summary{cursor:pointer;padding:14px 16px;list-style:none;display:flex;flex-direction:column;gap:2px}
+.co-st summary::-webkit-details-marker{display:none}
+.co-st summary b{font-size:15.5px}
+.co-st[open] summary{border-bottom:1px solid var(--line)}
+.co-cat{font-size:11.5px;font-weight:700;color:var(--brand);letter-spacing:.04em;text-transform:uppercase}
+.co-stb{padding:14px 16px 16px;font-size:14.5px}
+.co-stb>p:first-child{margin-top:0}
+.co-stb ol{padding-left:20px}
+.co-stb li{margin-bottom:6px}
+.co-met{display:flex;gap:8px;align-items:flex-start;background:var(--bg);border-radius:10px;padding:10px 12px}
+.co-met .ic{color:var(--brand);margin-top:2px}
+.co-scripts{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.co-scr{display:flex;flex-direction:column;gap:3px;text-align:left;border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:12px 14px;cursor:pointer;font:inherit;color:var(--ink)}
+.co-scr:hover{border-color:var(--brand)}
+.co-scr span{font-size:12.5px;color:var(--muted)}
+.co-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-bottom:18px}
+@media(max-width:400px){.co-grid{grid-template-columns:1fr}}
+.co-grid .panel{margin:0}
+.co-card h3{margin:0 0 8px;font-size:16px;line-height:1.3}
+.co-card p{margin:0 0 6px;font-size:14px;color:color-mix(in srgb,var(--ink) 85%,var(--muted))}
+.co-n{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;color:var(--brand);font-size:14px}
+.co-ideas{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.co-ideas h3{font-size:15px;margin:0 0 8px}
+.co-fases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media(max-width:820px){.co-fases{grid-template-columns:1fr}}
+.co-fases>div{border:1px solid var(--line);border-radius:12px;padding:14px 16px;opacity:.7}
+.co-fases>div.on{opacity:1;border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+.co-fases span{font-size:12px;color:var(--muted);font-weight:600}
+.co-fases h3{margin:2px 0 10px;font-size:18px}
+.co-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.co-meta b{font-family:'Bricolage Grotesque',sans-serif;font-size:30px}
+.co-meta span{color:var(--muted);font-size:14px;margin-left:6px}
+.co-charts{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.co-chart h3{font-size:14.5px;margin:0 0 10px}
+.co-bars{display:flex;gap:6px;align-items:flex-end;height:120px;border-bottom:1px solid var(--line)}
+.co-bars div{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;position:relative;min-width:0}
+.co-bars i{display:block;width:100%;max-width:30px;background:var(--brand);border-radius:5px 5px 0 0;min-height:2px}
+.co-bars b{font-size:11px;position:absolute;top:-2px}
+.co-bars span{position:absolute;bottom:-18px;font-size:10.5px;color:var(--muted)}
+.co-chart{padding-bottom:20px}
+.co-opts{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 18px}
+.co-opt input{position:absolute;opacity:0;pointer-events:none}
+.co-opt span{display:flex;flex-direction:column;border:1.5px solid var(--line);border-radius:12px;padding:9px 14px;cursor:pointer;font-size:14px;background:var(--bg)}
+.co-opt span small{color:var(--muted);font-size:12px}
+.co-opt input:checked+span{border-color:var(--brand);background:var(--brand-soft);color:var(--ink)}
+.co-opt input:focus-visible+span{outline:2.5px solid var(--brand);outline-offset:2px}
+.co-ans .co-qq{font-weight:700;margin:0 0 10px}
+.co-a p{margin:0 0 .8em;line-height:1.65}
+.co-sug{padding:8px 0;border-top:1px solid var(--line);flex-wrap:wrap}
+
 /* ============ página do cliente (visualizador) ============ */
 .is-viewer body{background:var(--wvbg,#fff)}
 .is-viewer #app,.is-viewer #banner{display:none!important}
@@ -1539,6 +1691,8 @@ const DEF_WEB=DEF_SET.web;
 const DEF_RELEASE={titulo:'',subtitulo:'',local:'',data:'',selo:'Para divulgação imediata',lide:'',corpo:'',citacao:'',citacaoAutor:'',sobre:'',contatoNome:'',contatoCargo:'',contatoEmail:'',contatoTelefone:'',fotos:[],credito:'',agrupar:'tipo',template:'',imagens:true};
 const DEF_REPORT={titulo:'Relatório fotográfico de apresentações',subtitulo:'',periodo:'',intro:'',conclusao:'',respNome:'',respCargo:'',local:'',data:'',capa:null,formato:'P',template:'',ordem:'data-asc',legendas:true,metricas:true,indice:true};
 const DEF_DECL={fonte:'',cidade:'',data:'',testemunhas:false,aceite:false,template:'',wm:'suave',resp:{manual:false,v:{}},emp:{manual:false,v:{}},ctr:{manual:false,v:{}},evt:{manual:false,v:{}},ex:{antes:'30',depois:'30',territorio:'',extra:''},me:{elenco:true,figurantes:true,tecnica:true,apoio:true,eca:true,publico:true,comunicar:true},reg:{idoneidade:true,trabalhoInfantil:true,pcd:true,lgpd:true,meEpp:true}};
+const DEF_COACH={perfil:null,feitos:{},dias:{},extra:{},agenda:[],contatos:[],metricas:[],chat:[]};
+const mergeCoach=o=>Object.assign(clone(DEF_COACH),o||{});
 function mergeDecl(o){
  o=o||{};const r=Object.assign(clone(DEF_DECL),o);
  ['ex','me','reg'].forEach(k=>{r[k]=Object.assign(clone(DEF_DECL[k]),o[k]||{});});
@@ -1549,7 +1703,7 @@ function mergeDecl(o){
  ['nome','cpf','rg','razao','cnpj','endereco'].forEach(k=>{delete r[k];});
  return r;
 }
-const state={tab:'inicio',profile:clone(DEF_PROFILE),settings:clone(DEF_SET),release:clone(DEF_RELEASE),report:clone(DEF_REPORT),decl:clone(DEF_DECL),events:[],services:[],testimonials:[],clients:[],facts:[],apres:[],packages:[],videos:[]};
+const state={tab:'inicio',profile:clone(DEF_PROFILE),settings:clone(DEF_SET),release:clone(DEF_RELEASE),report:clone(DEF_REPORT),decl:clone(DEF_DECL),coach:clone(DEF_COACH),events:[],services:[],testimonials:[],clients:[],facts:[],apres:[],packages:[],videos:[]};
 const photos=new Map();
 const getPath=p=>p.split('.').reduce((o,k)=>o==null?o:o[k],state);
 function setPath(p,v){const ks=p.split('.');const last=ks.pop();const o=ks.reduce((o,k)=>o[k],state);o[last]=v;}
@@ -1557,7 +1711,7 @@ function setPath(p,v){const ks=p.split('.');const last=ks.pop();const o=ks.reduc
 /* ================= IndexedDB (com plano B em memória) ================= */
 const STORES=['kv','events','photos','services','testimonials','clients','facts','apres','packages','videos'];
 const COLS=['events','services','testimonials','clients','facts','apres','packages','videos'];
-const SYNC_KV=['profile','settings','release','report','decl'];
+const SYNC_KV=['profile','settings','release','report','decl','coach'];
 const LOCAL_KV=new Set(['gh','syncCfg','pubCfg','actlog','device','tomb','shortTok']);
 const store={db:null,mem:{},persistent:false,
  async init(){
@@ -1643,6 +1797,7 @@ async function loadAll(){
  state.release=Object.assign(clone(DEF_RELEASE),g('release')||{});
  state.report=Object.assign(clone(DEF_REPORT),g('report')||{});
  state.decl=mergeDecl(g('decl'));
+ state.coach=mergeCoach(g('coach'));
  for(const n of COLS)state[n]=await store.all(n);
  photos.clear();(await store.all('photos')).forEach(p=>photos.set(p.id,p));
  normalizeLoaded();snapKV();
@@ -2557,6 +2712,7 @@ function renderHome(){
   <div class="row gap wrap"><button class="btn primary" data-action="goto" data-tab="${next?next.id:'pdf'}">${esc(next?next.cta:'Ver e baixar o PDF')}</button>${next&&nPg>1?`<button class="btn" data-action="goto" data-tab="pdf">Pré-visualizar o PDF</button>`:''}</div>
  </section>
  <section class="panel"><div class="home-link"><div class="t"><h2 style="margin:0 0 4px;font-size:19px">${Cloud.link()?'Seu link do cliente está no ar':'Envie um link em vez de um arquivo'}</h2><p class="sub" style="margin:0">${Cloud.link()?'Toda alteração aparece para o cliente em tempo real. Copie ou compartilhe quando quiser.':'Publique o portfólio como página web: o cliente abre no celular, sem baixar nada, com galerias e vídeos.'}</p></div><div class="gx-acts">${Cloud.link()?`<button class="btn primary" data-action="share-quick">${ico('share')}Enviar link</button>`:''}<button class="btn ${Cloud.link()?'':'primary'}" data-action="goto" data-tab="gestao">${ico('share')}Abrir Gestão</button></div></div></section>
+ <section class="panel"><div class="home-link"><div class="t"><h2 style="margin:0 0 4px;font-size:19px">Coach de carreira</h2><p class="sub" style="margin:0">${state.coach&&state.coach.perfil?(()=>{try{const r=coachDay(coToday()),d=coDone(coToday());return `Hoje: ${r.main.filter(x=>d.has(x.k)).length} de ${r.main.length} tarefas feitas. Rotina diária com conteúdo, contatos, networking e preparação dos eventos.`;}catch(e){return '';}})():'Rotina diária, rede de contatos, roteiros por tipo de evento e estratégias para crescer como DJ.'}</p></div><div class="gx-acts"><button class="btn primary" data-action="goto" data-tab="coach">${ico('target')}Abrir o coach</button></div></div></section>
  <section class="panel"><h2>Etapas</h2><p class="sub">Você pode seguir na ordem ou pular entre elas. Tudo é salvo automaticamente neste dispositivo.</p>
   <ol class="steplist">${st.map(x=>`<li class="${x.state}"><span class="sn">${x.state==='ok'?ico('check'):x.n}</span><div class="tx"><b>${esc(x.label)}</b><span>${esc(x.desc)}</span></div><button class="btn sm ghost" data-action="goto" data-tab="${x.id}">Abrir</button></li>`).join('')}</ol>
  </section>
@@ -3448,6 +3604,7 @@ const NAV=[
  {g:'',items:[{id:'inicio',label:'Início',icon:'home'},{id:'gestao',label:'Gestão e link do cliente',icon:'share'}]},
  {g:'Portfólio',items:[{id:'perfil',label:'Perfil',icon:'user',step:'perfil'},{id:'eventos',label:'Eventos',icon:'cal',step:'eventos'},{id:'videos',label:'Vídeos',icon:'play'},{id:'servicos',label:'Serviços',icon:'brief',step:'servicos'},{id:'catalogo',label:'Catálogo de pacotes',icon:'pkg',step:'catalogo'},{id:'prova',label:'Clientes e depoimentos',icon:'chat',step:'prova'},{id:'design',label:'Design',icon:'palette',step:'design'},{id:'pdf',label:'PDF do portfólio',icon:'file'}]},
  {g:'Documentos',items:[{id:'release',label:'Release de imprensa',icon:'news'},{id:'relatorio',label:'Relatório de apresentações',icon:'cam'},{id:'declaracoes',label:'Declarações',icon:'sign'}]},
+ {g:'Carreira',items:[{id:'coach',label:'Coach de carreira',icon:'target'}]},
  {g:'Ferramentas',items:[{id:'revisao',label:'Revisão de textos',icon:'spell'}]}
 ];
 const TITLES={};NAV.forEach(g=>g.items.forEach(i=>{TITLES[i.id]=i.label;}));
@@ -3461,8 +3618,8 @@ function renderNav(){
  $('#bnav').innerHTML=B.map(b=>`<button class="bn ${state.tab===b[0]?'on':''}" data-tab="${b[0]}">${ico(b[2])}<span>${b[1]}</span></button>`).join('')+`<button class="bn ${inB?'':'on'}" data-menu="1" aria-label="Abrir menu">${ico('menu')}<span>Menu</span></button>`;
  $('#apptitle').textContent=TITLES[state.tab]||'';
  const t=state.tab;const cfg={release:['export-release','Baixar release'],relatorio:['export-report','Baixar relatório']}[t]||['export','Baixar PDF'];
- const b=$('#topExport');b.dataset.action=cfg[0];b.innerHTML=`${ico('dl')}<span class="ab-lbl">${cfg[1]}</span>`;b.setAttribute('aria-label',cfg[1]);b.style.display=(t==='declaracoes'||t==='revisao'||t==='gestao')?'none':'';
- $('#topShare').style.display=['release','relatorio','declaracoes','revisao','gestao'].includes(t)?'none':'';
+ const b=$('#topExport');b.dataset.action=cfg[0];b.innerHTML=`${ico('dl')}<span class="ab-lbl">${cfg[1]}</span>`;b.setAttribute('aria-label',cfg[1]);b.style.display=(t==='declaracoes'||t==='revisao'||t==='gestao'||t==='coach')?'none':'';
+ $('#topShare').style.display=['release','relatorio','declaracoes','revisao','gestao','coach'].includes(t)?'none':'';
  renderSideFoot();renderCloudBadge();
 }
 function renderSideFoot(){
@@ -3775,7 +3932,7 @@ function layoutPreview(){
 window.addEventListener('resize',debounce(()=>{if(['pdf','release','relatorio','declaracoes'].includes(state.tab))layoutPreview();if(state.tab==='design')layoutMinis();},150));
 
 /* ---------- ações ---------- */
-const RENDER={catalogo:renderCatalog,inicio:renderHome,perfil:renderProfile,eventos:renderEvents,servicos:renderServices,prova:renderProof,design:renderDesign,pdf:renderPdf,release:renderRelease,relatorio:renderReport,declaracoes:renderDecl,revisao:renderRevisao,videos:renderVideos,gestao:renderGestao};
+const RENDER={catalogo:renderCatalog,inicio:renderHome,perfil:renderProfile,eventos:renderEvents,servicos:renderServices,prova:renderProof,design:renderDesign,pdf:renderPdf,release:renderRelease,relatorio:renderReport,declaracoes:renderDecl,revisao:renderRevisao,videos:renderVideos,gestao:renderGestao,coach:renderCoach};
 const AFTER={minis:debounce(()=>renderMinis(),250),spell:()=>decorateFields(document)};
 
 async function uploadSingle(path,png){
@@ -3784,7 +3941,7 @@ async function uploadSingle(path,png){
  catch(e){toast(e.message||'Não foi possível ler a imagem.','err');setStatus('');}
 }
 async function exportBackup(){
- const data={app:'portfolio-eventos',versao:5,exportadoEm:new Date().toISOString(),profile:state.profile,settings:state.settings,events:state.events,services:state.services,testimonials:state.testimonials,clients:state.clients,facts:state.facts,release:state.release,apres:state.apres,packages:state.packages,videos:state.videos,report:state.report,decl:state.decl,photos:[...photos.values()]};
+ const data={app:'portfolio-eventos',versao:5,exportadoEm:new Date().toISOString(),profile:state.profile,settings:state.settings,events:state.events,services:state.services,testimonials:state.testimonials,clients:state.clients,facts:state.facts,release:state.release,apres:state.apres,packages:state.packages,videos:state.videos,report:state.report,decl:state.decl,coach:state.coach,photos:[...photos.values()]};
  const blob=new Blob([JSON.stringify(data)],{type:'application/json'});
  try{const r=await saveFile(`backup-portfolio-${new Date().toISOString().slice(0,10)}.json`,blob);toast(r==='declined'?'Backup cancelado.':'Backup exportado');}catch(e){toast('Não foi possível exportar o backup.','err');}
 }
@@ -3807,7 +3964,7 @@ async function importBackup(){
  try{
   state.profile=Object.assign(clone(DEF_PROFILE),d.profile||{});
   const sv=d.settings||{};state.settings=Object.assign(clone(DEF_SET),sv);state.settings.secoes=Object.assign(clone(DEF_SET.secoes),sv.secoes||{});
-  state.release=Object.assign(clone(DEF_RELEASE),d.release||{});state.events=d.events||[];state.services=d.services||[];state.testimonials=d.testimonials||[];state.clients=d.clients||[];state.facts=d.facts||[];state.apres=d.apres||[];state.packages=d.packages||[];state.videos=d.videos||[];state.report=Object.assign(clone(DEF_REPORT),d.report||{});state.decl=mergeDecl(d.decl);
+  state.release=Object.assign(clone(DEF_RELEASE),d.release||{});state.events=d.events||[];state.services=d.services||[];state.testimonials=d.testimonials||[];state.clients=d.clients||[];state.facts=d.facts||[];state.apres=d.apres||[];state.packages=d.packages||[];state.videos=d.videos||[];state.report=Object.assign(clone(DEF_REPORT),d.report||{});state.decl=mergeDecl(d.decl);state.coach=mergeCoach(d.coach);
   photos.clear();(d.photos||[]).forEach(p=>photos.set(p.id,p));normalizeLoaded();await persistAll();toast('Backup importado');go('inicio');
  }catch(e){console.error(e);toast('Falha ao importar o backup.','err');}
 }
@@ -3821,7 +3978,7 @@ async function resetAll(){
   if(keep.pubCfg)keep.pubCfg=Object.assign({},keep.pubCfg,{auto:false});
  });
  await Cloud.reloadCfg();
- state.profile=clone(DEF_PROFILE);applySettings({});state.release=clone(DEF_RELEASE);state.report=clone(DEF_REPORT);state.decl=clone(DEF_DECL);COLS.forEach(n=>state[n]=[]);photos.clear();snapKV();SYNC_KV.forEach(k=>kvMeta[k]=0);
+ state.profile=clone(DEF_PROFILE);applySettings({});state.release=clone(DEF_RELEASE);state.report=clone(DEF_REPORT);state.decl=clone(DEF_DECL);state.coach=clone(DEF_COACH);COLS.forEach(n=>state[n]=[]);photos.clear();snapKV();SYNC_KV.forEach(k=>kvMeta[k]=0);
  dataChanged('all');
  toast('Todos os dados deste aparelho foram apagados');go('inicio');
 }
@@ -4228,7 +4385,7 @@ async function applyRemote(R,{preferRemote=false,progress}={}){
  if(!changed&&!tombChanged)return false;
  syncApplying=true;
  try{
-  kvPut.forEach(([k,v,u])=>{if(k==='settings')applySettings(v);else if(k==='decl')state.decl=mergeDecl(v);else if(k==='profile')state.profile=Object.assign(clone(DEF_PROFILE),v);else state[k]=Object.assign(clone(k==='release'?DEF_RELEASE:DEF_REPORT),v);kvMeta[k]=u;});
+  kvPut.forEach(([k,v,u])=>{if(k==='settings')applySettings(v);else if(k==='decl')state.decl=mergeDecl(v);else if(k==='profile')state.profile=Object.assign(clone(DEF_PROFILE),v);else if(k==='coach')state.coach=mergeCoach(v);else state[k]=Object.assign(clone(k==='release'?DEF_RELEASE:DEF_REPORT),v);kvMeta[k]=u;});
   COLS.forEach(n=>{state[n]=next[n];});
   normalizeLoaded();
   for(const [k,,u] of kvPut)await rawStore.put('kv',{key:k,value:clone(state[k]),_u:u});
@@ -4901,6 +5058,574 @@ async function startViewer(){
   else wvError('Não foi possível abrir o portfólio','Verifique sua conexão com a internet e tente de novo em instantes.');
  }
 }
+
+
+/* =====================================================================
+   COACH DE CARREIRA: base de conhecimento (pesquisa de outubro de 2026)
+   ===================================================================== */
+const CO_SRC={
+ nadj:['NADJ: estratégia de vídeo curto de DJs','https://www.nadj.org.uk/news/dj-tiktok-strategy-uk-mobile-djs-bookings-short-video/'],
+ edm:['Social Media for DJs: playbook prático','https://edm-ghost-production.com/dj-knowledge-base/social-media-for-djs'],
+ ig:['Algoritmo do Instagram 2026: sinais confirmados por Mosseri','https://www.dataslayer.ai/blog/instagram-algorithm-2025-complete-guide-for-marketers'],
+ prism:['Prism.fm: como abordar casas e promoters','https://prism.fm/blog/best-practices/pitching-yourself-to-promoters-and-venues-a-guide-for-artists/'],
+ unch:['Unchained Music: roteiro de abordagem para conseguir datas','https://www.unchainedmusic.io/blog-posts/the-21-step-gig-outreach-script-that-gets-replies-for-booking-gigs-and-playing-live-music'],
+ bka:['Booking-Agent: como conseguir datas em 2026','https://booking-agent.io/blog/how-to-get-dj-gigs-in-2026/'],
+ easy:['Easy Weddings: 7 formas de receber indicações de fornecedores','https://easyweddings.com.au/pro-education/getting-referrals'],
+ zip:['ZipDJ: como conseguir uma residência','https://www.zipdj.com/blog/dj-residency'],
+ dub:['Dubspot: dicas para DJs de abertura','https://blog.dubspot.com/tips-for-opening-djs-josh-wink-hector-romero-mike-huckaby-dj-dan-shiftee'],
+ ddj:['Digital DJ Tips: 5 dicas para o warm-up','https://www.digitaldjtips.com/5-essential-tips-for-playing-a-great-warm-up-set/'],
+ thom:['Thomann: como ler a pista','https://www.thomannmusic.com/blog/learn/reading-the-audience-as-a-dj-understand-the-crowd/'],
+ gill:['DJ Will Gill: música para eventos corporativos','https://djwillgill.com/?p=25169'],
+ wed:['Ordem das danças e cronograma da festa de casamento','https://www.myoneofakindevent.com/blog/order-of-dances-at-wedding/'],
+ coral:['Coral Eventos: roteiro de 15 anos hora a hora','https://coraleventos.com.br/blog/festa-15-anos-roteiro-hora-a-hora'],
+ deb:['Debuteen: roteiro tradicional de 15 anos em 10 passos','https://debuteen.com.br/2017/04/roteiro-ideal-para-15-anos-tradicional-em-10-passos/']
+};
+const CO_AREAS={
+ conteudo:{n:'Conteúdo',ic:'play',c:'#E0457B'},
+ prospeccao:{n:'Contato direto',ic:'chat',c:'#2B7FE0'},
+ rede:{n:'Networking',ic:'users',c:'#7A4FD6'},
+ musica:{n:'Música e prática',ic:'mic',c:'#0E9F7E'},
+ evento:{n:'Evento',ic:'cal',c:'#E58A00'},
+ negocio:{n:'Negócio',ic:'brief',c:'#5B6779'},
+ saude:{n:'Energia',ic:'heart',c:'#C2410C'}
+};
+const CO_TRENDS=[
+ {t:'Vídeo curto vertical é o que leva você a quem ainda não te segue',d:'Reels, TikTok e Shorts são o principal motor de alcance para não seguidores. Grave uma vez e corte o mesmo clipe para as três plataformas. Use o Instagram como base e escolha uma ou duas redes principais, em vez de tentar estar em todas.',s:['edm']},
+ {t:'O Instagram mede tempo assistido, envios por mensagem e originalidade',d:'O tempo assistido e as repetições pesam mais que tudo. Um Reel de 15 segundos visto três vezes vale mais que um de 60 visto uma vez. Envios por direct contam muito para alcançar quem não te segue. Conteúdo com marca d’água de outro app (TikTok, CapCut) ou repostado com frequência perde a recomendação.',s:['ig']},
+ {t:'Vídeos curtos para descobrir, longos para quem já segue',d:'Para público novo, Reels com menos de 30 segundos. Para seguidores, 30 a 90 segundos funcionam. Os primeiros 1 a 3 segundos decidem: abra no momento mais forte (o drop com a reação da pista), não numa introdução lenta.',s:['ig','edm']},
+ {t:'Reels de teste antes de publicar para todos',d:'O recurso de Reels de teste mostra o vídeo só para não seguidores. Use para testar ganchos e capas sem gastar a atenção do seu público. Desde 2026 dá para agendar vários de uma vez.',s:['ig','edm']},
+ {t:'Conteúdo por tipo de evento traz o cliente certo',d:'Clipes de casamento atraem noivos; clipes corporativos atraem empresas. Mostrar montagem, equipamento e organização sinaliza confiabilidade, que é o que quem contrata DJ para evento social quer ver.',s:['nadj']},
+ {t:'Meça pedidos de orçamento, não visualizações',d:'Um vídeo com menos visualizações pode gerar pedidos melhores que um viral sem intenção de compra. Pergunte a todo cliente novo como te encontrou e anote qual tipo de vídeo, local e evento mais traz contatos.',s:['nadj']},
+ {t:'Responder rápido virou critério de distribuição e de venda',d:'Conversas de mão dupla (respostas a comentários, directs e reações aos stories) contam como sinal. Responda em até 24 horas, de preferência na primeira hora. Deixe claro na bio em quanto tempo responde, principalmente nos fins de semana de evento.',s:['ig','nadj']},
+ {t:'Comunidade primeiro, divulgação depois',d:'Perfis que só anunciam datas crescem pouco. A regra prática: construa a comunidade com bastidores, técnica, personalidade e momentos de pista, e de vez em quando leve a ela suas datas e sets. Comprar seguidores derruba o alcance e a credibilidade com contratantes.',s:['edm']},
+ {t:'Vídeo de set ao vivo convence mais que mix gravado',d:'Para residências e casas, contratantes priorizam vídeo de apresentação ao vivo, com pista reagindo, em vez de mixes online. Sets completos vão para Mixcloud ou YouTube; SoundCloud para edits e produções próprias.',s:['zip','edm']},
+ {t:'Indicação entre fornecedores é o canal mais forte em festas sociais',d:'Cerimonialistas, buffets, fotógrafos e decoradores indicam quem é confiável e quem também indica. A reciprocidade é ativa: indique primeiro, recomende parceiros publicamente e trate cada cliente indicado como uma parceria.',s:['easy']},
+ {t:'Abordagem personalizada e com acompanhamento vence disparo em massa',d:'Pode levar até cinco tentativas para ter resposta de um contratante. Cada retorno precisa trazer algo novo (um vídeo, um depoimento, uma data). Acompanhe tudo numa lista: nome, canal preferido, data do último contato.',s:['prism','bka']},
+ {t:'Datas próximas umas das outras constroem cena',d:'Para casas e clubes, três ou quatro datas seguidas na sua região (até 2 a 5 horas de estrada) geram mais impulso que uma turnê longa. Agrupe a prospecção por cidade e por período.',s:['bka']}
+];
+/* estratégias validadas: porquê, passo a passo, métrica */
+const CO_STRAT=[
+ {id:'s_video',cat:'Redes sociais',t:'Sistema de vídeo curto: grave uma vez, publique em três',p:'Vídeo vertical curto é o que mais leva seu trabalho a quem não te conhece. Um único processo alimenta Instagram, TikTok e YouTube Shorts.',passos:['Em cada evento, grave de 3 a 5 momentos fortes da pista (drop com reação, entrada dos noivos, mãos para cima). Peça autorização ao cliente no contrato ou no briefing.','No dia seguinte, sincronize tudo e separe cerca de 20 clipes curtos para o seu banco de conteúdo.','Edite em vertical, com legenda na tela, sem marca d’água de outro aplicativo.','Publique o mesmo corte nas três plataformas, com a legenda adaptada a cada uma.','Use de 3 a 5 hashtags de nicho (cidade + tipo de evento), não 30 genéricas.'],m:'Clipes no banco; Reels por semana; pedidos que citam um vídeo.',s:['edm','ig']},
+ {id:'s_pilares',cat:'Redes sociais',t:'Quatro pilares e uma agenda de 4 posts por semana',p:'Constância vence picos seguidos de silêncio. Um plano inicial simples, citado por associações de DJs, é publicar 4 vezes por semana, um post de cada pilar.',passos:['Pista: momento de dança e reação dos convidados.','Bastidores: montagem, equipamento, chegada, “antes e depois” do salão.','Dica ou pergunta frequente: horário de chegada, música da entrada, o que acontece se faltar luz.','Local ou por tipo de evento: o salão onde tocou, a cidade, o estilo da festa.','Divulgação de datas e convites em no máximo 1 a cada 5 posts.','Produza em lote (um dia por semana) e mantenha alguns vídeos de reserva para semanas cheias.'],m:'Posts publicados contra o planejado; comentários, salvamentos e envios.',s:['nadj','edm']},
+ {id:'s_gancho',cat:'Redes sociais',t:'Gancho nos primeiros segundos e vídeo que se repete',p:'O algoritmo do Instagram dá mais peso ao tempo assistido e às repetições. Quem não prende nos primeiros segundos não é distribuído.',passos:['Comece já no meio da ação: o drop, a pista explodindo, os noivos entrando. Nada de abertura lenta.','Escreva um texto na tela que gere curiosidade: “Ninguém esperava essa música às 2h da manhã”.','Faça o fim emendar no começo, para o vídeo repetir naturalmente.','Para quem ainda não te segue, mantenha menos de 30 segundos.','Teste dois ganchos diferentes com Reels de teste e repita o que reteve mais.'],m:'Retenção nos 3 primeiros segundos e taxa de repetição (Insights).',s:['ig','edm']},
+ {id:'s_perfil',cat:'Redes sociais',t:'Perfil e WhatsApp que transformam visita em orçamento',p:'Quem chega pelo vídeo precisa entender em segundos onde você toca, para quais eventos e como contratar.',passos:['Bio: cidade ou região + tipos de evento + chamada clara (“Orçamentos pelo WhatsApp”).','Um único link: o link curto do seu portfólio (Gestão › Enviar link).','Destaques fixos: Casamentos, 15 anos, Corporativo, Depoimentos, Equipamento.','WhatsApp Business: catálogo com os pacotes, respostas rápidas para orçamento, etiquetas por etapa e mensagem de ausência nos dias de evento.','Fixe no perfil três publicações que melhor mostram seu trabalho.'],m:'Cliques no link; conversas iniciadas por semana.',s:['nadj','ig']},
+ {id:'s_medir',cat:'Redes sociais',t:'Medir pedidos de orçamento, não curtidas',p:'O objetivo do conteúdo é gerar contratos. Um vídeo com menos visualizações pode trazer clientes melhores que um viral.',passos:['Pergunte a todo novo contato: “Como você me encontrou?” e anote na Rede de contatos.','Toda semana, veja quais vídeos geraram directs e mensagens no WhatsApp.','Repita o formato que trouxe contato, não o que só trouxe visualização.'],m:'Pedidos de orçamento por semana e origem de cada um.',s:['nadj']},
+ {id:'c_lista',cat:'Contato direto',t:'Lista-alvo e abordagem personalizada',p:'Mensagem genérica em massa é ignorada. Contratantes respondem a quem conhece o trabalho deles e fala com a pessoa certa, pelo canal que ela prefere.',passos:['Monte uma lista de alvos na Rede de contatos: cerimonialistas, buffets e espaços, agências, casas noturnas, produtoras.','Descubra o nome de quem decide (Instagram da empresa, site, ligação para a recepção).','Antes de escrever, veja o que eles fazem: estilo das festas, público, quem costumam contratar.','Escolha o canal que eles usam (WhatsApp comercial, direct, e-mail) e personalize a primeira linha.'],m:'Novos contatos qualificados por semana.',s:['prism','unch','zip']},
+ {id:'c_msg',cat:'Contato direto',t:'Primeira mensagem curta, com prova e pedido claro',p:'A abordagem que mais recebe resposta diz em uma frase quem você é e traz prova rápida (vídeo, números). Termina com um pedido simples.',passos:['Uma frase: nome, estilo de DJ e cidade.','Por que você está falando com eles (algo específico do trabalho deles).','Prova: link do portfólio com vídeo ao vivo, eventos parecidos que já fez, números (eventos realizados, avaliações).','Pedido concreto: uma data, um café de 15 minutos, ou entrar na lista de indicação.','No máximo 150 a 200 palavras e 2 ou 3 links.'],m:'Taxa de resposta (respostas ÷ mensagens enviadas).',s:['unch','prism','bka'],script:'primeiro_cerimonial'},
+ {id:'c_follow',cat:'Contato direto',t:'Acompanhamento em sequência, sempre com novidade',p:'Pode levar até cinco tentativas para conseguir atenção. Reenviar a mesma mensagem não funciona; cada retorno precisa acrescentar algo.',passos:['1º retorno: 5 a 7 dias depois, com um vídeo novo ou um depoimento.','2º retorno: 7 dias depois, com uma ideia para um evento deles ou uma data disponível.','3º retorno: 14 dias depois, curto e leve.','Depois disso, pausa de 60 dias e um novo contato com novidade relevante.','O coach agenda cada retorno automaticamente na Rede de contatos.'],m:'Respostas obtidas no 2º a 5º contato.',s:['prism','bka'],script:'followup'},
+ {id:'c_orc',cat:'Contato direto',t:'Responder orçamento rápido e com perguntas certas',p:'Quem responde primeiro e entende a festa ganha a maioria dos orçamentos. Perguntas de qualificação mostram profissionalismo e evitam proposta errada.',passos:['Responda no mesmo dia, de preferência na primeira hora.','Pergunte: data, cidade e local, horário, número de convidados, faixa etária, estilos musicais e momentos especiais.','Mande o portfólio com o link curto e o pacote que mais combina.','Proponha uma ligação ou chamada de vídeo de 15 minutos.','Registre na Rede de contatos como “proposta” para o coach lembrar do retorno.'],m:'Tempo médio de resposta; propostas que viram contrato.',s:['nadj'],script:'orcamento'},
+ {id:'c_pos',cat:'Contato direto',t:'Depois do evento: agradecimento, depoimento e indicação',p:'O pós-evento é o momento em que o cliente está mais feliz. É quando ele mais aceita deixar depoimento e indicar.',passos:['No dia seguinte: mensagem de agradecimento personalizada (cite um momento da festa).','Peça um depoimento curto e autorização para usar fotos e vídeos.','Agradeça também ao cerimonial e aos fornecedores, marcando cada um nas publicações.','Uma semana depois: peça uma indicação de alguém que vai fazer festa.','Adicione o evento ao portfólio com as melhores fotos.'],m:'Depoimentos coletados; indicações por evento.',s:['easy','unch'],script:'pos_cliente'},
+ {id:'n_forn',cat:'Networking',t:'Rede de fornecedores que indicam você',p:'Cerimonialistas, buffets, fotógrafos, decoradores e espaços indicam quem é confiável e quem indica de volta. É o canal mais forte para casamentos, 15 anos e formaturas.',passos:['Escolha os fornecedores alinhados ao seu estilo e público.','Peça um café presencial de 20 minutos e leve seu cartão ou o QR code do portfólio.','Indique primeiro: quando um cliente perguntar por fotógrafo ou decorador, recomende parceiros.','Recomende parceiros publicamente (marcações e depoimentos para eles).','Trate cada cliente indicado como uma parceria: seu trabalho reflete em quem indicou.','Depois de receber uma indicação, agradeça e ofereça retribuir.'],m:'Parceiros ativos; indicações recebidas por mês.',s:['easy'],script:'parceria'},
+ {id:'n_reserva',cat:'Networking',t:'Parceiro de indicação para datas ocupadas',p:'Toda data recusada pode virar relacionamento. Ter um DJ parceiro de confiança para indicar quando você está ocupado gera reciprocidade.',passos:['Escolha 1 ou 2 DJs com padrão de qualidade parecido.','Combine regras: preço mínimo, padrão de equipamento, quem fala com o cliente.','Quando estiver ocupado, indique o parceiro e avise o cliente.','Peça que ele faça o mesmo com você.'],m:'Indicações trocadas por trimestre.',s:['easy']},
+ {id:'n_cena',cat:'Networking',t:'Presença na cena: casas, residentes e equipe',p:'Casas e promoters contratam quem já conhecem. Frequentar, conversar e ajudar a divulgar cria essa familiaridade.',passos:['Vá aos lugares onde quer tocar: observe som, público e o que os residentes tocam.','Converse com DJs, promoters, equipe de bar e segurança. Eles ajudam quando algo dá errado.','Conecte-se nas redes com quem conheceu no mesmo dia e mantenha contato.','Compartilhe e divulgue eventos de colegas: reciprocidade.','Fale direto com promoters e organizadores, nunca por mensagem em massa.'],m:'Pessoas novas conhecidas por mês; convites recebidos.',s:['zip']},
+ {id:'n_resid',cat:'Networking',t:'Conseguir uma residência',p:'Uma data fixa por semana ou por mês dá renda previsível, público fiel e conteúdo constante.',passos:['Estude a casa: som, equipamento, público e repertório dos residentes.','Monte um material com bio, estilo e vídeo ao vivo (prioridade sobre mix online).','Mande uma mensagem curta e personalizada com o link do portfólio, mencionando quantas pessoas você leva.','Ofereça um set de teste de 1 hora em horário mais vazio ou um warm-up antes de um DJ conhecido, já preparado.','Negocie noites, horários, duração e cachê (dinheiro ou contrapartidas). Seja constante e renove o repertório.'],m:'Casas abordadas; sets de teste; residências fechadas.',s:['zip'],script:'casa'},
+ {id:'n_collab',cat:'Networking',t:'Colaborações que ampliam alcance',p:'Colaborar coloca você na frente do público de outro artista e mostra que você é bem relacionado na cena.',passos:['Proponha um set B2B ou um set convidado com outro DJ.','Grave um vídeo juntos e publique em colaboração (as duas contas).','Marque artistas e fornecedores nos seus posts.','Participe de lives e podcasts locais de música e eventos.'],m:'Colaborações por mês; seguidores vindos das colaborações.',s:['edm']},
+ {id:'m_epk',cat:'Marca e negócio',t:'Portfólio sempre atualizado como seu cartão de visita',p:'Contratantes querem ver vídeo ao vivo, eventos parecidos e dados. O portfólio deste sistema funciona como seu kit de imprensa digital.',passos:['Adicione cada evento nos 3 dias seguintes, com 6 a 10 fotos e um vídeo do YouTube.','Mantenha os números do Perfil atualizados (eventos realizados, anos de carreira).','Use o link curto em toda mensagem e o QR code em cartões e no estande.','Peça depoimentos e mantenha os melhores em destaque.'],m:'Eventos no portfólio nos últimos 90 dias.',s:['zip','prism']},
+ {id:'m_nicho',cat:'Marca e negócio',t:'Nicho claro e pacotes por tipo de evento',p:'“DJ para qualquer evento” é fácil de esquecer. Quem é lembrado como “o DJ de casamentos ao ar livre” ou “o DJ das formaturas” recebe as indicações daquele nicho.',passos:['Escolha 1 ou 2 nichos principais (veja os eventos que mais te dão retorno).','Crie pacotes no Catálogo com duração, convidados e o que está incluso.','Fale do nicho na bio, no portfólio e nos vídeos.','Tenha um diferencial claro: repertório, iluminação, cerimonial, experiência.'],m:'Porcentagem dos contratos no nicho principal.',s:['nadj']},
+ {id:'m_prof',cat:'Marca e negócio',t:'Profissionalismo visível em cada data',p:'Contratantes voltam a chamar e indicam quem é confiável. Pontualidade e cuidado contam tanto quanto o repertório.',passos:['Chegue cedo, monte e teste antes dos convidados.','Comece e termine no horário combinado.','Conheça a equipe da casa, do buffet e do cerimonial pelo nome.','Fique para ver o DJ seguinte, quando houver.','Mande um agradecimento no dia seguinte a todos os envolvidos.'],m:'Clientes e casas que contratam de novo.',s:['dub','ddj']},
+ {id:'m_rota',cat:'Marca e negócio',t:'Agenda regional em sequência',p:'Para quem toca em casas e festas abertas: datas próximas na mesma região criam impulso e baixam custo de deslocamento.',passos:['Liste cidades a até 2 a 5 horas de estrada.','Agrupe a prospecção por cidade e por fim de semana.','Ofereça três ou quatro datas seguidas em vez de uma isolada.','Use datas sazonais (verão, réveillon, carnaval, formaturas de fim de ano).'],m:'Datas fora da cidade por trimestre.',s:['bka']}
+];
+/* modelos de mensagem. Variáveis: {nome} {marca} {cidade} {link} {contato} {empresa} {data} {tipo} {evento} {estilo} */
+const CO_SCRIPTS={
+ primeiro_cerimonial:{t:'Primeiro contato com cerimonialista ou assessoria',c:'WhatsApp',txt:'Oi, {contato}! Tudo bem? Sou {nome}, DJ aqui em {cidade}. Acompanho o trabalho da {empresa} e gostei muito do cuidado com os detalhes das festas de vocês.\n\nTrabalho com {estilo} e fico muito alinhado com o cerimonial: horários, momentos e músicas, tudo combinado antes. Separei meu portfólio com vídeos de pista e depoimentos: {link}\n\nPosso te pagar um café de 15 minutos na semana que vem para nos conhecermos? Assim você tem mais uma opção de confiança para indicar aos seus clientes.'},
+ casa:{t:'Primeiro contato com casa noturna, bar ou promoter',c:'E-mail ou direct',txt:'Assunto: DJ {estilo} para as noites de vocês em {cidade}\n\nOi, {contato}, tudo bem?\n\nSou {nome}, DJ de {estilo} em {cidade}. Tenho ido às noites da {empresa} e o público de vocês tem tudo a ver com o meu som.\n\nVídeo de set ao vivo e portfólio: {link}\nEventos recentes: (cite 2 ou 3)\n\nTenho disponibilidade em (cite datas) e topo começar com um warm-up ou um set de teste em horário mais tranquilo. Também ajudo na divulgação com meu público.\n\nObrigado!\n{nome}\n{telefone}'},
+ followup:{t:'Retorno (acompanhamento) com novidade',c:'WhatsApp, direct ou e-mail',txt:'Oi, {contato}! Passando para te mostrar uma novidade: (vídeo ou depoimento do último evento). Acho que tem a ver com o estilo da {empresa}.\n\nO portfólio atualizado está aqui: {link}\n\nSe fizer sentido, sigo à disposição para conversarmos. Um abraço!'},
+ orcamento:{t:'Resposta a pedido de orçamento',c:'WhatsApp',txt:'Oi, {contato}! Que bom receber sua mensagem. Para montar a proposta certa, me conta:\n\n1. Data e horário da festa\n2. Cidade e local\n3. Número de convidados e faixa de idade\n4. Estilos que não podem faltar (e os que não podem tocar)\n5. Momentos especiais (entrada, valsa, homenagens, surpresas)\n\nEnquanto isso, aqui está meu portfólio com vídeos e depoimentos: {link}\n\nSe preferir, fazemos uma chamada de 15 minutos. Qual o melhor horário para você?'},
+ pos_cliente:{t:'Agradecimento e pedido de depoimento',c:'WhatsApp',txt:'Oi, {contato}! Ainda estou com a energia de ontem. Obrigado pela confiança: aquele momento da pista foi demais!\n\nSe puder, me manda em poucas linhas como foi a experiência para você? Seu depoimento ajuda muito outras pessoas a me conhecerem. E, se autorizar, quero publicar alguns vídeos da festa.\n\nUm abraço, {nome}'},
+ pos_forn:{t:'Agradecimento a cerimonial e fornecedores',c:'WhatsApp ou direct',txt:'Oi, {contato}! Obrigado pela parceria ontem. Foi muito tranquilo trabalhar com vocês, tudo no tempo certo. Vou publicar alguns momentos e marcar a {empresa}. Conte comigo para as próximas e, se precisar indicar um DJ, meu portfólio está aqui: {link}'},
+ indicacao:{t:'Pedido de indicação',c:'WhatsApp',txt:'Oi, {contato}! Espero que ainda estejam lembrando da festa. Uma pergunta rápida: você conhece alguém que vai casar, fazer 15 anos, formatura ou evento da empresa nos próximos meses? Se puder me indicar, cuido dessa pessoa com o mesmo carinho. Meu portfólio: {link}'},
+ parceria:{t:'Proposta de parceria com fornecedor',c:'WhatsApp',txt:'Oi, {contato}! Sou {nome}, DJ em {cidade}. Gosto muito do trabalho da {empresa} e sempre que um cliente me pede indicação de (área deles) quero ter um nome de confiança para passar.\n\nQue tal trocarmos indicações? Meu portfólio: {link}. Posso passar aí para um café rápido esta semana?'},
+ colega:{t:'Mensagem para DJ ou artista da cena',c:'Direct',txt:'Fala, {contato}! Curti muito seu set no (evento). Sou {nome}, também toco {estilo} aqui em {cidade}. Bora trocar uma ideia sobre um B2B ou um vídeo juntos? Meu trabalho: {link}'}
+};
+/* roteiros por tipo de evento */
+const CO_PB={
+ casamento:{n:'Casamento',ic:'heart',resumo:'A festa gira em torno dos momentos do casal. Seu trabalho é acertar cada momento no segundo certo, com o cerimonial, e depois manter a pista cheia para todas as idades.',
+  briefing:['Nome dos noivos e a pronúncia correta','Cronograma com o cerimonial: horário da entrada, da primeira dança, do jantar, do bolo, do buquê e do fim','Música e versão de cada momento: entrada no salão, primeira dança (com corte e duração), dança com os pais, bolo, buquê e saída','Lista de músicas obrigatórias e proibidas','Perfil dos convidados: idades, regiões, estilos da família e dos amigos','Homenagens, vídeos ou surpresas (quem fala, em que momento, precisa de microfone?)','Fornecedores: cerimonial, foto e vídeo, iluminação, banda, buffet (nomes e telefones)','Local: horário de montagem, energia elétrica, espaço da cabine e acesso para carga','Horário de término e se há possibilidade de hora extra'],
+  antes:['D-7: reunião final com cerimonial e noivos para fechar o roteiro','D-3: separar uma pasta por momento, com cortes e entradas preparados e versões instrumentais para os discursos','D-1: testar todo o equipamento e o reserva (segundo player ou notebook, pendrive com as músicas dos momentos, cabos extras), carregar o microfone sem fio','No dia: chegar com 2 horas de antecedência para montar e testar o som antes dos convidados'],
+  abertura:['Recepção e coquetel em volume de conversa: versões acústicas, lounge, MPB e bossa, pop em versões suaves','Suba a energia aos poucos nos 15 minutos antes da entrada dos noivos','Confirme com o cerimonial o sinal combinado para soltar a música da entrada'],
+  momentos:[['Recepção e coquetel','Ambiente agradável, sem atrapalhar a conversa.'],['Entrada dos noivos no salão','Anúncio no microfone (se combinado) e a música escolhida, com a luz. É o primeiro grande momento da noite.'],['Primeira dança','Normalmente logo após a entrada. Respeite o corte combinado e faça uma saída suave.'],['Dança com os pais (opcional)','Pai e noiva, mãe e noivo. Pode ser um pot-pourri curto para não arrastar.'],['Jantar','Volume baixo. Agrupe brindes e discursos para não quebrar o ritmo depois.'],['Brinde e discursos','Microfone testado, música de fundo baixa ou parada.'],['Bolo','Música combinada ou um clássico romântico.'],['Abertura da pista','Convide os noivos para abrir. Bloco forte de músicas que todas as idades conhecem.'],['Buquê','Reorganize a pista e solte a música combinada. Em público jovem, pode ficar mais tarde.'],['Blocos de pista','Alterne estilos e gerações e leia a resposta.'],['Última música e saída','Combinada com os noivos e o cerimonial.']],
+  conducao:['O primeiro bloco da pista decide a noite: hits que avós, pais e amigos conhecem','Alterne gerações a cada 3 ou 4 músicas para ninguém ficar de fora por muito tempo','Observe a mesa dos noivos e dos padrinhos: são o motor da pista. Quando eles saem, ajuste','Monte “ilhas” de estilos (anos 80 e 90, axé, sertanejo, funk, pop atual, eletrônico) conforme a resposta','Não emende duas lentas seguidas fora dos momentos combinados','Use o microfone pouco e só com propósito, sempre alinhado com o cerimonial','Volume no jantar sempre em nível de conversa'],
+  encerramento:['Combine avisos com o cerimonial: 30 e 15 minutos antes do fim','Último bloco com os maiores sucessos da noite, os que mais encheram a pista','A última música é a escolhida pelos noivos: lenta e emocionante ou de energia máxima','Reserve uma música só para o casal, se eles quiserem','Coordene a saída com o cerimonial (pétalas, sparkles, luzes)','Nunca estenda sem autorização: hora extra é combinada com quem paga'],
+  erros:['Deixar os momentos formais todos para tarde da noite','Discursos espalhados que quebram o embalo da pista','Não testar o microfone antes','Tocar uma música da lista de proibidas','Volume alto durante o jantar','Mudar de estilo bruscamente com a pista cheia'],
+  energia:[['Recepção',3],['Entrada',6],['1ª dança',4],['Jantar',2],['Pista',8],['Buquê',7],['Auge',9],['Fim',10]],s:['wed']},
+ quinze:{n:'Festa de 15 anos',ic:'star',resumo:'Mistura de cerimonial tradicional com balada adolescente. O cerimonial deve ser curto e emocionante. A pista precisa agradar adolescentes sem esquecer pais e família.',
+  briefing:['Nome da debutante, do par (príncipe) e de quem dança a valsa','Formato da entrada: escadaria, entrada original (carro, moto) ou coreografia','Valsa: com o par, com o pai e com tios ou padrinhos? Haverá 15 casais ou damas (entram antes dela)?','Rituais escolhidos: 15 velas, troca do sapato, troca da boneca, entrega do anel, homenagens, retrospectiva','Música de cada momento, com corte e duração','Coreografia com amigos? Pegue o áudio editado com antecedência','Artistas e trends que a debutante e os amigos ouvem; o que não pode tocar','Efeitos da segunda entrada (sparklers, fumaça, gelo seco, se o buffet permitir)','Horário de término e entrega das lembrancinhas'],
+  antes:['D-7: roteiro fechado com a família e o cerimonial','D-3: pasta por momento; versões sem palavrão (há menores na festa); áudio da coreografia testado','D-1: equipamento, reserva e microfone; confirmar a luz da entrada e da valsa','No dia: chegar 2 horas antes; ensaiar o tempo da entrada com o cerimonial'],
+  abertura:['Recepção de cerca de 1 hora: música leve e atual, em volume de conversa','Prepare o clima para a entrada: baixe a luz e o som e espere o sinal do cerimonial','A entrada é o momento mais esperado: música certa no segundo certo'],
+  momentos:[['Recepção (cerca de 60 min)','Família recebe os convidados. Som ambiente atual.'],['Entrada dos 15 casais (opcional)','Representam cada ano de vida da debutante; entram antes dela.'],['Entrada da debutante','Cerimonial curto; os convidados têm pouca paciência para longas cerimônias.'],['Valsa','Primeiro com o par, depois com o pai; opção de passar para tios e padrinhos.'],['Jantar (cerca de 60 min)','Ambiente, volume baixo.'],['15 velas, homenagens e retrospectiva','Vídeo ou mensagem dos pais. Bloco de cerca de 30 min com o parabéns e o bolo.'],['Troca do sapato (opcional)','Música combinada; marca a passagem para a festa.'],['Abertura da pista','Uma “segunda entrada” da debutante com música agitada e efeitos.'],['Balada','A maior parte da noite.'],['Encerramento e lembrancinhas','Doces e despedida.']],
+  conducao:['Abra a pista com o hit do momento entre os adolescentes: é o que puxa a turma','Use versões sem palavrão e evite letras impróprias: é festa de menores, com famílias','Monte um bloco para pais e família (anos 80, 90 e 2000) no meio da noite, depois volte para a turma','Trends e coreografias conhecidas do TikTok enchem a pista nesse público','Observe o grupo de amigos mais próximos da debutante: se eles estão na pista, a festa está','Combine com o cerimonial a hora de cada surpresa para não interromper um bom bloco'],
+  encerramento:['Avise o cerimonial 30 minutos antes do fim','Último bloco com as músicas que a debutante mais pediu','Última música escolhida por ela, de preferência com todos os amigos na pista','Coordene com a entrega das lembrancinhas (no final é mais organizado)'],
+  erros:['Cerimonial longo demais: a energia cai antes da pista abrir','Tocar versões com palavrão perto de crianças e da família','Esquecer os pais e avós durante toda a noite','Não testar o áudio da coreografia'],
+  energia:[['Recepção',3],['Entrada',7],['Valsa',5],['Jantar',2],['Homenagens',4],['2ª entrada',9],['Balada',9],['Fim',8]],s:['coral','deb']},
+ formatura:{n:'Formatura',ic:'brief',resumo:'Festa longa, de muita energia, com a turma como protagonista. A entrada dos formandos exige organização; depois, a pista vai até tarde.',
+  briefing:['Comissão de formatura e produtora: quem decide e quem dá os sinais','Lista dos formandos na ordem de entrada, com a pronúncia dos nomes e a música de cada um (ou da turma)','Tempo por formando na entrada e se haverá anúncio no microfone','Valsa dos formandos com pais ou padrinhos: música e duração','Hino, música ou grito da turma','Atrações: banda, bateria, atrações surpresa; horários de troca','Horário de término e regras do salão (som, efeitos)'],
+  antes:['D-7: roteiro e lista de entrada confirmados com a comissão','D-3: organizar as músicas da entrada na ordem exata da lista, com os cortes prontos','D-1: equipamento, reserva, microfone e a lista impressa','No dia: chegar cedo, combinar sinais com a produtora e o mestre de cerimônias'],
+  abertura:['Recepção com som ambiente para famílias e formandos','Entrada dos formandos: ritmo constante, cortes curtos e sem silêncio entre um e outro','Valsa com pais ou padrinhos: momento emotivo, luz suave'],
+  momentos:[['Recepção','Ambiente para famílias.'],['Entrada dos formandos','Cada formando com sua música ou a música da turma; ritmo rápido.'],['Valsa com pais ou padrinhos','Momento emotivo da noite.'],['Brinde e homenagens','Microfone testado.'],['Abertura da pista','A música da turma ou o hino que todo mundo canta.'],['Pista longa','Blocos por estilo, atrações e trocas.'],['Encerramento','Última música combinada com a comissão.']],
+  conducao:['Comece a pista com a música que é a cara da turma: todo mundo canta junto','Público jovem e famílias: alterne blocos de hits atuais e de clássicos para os pais nas primeiras horas','A festa é longa: alterne picos e respiros a cada 20 a 30 minutos para a turma aguentar até o fim','Faça trocas suaves com bandas e atrações; tenha uma música pronta para cobrir qualquer atraso','Com open bar, fique atento à pista e combine com a segurança qualquer situação'],
+  encerramento:['Combine com a comissão o horário e a última música','Último bloco com os hinos da turma','Encerre na hora combinada com a produtora'],
+  erros:['Lista de entrada desatualizada ou com nomes errados','Silêncio entre formandos na entrada','Picos o tempo todo: a pista cansa antes da metade'],
+  energia:[['Recepção',3],['Entrada',6],['Valsa',4],['Abertura',9],['Pista',8],['Auge',10],['Fim',8]],s:[]},
+ corporativo:{n:'Corporativo',ic:'desk',resumo:'O evento tem objetivo de negócio. A música serve ao momento: acolher, deixar conversar, valorizar palco e premiações, e só então virar festa.',
+  briefing:['Objetivo do evento: convenção, premiação, lançamento, confraternização','Contato do RH, marketing ou agência e quem dá os sinais no dia','Roteiro de palco: palestrantes, premiados (nomes e ordem), vídeos institucionais','Restrições da marca: letras impróprias, artistas proibidos, idioma','Perfil do público: idades, cargos, se há clientes e diretoria','Dress code, horário rígido de início e fim'],
+  antes:['D-7: roteiro de palco e lista de vinhetas confirmados','D-3: trilhas de entrada para palestrantes e premiados; versões limpas e instrumentais','D-1: equipamento, reserva, microfone e integração com o som e o vídeo do evento','No dia: chegar cedo e passar o roteiro com o mestre de cerimônias'],
+  abertura:['Chegada: música acolhedora e animada, mas que não chame atenção','Networking e jantar: volume baixo, instrumental, jazz, lo-fi, acústico. As pessoas precisam conversar sem gritar'],
+  momentos:[['Chegada','Acolher e criar clima.'],['Networking e jantar','Som de fundo, volume baixo.'],['Palco e palestras','Trilha marcante para apresentar palestrantes.'],['Premiação','Música de celebração para cada premiado.'],['Pista','Hits conhecidos e energia crescente.'],['Encerramento','No horário exato.']],
+  conducao:['Comece a pista com músicas muito conhecidas, que fazem as pessoas se mexerem, e só depois suba a energia','Na dúvida, use versões limpas ou instrumentais: uma letra imprópria constrange a sala','A diretoria e as lideranças puxam a pista: se elas entram, o resto vem','Siga um planejamento, mas mude rápido se uma música não funcionar','Volume da pista proporcional ao espaço e ao público: não espante quem quer conversar'],
+  encerramento:['Termine exatamente no horário: em evento corporativo isso é regra','Última música de celebração, alinhada com o tema do evento','Agradeça ao contratante no dia seguinte e peça avaliação'],
+  erros:['Volume alto no networking','Letras com palavrão ou temas sensíveis','Atrasar a entrada de palestrantes por falta de sinal combinado'],
+  energia:[['Chegada',3],['Networking',2],['Palco',5],['Premiação',6],['Pista',8],['Fim',7]],s:['gill']},
+ privada:{n:'Aniversário e festa particular',ic:'star',resumo:'A festa é do anfitrião. Conhecer o gosto dele e dos convidados mais próximos vale mais que qualquer lista de sucessos.',
+  briefing:['Gosto do aniversariante: artistas, músicas e o que não pode tocar','Perfil e idades dos convidados','Momento do parabéns e música desejada','Surpresas, homenagens, vídeos','Horário de término e regras do local (vizinhos, volume)'],
+  antes:['D-3: playlist base com as favoritas do anfitrião separadas','D-1: equipamento e reserva','No dia: chegar cedo e combinar sinais com o anfitrião'],
+  abertura:['Comece em volume de conversa enquanto as pessoas chegam','Solte uma favorita do aniversariante quando ele chegar ou circular pelo salão'],
+  momentos:[['Chegada','Ambiente.'],['Aquecimento','Favoritas do anfitrião.'],['Parabéns','Momento combinado.'],['Pista','Blocos por estilo.'],['Fim','Hino do aniversariante.']],
+  conducao:['Toque para o grupo mais próximo do anfitrião: se eles dançam, a festa acontece','Leia a pista a cada 3 ou 4 músicas e ajuste','Respeite o limite de volume do local'],
+  encerramento:['Avise o anfitrião 15 minutos antes','Feche com a música preferida dele, com todos na pista'],
+  erros:['Tocar o seu gosto, não o do anfitrião','Ignorar regras de volume do condomínio ou do local'],
+  energia:[['Chegada',3],['Aquecimento',5],['Parabéns',6],['Pista',8],['Fim',9]],s:[]},
+ balada:{n:'Balada, bar ou clube',ic:'mic',resumo:'Em casas, o seu papel depende do horário: abrir (warm-up), segurar o auge (peak time) ou fechar. Cada um tem regras próprias de etiqueta.',
+  briefing:['Seu horário e duração; quem toca antes e depois','Estilo da casa e do público; o que os residentes tocam','Equipamento da cabine (players, mixer, formatos aceitos)','Regras de volume, efeitos e iluminação','Cachê, consumação, lista de convidados e divulgação'],
+  antes:['D-7: estude o DJ principal da noite (sets recentes, BPM e estilo de abertura)','D-3: prepare seleção por bloco, mais faixas do que precisa','D-1: pendrive principal e reserva, fones, cabos','No dia: chegar cedo, se apresentar para a equipe (bar, segurança, técnico)'],
+  abertura:['Warm-up: crie o clima, não a energia. Músicas conhecidas e respeitadas, mas que não são de auge','Mantenha a faixa de BPM estreita (4 a 8 BPM no total), subindo devagar','Menos é mais: transições longas, poucos efeitos e espaço na música','Termine logo abaixo do nível de entrada do próximo DJ: termine preparando, não no auge','Não toque os sucessos do DJ convidado e guarde suas faixas de auge'],
+  momentos:[['Abertura (warm-up)','Pista enchendo; clima, não pico.'],['Auge (peak time)','Energia máxima, com variações para não cansar.'],['Fechamento','Desacelere com faixas marcantes, a última é memorável.']],
+  conducao:['Olhe para a pista: cabeças balançando, pés marcando, sorrisos e conversa sobre a música são sinais positivos','Mire no grupo que veio para dançar: trazê-los para a pista resolve metade da noite','Quando a pista começar a esvaziar, troque rápido antes que ela fique vazia, mas sem mudança brusca de estilo','Varie o andamento: muito tempo em alta velocidade cansa, devagar demais dá sono','Em salões grandes, dê tempo para o público sair do bar e chegar à pista antes do próximo grande momento'],
+  encerramento:['Termine no horário exato e combine com o próximo DJ a última faixa (tom e BPM)','Fique para ver o próximo set, quando houver','No dia seguinte, mande um agradecimento curto ao promoter e à casa'],
+  erros:['Warm-up tocando o auge e “matando” o DJ principal','Passar do horário','Ignorar a equipe da casa'],
+  energia:[['Abertura',3],['Subida',5],['Auge',9],['Auge',10],['Fecho',7],['Última',8]],s:['dub','ddj','thom']},
+ festival:{n:'Festival ou palco',ic:'star',resumo:'Palco tem horário rígido, público disperso e câmeras. O set precisa ter estrutura clara, presença e momentos pensados para virar conteúdo.',
+  briefing:['Horário exato, troca de palco e tempo de line check','Rider técnico enviado e confirmado','Logo e visuais para o telão; contato do VJ ou da iluminação','Quem filma: combine com o filmmaker os momentos-chave','Credenciais, acesso e horário de chegada'],
+  antes:['D-7: rider técnico e visuais enviados','D-3: set estruturado com pontos de improviso; faixa de assinatura definida','D-1: pendrives duplicados, fones, roupa de palco','No dia: chegar no horário da produção e acompanhar o set anterior'],
+  abertura:['Primeiro minuto forte e reconhecível: festival não perdoa abertura lenta','Faça contato com o público: olhar, gesto, uma frase curta no microfone se fizer sentido'],
+  momentos:[['Line check','Teste rápido e silencioso.'],['Abertura','Impacto imediato.'],['Picos','A cada 10 a 15 minutos, um momento marcante.'],['Final','Faixa de assinatura e agradecimento.']],
+  conducao:['Pense em momentos que viram vídeo: drop combinado com luz, mãos para cima, chamada do público','Varie a energia para manter o público disperso interessado','Presença: postura aberta, interação, nada de cabeça baixa o set inteiro'],
+  encerramento:['Termine no segundo combinado: atraso em palco afeta todo o festival','Feche com sua faixa de assinatura e agradeça à produção','Recolha o material rápido para a troca'],
+  erros:['Passar do horário','Começar sem impacto','Não combinar a filmagem e perder os melhores momentos'],
+  energia:[['Abertura',8],['Pico 1',9],['Respiro',6],['Pico 2',10],['Final',10]],s:[]}
+};
+const CO_TIPO_PB={'Casamento':'casamento','Festa de 15 anos':'quinze','Formatura':'formatura','Corporativo':'corporativo','Congresso ou feira':'corporativo','Lançamento de produto':'corporativo','Confraternização':'corporativo','Aniversário':'privada','Social':'privada','Show ou festival':'festival','Balada ou clube':'balada','Outro':'privada'};
+const CO_PISTA=[
+ {t:'Sinais de que está funcionando',it:['Pessoas indo para a pista quando a música muda','Sorrisos, palmas, mãos para cima, gente cantando','Cabeças balançando e pés marcando o ritmo mesmo fora da pista','Conversas sobre a música (gente apontando para a cabine, gravando)']},
+ {t:'Sinais de alerta',it:['Pessoas saindo da pista e voltando para as mesas','Expressões vazias e muita gente olhando o celular','Muitos pedidos de música na cabine: o seu gosto e o da pista se separaram','Um único gesto negativo é ruído; reaja quando ele coincide com pista esvaziando']},
+ {t:'Como recuperar uma pista esvaziando',it:['Troque rápido, antes da pista esvaziar de vez, para segurar quem ficou','Evite mudança brusca de estilo: ela costuma esvaziar o que restou','Volte para o último estilo que funcionou e reconstrua a partir dele','Use uma música que todos conhecem do refrão (não corte os refrões e solos esperados)']},
+ {t:'Gestão de energia',it:['Comece quando o espaço estiver entre 1/3 e metade cheio, com gente perto da pista','Alterne picos e respiros: alta velocidade o tempo todo cansa; lento demais dá sono','Considere o bar: em salões grandes, dê tempo para o público chegar antes do próximo grande momento','Mude a direção quando sentir que a energia vai cair, não depois']},
+ {t:'Pedidos de música',it:['Sempre receba com simpatia: “Vou encaixar no momento certo”','Avalie se combina com a pista agora; se não, guarde para outro bloco','Pedidos do anfitrião, dos noivos ou da debutante têm prioridade','Nunca discuta na cabine']},
+ {t:'Microfone',it:['Fale pouco e com propósito: anúncios, chamadas combinadas, agradecimentos','Nomes sempre conferidos e bem pronunciados','Tudo que for anunciado é combinado antes com o cerimonial ou o contratante','Teste o microfone antes dos convidados chegarem']},
+ {t:'Kit de emergência',it:['Segundo dispositivo de reprodução pronto (notebook, player ou celular com as músicas dos momentos offline)','Pendrive com a lista completa e outro só com os momentos','Cabos, adaptadores e extensão reserva','Uma playlist de emergência que roda sozinha por 30 minutos','Lanterna, fita, protetor auricular e água']}
+];
+const CO_IDEIAS={
+ pista:['Reação da pista no drop (7 a 15 s, comece no pico)','Os convidados cantando o refrão em coro','Antes e depois: pista vazia às 22h, lotada à meia-noite','Do ponto de vista da cabine: o que você vê quando solta a música','A música que ninguém esperava e a pista explodiu'],
+ bastidores:['Timelapse da montagem do equipamento','Sua rotina de chegada ao evento (organização = confiança)','O que tem no seu case de emergência','Antes e depois do salão com a iluminação','Um dia na vida de DJ em dia de evento'],
+ dica:['Com quanto tempo de antecedência o DJ chega?','Como escolher a música da entrada (com 3 exemplos de estilos)','O que acontece se faltar energia no meio da festa?','Quantas horas de DJ uma festa precisa?','Como montar a lista de músicas proibidas'],
+ tecnica:['Transição entre dois estilos opostos (ex.: sertanejo para funk) em 15 s','Como você mantém a pista quando ela começa a esvaziar','Seu truque favorito de mixagem em câmera lenta','Montando o bloco de abertura da pista'],
+ prova:['Depoimento em vídeo de um cliente (peça autorização)','Print de mensagem de agradecimento (com permissão e sem dados pessoais)','Carrossel “3 festas, 3 estilos”','Números da sua carreira (eventos, anos, cidades)'],
+ convite:['Datas disponíveis do mês com chamada: “Chama no WhatsApp”','Anúncio do próximo evento aberto com local e horário','Vagas para o próximo semestre: casamentos e formaturas'],
+ recap:['Carrossel com 10 fotos e 1 vídeo do evento do fim de semana','Os 3 melhores momentos da festa em 20 segundos','Agradecimento marcando cerimonial e fornecedores'],
+ pessoal:['Fale para a câmera: por que você é DJ','Sua regra de ouro numa festa','A música que mudou sua carreira e por quê']
+};
+const CO_PILAR_DIA={1:'bastidores',2:'pista',3:'dica',4:'tecnica',5:'convite',6:'pista',0:'recap'};
+const CO_PILAR_N={pista:'Momento de pista',bastidores:'Bastidores',dica:'Dica ou dúvida frequente',tecnica:'Técnica',prova:'Prova social',convite:'Convite e datas',recap:'Recap do evento',pessoal:'Personalidade'};
+const CO_NICHOS={casamento:'Casamentos',quinze:'15 anos',formatura:'Formaturas',corporativo:'Corporativo',privada:'Festas particulares',balada:'Baladas e clubes',festival:'Festivais e palco'};
+const CO_ALVOS={
+ casamento:['cerimonialistas e assessorias de casamento','espaços e salões de festa','fotógrafos e filmmakers de casamento','buffets','decoradores e floristas'],
+ quinze:['cerimonialistas de 15 anos','buffets e casas de festa','fotógrafos de 15 anos','coreógrafos de valsa'],
+ formatura:['comissões de formatura','empresas de formatura e produtoras','casas de eventos para bailes'],
+ corporativo:['agências de eventos corporativos','RH e marketing de empresas locais','hotéis e centros de convenção','produtoras de eventos'],
+ privada:['casas de festa','buffets','cerimonialistas'],
+ balada:['casas noturnas e bares com DJ','promoters e coletivos','produtores de festas abertas'],
+ festival:['produtoras de festivais','coletivos e selos','curadores de line-up']
+};
+
+
+/* =====================================================================
+   COACH DE CARREIRA: motor da rotina, rede de contatos, agenda e interface
+   ===================================================================== */
+Object.assign(IC,{
+ target:'<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.8"/><circle cx="12" cy="12" r="1.2"/>',
+ mic:'<rect x="9" y="3.5" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3"/>',
+ heart:'<path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.2C19.5 15.4 12 20 12 20z"/>',
+ fire:'<path d="M12 21c-3.6 0-6.5-2.6-6.5-6.2 0-3.4 2.6-5.3 3.6-8.8 2.2 1.4 3.2 3.4 3.2 5.2 1-.8 1.6-2 1.7-3.3 2.5 1.9 4.5 4.3 4.5 7C18.5 18.4 15.6 21 12 21z"/>',
+ chart:'<path d="M4 20h16"/><rect x="6" y="11" width="3" height="7" rx="1"/><rect x="11" y="7" width="3" height="11" rx="1"/><rect x="16" y="13" width="3" height="5" rx="1"/>',
+ book:'<path d="M5 4.5h10a3 3 0 0 1 3 3v12H8a3 3 0 0 1-3-3z"/><path d="M5 16.5a3 3 0 0 1 3-3h10"/>'
+});
+const CO_ESTAGIOS={iniciante:{n:'Começando',d:'Menos de 2 eventos por mês ou perfil novo',contatos:3},crescimento:{n:'Crescendo',d:'Alguns eventos por mês, quer constância',contatos:5},consolidado:{n:'Consolidado',d:'Agenda cheia, quer subir de nível e preço',contatos:2}};
+const CO_REDES={instagram:'Instagram',tiktok:'TikTok',youtube:'YouTube',whatsapp:'WhatsApp Business',soundcloud:'SoundCloud ou Mixcloud'};
+const CO_ETAPAS={novo:{n:'Para contatar',c:'#5B6779'},contatado:{n:'Contatado',c:'#2B7FE0'},conversa:{n:'Em conversa',c:'#7A4FD6'},proposta:{n:'Proposta enviada',c:'#E58A00'},fechado:{n:'Fechou',c:'#1DB46A'},parceiro:{n:'Parceiro',c:'#0E7C6B'},perdido:{n:'Sem interesse',c:'#A0A8B0'}};
+const CO_TIPOSC=['Cerimonialista ou assessoria','Espaço, salão ou buffet','Fotógrafo ou filmmaker','Decoração ou outro fornecedor','Agência ou produtora','Empresa (RH ou marketing)','Casa noturna, bar ou promoter','DJ ou artista','Cliente','Comissão de formatura'];
+const DEF_PERFIL_CO={nichos:['casamento'],estagio:'iniciante',tempo:60,redes:['instagram','whatsapp'],estilo:'',metaEventos:4,criado:null};
+/* datas */
+const coYmd=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+const coToday=()=>coYmd(new Date());
+const coAdd=(s,n)=>{const d=parseD(s);d.setDate(d.getDate()+n);return coYmd(d);};
+const coDiff=(a,b)=>Math.round((parseD(a)-parseD(b))/864e5);
+const coWeek=s=>{const d=parseD(s);const k=(d.getDay()+6)%7;d.setDate(d.getDate()-k);return coYmd(d);};
+const coSeed=(arr,seed)=>{let h=0;for(const ch of String(seed))h=(h*31+ch.charCodeAt(0))>>>0;return arr[h%arr.length];};
+const coDow=['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado'];
+const coFmtD=s=>{const d=parseD(s);return d?d.toLocaleDateString('pt-BR',{weekday:'short',day:'2-digit',month:'short'}).replace('.',''):'';};
+const coEm=n=>n===0?'hoje':n===1?'amanhã':n===-1?'ontem':n>0?`em ${n} dias`:`há ${-n} dias`;
+function coC(){const c=state.coach;if(!c.perfil)c.perfil=null;return c;}
+function coP(){return Object.assign({},DEF_PERFIL_CO,state.coach.perfil||{});}
+const coSave=()=>touch();
+
+/* ---------------- motor da rotina diária ---------------- */
+function coachDay(date){
+ const c=coC(),P=coP(),dow=parseD(date).getDay(),T=[];
+ const add=o=>{if(!T.some(x=>x.k===o.k))T.push(Object.assign({pri:2,min:15,como:[]},o));};
+ const nichos=P.nichos.length?P.nichos:['casamento'];
+ const S=id=>CO_STRAT.find(x=>x.id===id);
+ // eventos da agenda: antes, no dia e depois
+ (c.agenda||[]).filter(a=>a.status!=='cancelado'&&a.data).forEach(a=>{
+  const dd=coDiff(a.data,date),pb=CO_PB[a.pb]||CO_PB.privada,nm=a.titulo||pb.n,ab={l:'Abrir roteiro',a:'co-pb',d:a.id};
+  if(dd===7)add({k:'e7:'+a.id,area:'evento',pri:1,min:30,t:`Fechar o roteiro: ${nm}`,sub:'Faltam 7 dias. Reunião com contratante e cerimonial.',como:pb.briefing,act:ab});
+  if(dd===3)add({k:'e3:'+a.id,area:'evento',pri:1,min:45,t:`Preparar as músicas por momento: ${nm}`,sub:'Faltam 3 dias',como:[pb.antes[1],'Marque as músicas obrigatórias e retire as proibidas.','Monte o bloco de abertura da pista e um plano B.'],act:ab});
+  if(dd===1)add({k:'e1:'+a.id,area:'evento',pri:1,min:30,t:`Equipamento e reserva: ${nm}`,sub:'Amanhã',como:[pb.antes[2],'Confirme horário de montagem, endereço e contato do local.','Separe roupa, documentos e o kit de emergência.','Durma bem: amanhã é dia de evento.'],act:ab});
+  if(dd===0)add({k:'e0:'+a.id,area:'evento',pri:1,min:15,t:`Dia de evento: ${nm}`,sub:[a.hora?'Às '+a.hora:'',a.local].filter(Boolean).join(' · '),como:[pb.antes[3]||'Chegue cedo para montar e testar.',...pb.abertura.slice(0,2),'Grave de 3 a 5 momentos fortes da pista para o conteúdo da semana.'],act:ab});
+  if(dd===-1){add({k:'p1:'+a.id,area:'prospeccao',pri:1,min:15,t:`Agradecer e pedir depoimento: ${a.contratante||nm}`,como:S('c_pos').passos.slice(0,3),script:'pos_cliente',ctx:{contato:a.contratante,tel:a.telefone}});
+   add({k:'p1c:'+a.id,area:'conteudo',pri:2,min:30,t:`Separar os clipes de ${nm}`,sub:'Meta: cerca de 20 clipes curtos no seu banco de conteúdo',como:S('s_video').passos.slice(1,4)});}
+  if(dd===-3)add({k:'p3:'+a.id,area:'negocio',pri:1,min:20,t:`Adicionar ao portfólio: ${nm}`,sub:'Fotos e vídeo do YouTube enquanto o evento está fresco',como:S('m_epk').passos.slice(0,2),act:{l:'Criar no portfólio',a:'co-toport',d:a.id}});
+  if(dd===-7)add({k:'p7:'+a.id,area:'prospeccao',pri:2,min:5,t:`Pedir indicação: ${a.contratante||nm}`,como:['Uma semana depois o cliente ainda lembra da festa: é o melhor momento para pedir indicação.'],script:'indicacao',ctx:{contato:a.contratante,tel:a.telefone}});
+ });
+ // retornos agendados na rede de contatos
+ (c.contatos||[]).filter(x=>x.proximo&&x.proximo<=date&&x.etapa!=='perdido'&&x.etapa!=='fechado').forEach(x=>{
+  const late=coDiff(date,x.proximo);
+  const t=x.etapa==='novo'?'Primeiro contato':x.etapa==='contatado'?`Retorno ${Math.min(5,(x.fus||0)+1)}`:x.etapa==='conversa'?'Continuar a conversa':x.etapa==='proposta'?'Retorno da proposta':x.etapa==='parceiro'?'Manter a parceria':'Contato';
+  add({k:'fu:'+x.id+':'+x.proximo,area:x.etapa==='parceiro'?'rede':'prospeccao',pri:1,min:5,t:`${t}: ${x.nome}${x.empresa?' ('+x.empresa+')':''}`,sub:late>0?`Atrasado ${late} ${late===1?'dia':'dias'}`:'',late:late>0,como:x.etapa==='parceiro'?['Mande uma novidade, um vídeo ou indique um cliente para ele.','Parceria se mantém com reciprocidade e contato frequente.']:S('c_follow').passos.slice(0,3),script:coScriptFor(x),ctx:{contato:x.nome,empresa:x.empresa,tel:x.telefone},ct:x.id});
+ });
+ // conteúdo do dia
+ const pil=CO_PILAR_DIA[dow];const ideia=coSeed(CO_IDEIAS[pil],date+pil);
+ if(dow!==0||(c.agenda||[]).some(a=>coDiff(a.data,date)===-1))add({k:'post:'+date,area:'conteudo',pri:1,min:P.tempo>=120?30:P.tempo>=60?20:15,t:`Publicar: ${CO_PILAR_N[pil]}`,sub:'Ideia: '+ideia,como:S('s_gancho').passos.slice(0,4),act:{l:'Ver estratégia',a:'co-strat',d:'s_gancho'}});
+ add({k:'stories:'+date,area:'conteudo',pri:2,min:5,t:'Stories do dia',sub:'Bastidor, preparação ou enquete. Mantém quem já segue por perto.',como:['Um bastidor do dia (preparação, música nova, equipamento).','Uma enquete ou caixinha de perguntas sobre festas.','Link do portfólio no sticker de link pelo menos uma vez na semana.']});
+ add({k:'inter:'+date,area:'rede',pri:1,min:P.tempo<=30?10:15,t:'15 minutos de relacionamento',sub:'Responda tudo e comente em 5 perfis de parceiros',como:['Responda comentários e directs (de preferência dentro de 1 hora após postar; no máximo 24 horas).','Comente de verdade em 5 perfis: cerimonialistas, espaços, fotógrafos, DJs da cena.','Reaja aos stories de parceiros e clientes recentes.'],act:{l:'Por que funciona',a:'co-strat',d:'s_perfil'}});
+ // contato direto
+ if(dow!==0){const n=Math.max(1,Math.min((CO_ESTAGIOS[P.estagio]||CO_ESTAGIOS.iniciante).contatos,Math.floor(P.tempo/20)));const nic=coSeed(nichos,date);const alvo=coSeed(CO_ALVOS[nic]||CO_ALVOS.casamento,date+'a');
+  add({k:'prosp:'+date,area:'prospeccao',pri:1,min:n*6,t:`Contatar ${n} ${n===1?'novo alvo':'novos alvos'}: ${alvo}`,sub:'Mensagem personalizada, com o link do portfólio',como:CO_STRAT.find(x=>x.id==='c_msg').passos,script:['balada','festival'].includes(nic)?'casa':'primeiro_cerimonial',act:{l:'Cadastrar contatos',a:'co-ct-new',d:''}});}
+ // música e prática
+ const mus=[['Montar o bloco de abertura da pista do próximo evento','Escolha 6 a 8 músicas que todas as idades do seu público conhecem.'],['Garimpar 10 músicas novas para o seu nicho','Lançamentos, trends do TikTok e regravações; teste no fone e marque energia.'],['Organizar a biblioteca','Etiquete por momento (entrada, valsa, abertura, auge, final) e por energia de 1 a 10.'],['Praticar transições por 30 minutos','Treine uma passagem difícil entre dois estilos e grave para usar em conteúdo.'],['Preparar os sets do fim de semana','Separe mais músicas do que precisa e um plano B para cada bloco.'],['Gravar um trecho de set para conteúdo','Uma câmera fixa, boa luz e 10 minutos de mixagem viram vários clipes.'],['Ouvir sets de referência','Escute um DJ que você admira e anote como ele constrói a energia.']];
+ const mm=mus[dow];add({k:'mus:'+date,area:'musica',pri:dow===4&&(c.agenda||[]).some(a=>{const d=coDiff(a.data,date);return d>0&&d<=3;})?1:2,min:30,t:mm[0],como:[mm[1]]});
+ // destaques da semana
+ if(dow===1)add({k:'plan:'+date,area:'negocio',pri:1,min:15,t:'Planejar a semana',sub:'Agenda, metas e conteúdos',como:['Veja as datas da semana na Agenda e quais pedem preparação.','Confira a meta do mês e quantos contatos e propostas faltam.','Escolha os 4 conteúdos da semana (um por pilar).','Liste os alvos de prospecção da semana na Rede de contatos.']});
+ if(dow===2&&P.tempo>=60)add({k:'lote:'+date,area:'conteudo',pri:2,min:60,t:'Produzir conteúdo em lote',sub:'Edite os vídeos da semana de uma vez',como:['Pegue os clipes do banco e edite 3 ou 4 vídeos verticais.','Legenda na tela e gancho nos 3 primeiros segundos.','Agende ou deixe prontos para publicar ao longo da semana.'],act:{l:'Estratégia',a:'co-strat',d:'s_pilares'}});
+ if(dow===3)add({k:'net:'+date,area:'rede',pri:P.tempo>=60?2:3,min:P.tempo>=60?45:10,t:P.tempo>=60?'Café ou visita a um parceiro':'Mensagem de relacionamento a um parceiro',sub:'Cerimonialista, espaço, fotógrafo ou casa',como:CO_STRAT.find(x=>x.id==='n_forn').passos.slice(1,4),script:'parceria',act:{l:'Estratégia',a:'co-strat',d:'n_forn'}});
+ if(dow===3)add({k:'trial:'+date,area:'conteudo',pri:3,min:15,t:'Testar um gancho com Reels de teste',sub:'Mostra o vídeo só para quem não te segue',como:['Publique o mesmo vídeo com dois ganchos diferentes como Reels de teste.','Compare a retenção nos primeiros segundos depois de 24 a 48 horas.','Publique para todos a versão que segurou mais.']});
+ if(dow===6&&!(c.agenda||[]).some(a=>a.data===date&&a.status!=='cancelado'))add({k:'cena:'+date,area:'rede',pri:3,min:60,t:'Ir a um evento ou casa da cena',sub:'Sem evento hoje: aproveite para ser visto',como:CO_STRAT.find(x=>x.id==='n_cena').passos.slice(0,3)});
+ if(dow===0){add({k:'rev:'+date,area:'negocio',pri:1,min:15,t:'Revisão da semana',sub:'Preencha as métricas e veja o que funcionou',como:['Preencha o check-in semanal em Plano e métricas.','Qual conteúdo trouxe mais mensagens? Repita o formato.','Quais contatos responderam? Atualize a Rede de contatos.'],act:{l:'Abrir métricas',a:'co-tab',d:'plano'}});
+  add({k:'desc:'+date,area:'saude',pri:2,min:0,t:'Descanso e audição',sub:'Um dia mais leve de fone e de tela',como:['Ouvido descansado ouve melhor a pista. Use protetor auricular nos eventos.','Durma bem: energia é parte do trabalho.']});}
+ (c.extra&&c.extra[date]||[]).forEach(x=>add(Object.assign({pri:1,min:15},x,{k:'x:'+x.id,custom:true})));
+ // orçamento de tempo: prioridade 1 sempre entra; o resto até o tempo disponível
+ const ord=T.slice().sort((a,b)=>a.pri-b.pri);let used=0;const main=[],extra=[];
+ ord.forEach(t=>{if(t.pri===1||used+t.min<=P.tempo){main.push(t);used+=t.min;}else extra.push(t);});
+ const areaOrd=['evento','prospeccao','conteudo','rede','musica','negocio','saude'];
+ main.sort((a,b)=>areaOrd.indexOf(a.area)-areaOrd.indexOf(b.area)||a.pri-b.pri);
+ return {main,extra,min:used};
+}
+function coScriptFor(x){if(x.etapa==='novo')return /Casa noturna|DJ/.test(x.tipo||'')?'casa':/Cliente/.test(x.tipo||'')?'orcamento':'primeiro_cerimonial';if(x.etapa==='parceiro')return 'parceria';if(x.etapa==='proposta')return 'followup';return 'followup';}
+function coDone(date){const f=(coC().feitos||{})[date];return new Set(f||[]);}
+function coRecord(date){const c=coC(),r=coachDay(date),d=coDone(date);c.dias=c.dias||{};c.dias[date]={f:r.main.filter(t=>d.has(t.k)).length,t:r.main.length};}
+function coStreak(){
+ const c=coC(),dias=c.dias||{},t=coToday();let n=0;let d=t;
+ const ok=x=>dias[x]&&dias[x].t&&dias[x].f/dias[x].t>=.6;
+ if(!ok(d))d=coAdd(d,-1);
+ while(ok(d)){n++;d=coAdd(d,-1);}
+ return n;
+}
+const coPhase=()=>{const p=coP();const dd=p.criado?coDiff(coToday(),p.criado):0;const w=Math.floor(dd/7)+1;return {w,i:w<=4?0:w<=8?1:2};};
+const CO_FASES=[
+ {n:'Fundação',sem:'Semanas 1 a 4',it:['Bio, destaques e WhatsApp Business ajustados para gerar orçamento','Portfólio completo com pelo menos 3 eventos, vídeos e depoimentos','Link curto e QR code prontos para enviar','Lista com 30 alvos (fornecedores, espaços, casas) na Rede de contatos','Constância: 4 posts por semana e stories diários']},
+ {n:'Tração',sem:'Semanas 5 a 8',it:['Pelo menos 5 parceiros ativos que indicam e recebem indicações','Retornos em dia: nenhum contato atrasado mais de 3 dias','Banco de clipes com 20 vídeos depois de cada evento','Descobrir o formato de vídeo que mais gera mensagens e repeti-lo','Depoimento e indicação pedidos depois de todo evento']},
+ {n:'Escala',sem:'Semanas 9 a 12',it:['Reajustar pacotes e preço com base na procura','Focar no nicho que dá mais retorno','Buscar uma residência ou uma data fixa mensal','Colaborações com outros artistas e fornecedores','Rever o plano e começar um novo ciclo de 90 dias']}
+];
+
+/* ---------------- textos com variáveis ---------------- */
+function coFill(key,ctx={}){
+ const S=CO_SCRIPTS[key];if(!S)return '';const p=state.profile,P=coP();
+ const first=s=>String(s||'').trim().split(/\s+/)[0]||'';
+ const v={nome:p.nome||'(seu nome)',marca:brandName()||p.nome||'',cidade:p.cidade||'(sua cidade)',link:(typeof Cloud!=='undefined'&&Cloud.shareLink&&Cloud.shareLink())||'(link do seu portfólio)',contato:first(ctx.contato)||'tudo bem',empresa:ctx.empresa||'sua empresa',estilo:P.estilo||'música para festas e eventos',telefone:p.whatsapp||p.telefone||''};
+ return S.txt.replace(/\{(\w+)\}/g,(m,k)=>v[k]!=null?v[k]:m).replace('Oi, tudo bem! Tudo bem?','Oi! Tudo bem?').replace('Oi, tudo bem, tudo bem?','Oi, tudo bem?').replace('Oi, tudo bem!','Oi!');
+}
+function coWa(tel,txt){const d=String(tel||'').replace(/\D/g,'');const n=d?(d.length<=11?'55'+d:d):'';return `https://wa.me/${n}?text=${encodeURIComponent(txt)}`;}
+function openScript(key,ctx={}){
+ const m=openModal({wide:true,title:'Mensagem pronta',html:`<div class="field"><label for="co_sk">Modelo</label><select id="co_sk">${Object.entries(CO_SCRIPTS).map(([k,s])=>`<option value="${k}" ${k===key?'selected':''}>${esc(s.t)} (${esc(s.c)})</option>`).join('')}</select></div>
+  <div class="field"><label for="co_st">Texto (edite à vontade)</label><textarea id="co_st" rows="12">${esc(coFill(key,ctx))}</textarea><div class="hint">Personalize a primeira linha com algo específico do trabalho da pessoa. Mensagens genéricas recebem menos respostas.</div></div>`,
+  footer:`<button class="btn ghost" type="button" id="co_sc">Fechar</button><button class="btn" type="button" id="co_scp">${ico('copy')}Copiar</button><a class="btn primary" id="co_swa" target="_blank" rel="noopener">${ico('wa')}Abrir no WhatsApp</a>`});
+ const el=m.el;const upd=()=>{$('#co_swa',el).href=coWa(ctx.tel,$('#co_st',el).value);};upd();
+ $('#co_sk',el).onchange=e=>{$('#co_st',el).value=coFill(e.target.value,ctx);upd();};
+ $('#co_st',el).addEventListener('input',upd);
+ $('#co_sc',el).onclick=()=>m.close();
+ $('#co_scp',el).onclick=async()=>{if(await copyText($('#co_st',el).value))toast('Mensagem copiada');};
+ $('#co_swa',el).addEventListener('click',()=>{if(ctx.ct)coContactDone(ctx.ct,true);});
+}
+
+/* ---------------- rede de contatos (cadência de retorno) ---------------- */
+const CO_FU=[5,7,14];
+async function coContactDone(id,silent){
+ const x=coC().contatos.find(c=>c.id===id);if(!x)return;const t=coToday();x.ultimo=t;
+ if(x.etapa==='novo'){x.etapa='contatado';x.fus=0;x.proximo=coAdd(t,CO_FU[0]);}
+ else if(x.etapa==='contatado'){x.fus=(x.fus||0)+1;x.proximo=x.fus<CO_FU.length?coAdd(t,CO_FU[x.fus]):coAdd(t,60);}
+ else if(x.etapa==='parceiro')x.proximo=coAdd(t,30);
+ else x.proximo=coAdd(t,3);
+ x.hist=(x.hist||[]).concat({d:t,e:'contato'});
+ // marca a tarefa de hoje como feita
+ const f=coC().feitos[t]=coC().feitos[t]||[];coachDay(t).main.concat(coachDay(t).extra).filter(k=>k.ct===id).forEach(k=>{if(!f.includes(k.k))f.push(k.k);});
+ coRecord(t);coSave();if(!silent)toast(`Retorno agendado para ${coFmtD(x.proximo)}`);if(state.tab==='coach')renderCoach();
+}
+async function coContactStage(id,etapa){
+ const x=coC().contatos.find(c=>c.id===id);if(!x)return;const t=coToday();x.etapa=etapa;x.ultimo=t;x.hist=(x.hist||[]).concat({d:t,e:etapa});
+ x.proximo=etapa==='conversa'?coAdd(t,3):etapa==='proposta'?coAdd(t,3):etapa==='parceiro'?coAdd(t,30):etapa==='perdido'||etapa==='fechado'?'':x.proximo;
+ coSave();
+ if(etapa==='fechado'){toast('Parabéns! Cadastre a data na Agenda para o coach preparar o roteiro.');coAgendaForm(null,{titulo:x.empresa||x.nome,contratante:x.nome,telefone:x.telefone});}
+ renderCoach();
+}
+function coContactForm(id,pre){
+ const c=coC(),orig=id?c.contatos.find(x=>x.id===id):null;
+ const d=orig?clone(orig):Object.assign({id:uid(),nome:'',empresa:'',tipo:CO_TIPOSC[0],telefone:'',instagram:'',email:'',etapa:'novo',proximo:coToday(),origem:'',notas:'',criado:coToday(),fus:0},pre||{});
+ const f=(k,l,o={})=>`<div class="field"><label for="ct_${k}">${l}</label>${o.area?`<textarea id="ct_${k}" data-k="${k}" rows="3">${esc(d[k]||'')}</textarea>`:`<input id="ct_${k}" data-k="${k}" type="${o.type||'text'}" value="${esc(d[k]||'')}" placeholder="${esc(o.ph||'')}">`}</div>`;
+ const m=openModal({wide:true,title:orig?'Editar contato':'Novo contato',html:`<div class="grid2">${f('nome','Nome da pessoa *',{ph:'Ex.: Ana Souza'})}${f('empresa','Empresa',{ph:'Ex.: Ana Souza Cerimonial'})}</div>
+  <div class="grid2"><div class="field"><label for="ct_tipo">Tipo</label><select id="ct_tipo" data-k="tipo">${CO_TIPOSC.map(t=>`<option ${d.tipo===t?'selected':''}>${esc(t)}</option>`).join('')}</select></div><div class="field"><label for="ct_etapa">Etapa</label><select id="ct_etapa" data-k="etapa">${Object.entries(CO_ETAPAS).map(([k,v])=>`<option value="${k}" ${d.etapa===k?'selected':''}>${v.n}</option>`).join('')}</select></div></div>
+  <div class="grid3">${f('telefone','WhatsApp',{type:'tel',ph:'(81) 99999-0000'})}${f('instagram','Instagram',{ph:'@perfil'})}${f('email','E-mail',{type:'email'})}</div>
+  <div class="grid2">${f('proximo','Próximo contato',{type:'date'})}${f('origem','Como se conheceram',{ph:'Ex.: indicação, Instagram, evento'})}</div>
+  ${f('notas','Anotações',{area:true})}`,footer:`${orig?`<button class="btn ghost danger left" type="button" id="ctdel">${ico('trash')}Excluir</button>`:''}<button class="btn ghost" type="button" id="ctc">Cancelar</button><button class="btn primary" type="button" id="cts">Salvar contato</button>`});
+ const el=m.el;
+ el.addEventListener('input',e=>{const k=e.target.dataset.k;if(k)d[k]=e.target.value;});
+ el.addEventListener('change',e=>{const k=e.target.dataset.k;if(k)d[k]=e.target.value;});
+ $('#ctc',el).onclick=()=>m.close();
+ $('#cts',el).onclick=()=>{if(!String(d.nome).trim()){toast('Informe o nome.','err');$('#ct_nome',el).focus();return;}d.nome=d.nome.trim();const i=c.contatos.findIndex(x=>x.id===d.id);if(i>=0)c.contatos[i]=d;else c.contatos.push(d);coSave();m.close();toast('Contato salvo');renderCoach();};
+ if(orig)$('#ctdel',el).onclick=async()=>{if(!await confirmBox({title:'Excluir contato',text:`Excluir ${orig.nome} da sua rede?`,ok:'Excluir',danger:true}))return;c.contatos=c.contatos.filter(x=>x.id!==orig.id);coSave();m.close();renderCoach();};
+}
+
+/* ---------------- agenda ---------------- */
+function coAgendaForm(id,pre){
+ const c=coC(),orig=id?c.agenda.find(x=>x.id===id):null;
+ const d=orig?clone(orig):Object.assign({id:uid(),data:coAdd(coToday(),14),hora:'',pb:(coP().nichos[0])||'casamento',titulo:'',local:'',contratante:'',telefone:'',valor:'',status:'confirmado',chk:{}},pre||{});
+ const f=(k,l,o={})=>`<div class="field"><label for="ag_${k}">${l}</label><input id="ag_${k}" data-k="${k}" type="${o.type||'text'}" value="${esc(d[k]||'')}" placeholder="${esc(o.ph||'')}"></div>`;
+ const m=openModal({wide:true,title:orig?'Editar data':'Nova data na agenda',html:`<div class="grid3">${f('data','Data *',{type:'date'})}${f('hora','Horário',{type:'time'})}<div class="field"><label for="ag_pb">Tipo de evento</label><select id="ag_pb" data-k="pb">${Object.entries(CO_PB).map(([k,v])=>`<option value="${k}" ${d.pb===k?'selected':''}>${v.n}</option>`).join('')}</select></div></div>
+  ${f('titulo','Nome do evento',{ph:'Ex.: Casamento Helena e Rafael'})}
+  <div class="grid2">${f('local','Local',{ph:'Salão, cidade'})}${f('contratante','Contratante',{ph:'Quem contratou'})}</div>
+  <div class="grid3">${f('telefone','WhatsApp do contratante',{type:'tel'})}${f('valor','Cachê (R$)',{type:'number'})}<div class="field"><label for="ag_status">Situação</label><select id="ag_status" data-k="status">${[['confirmado','Confirmado'],['reservado','Data reservada'],['proposta','Proposta enviada'],['cancelado','Cancelado']].map(s=>`<option value="${s[0]}" ${d.status===s[0]?'selected':''}>${s[1]}</option>`).join('')}</select></div></div>
+  <p class="hint" style="margin:0">O coach monta as tarefas antes (7, 3 e 1 dia), no dia e depois do evento (agradecimento, portfólio e indicação).</p>`,
+  footer:`${orig?`<button class="btn ghost danger left" type="button" id="agdel">${ico('trash')}Excluir</button>`:''}<button class="btn ghost" type="button" id="agc">Cancelar</button><button class="btn primary" type="button" id="ags">Salvar</button>`});
+ const el=m.el;
+ const set=e=>{const k=e.target.dataset.k;if(k)d[k]=e.target.value;};el.addEventListener('input',set);el.addEventListener('change',set);
+ $('#agc',el).onclick=()=>m.close();
+ $('#ags',el).onclick=()=>{if(!d.data){toast('Informe a data.','err');return;}const i=c.agenda.findIndex(x=>x.id===d.id);if(i>=0)c.agenda[i]=d;else c.agenda.push(d);coSave();m.close();toast('Data salva na agenda');renderCoach();};
+ if(orig)$('#agdel',el).onclick=async()=>{if(!await confirmBox({title:'Excluir data',text:'Remover esta data da agenda?',ok:'Excluir',danger:true}))return;c.agenda=c.agenda.filter(x=>x.id!==orig.id);coSave();m.close();renderCoach();};
+}
+async function coToPortfolio(id){
+ const a=coC().agenda.find(x=>x.id===id);if(!a)return;
+ const tipo=Object.keys(CO_TIPO_PB).find(k=>CO_TIPO_PB[k]===a.pb&&TIPOS.includes(k))||'Outro';
+ const ev={id:uid(),titulo:a.titulo||CO_PB[a.pb].n,tipo,data:a.data,local:a.local||'',cidade:'',convidados:'',cliente:a.contratante||'',funcao:'DJ',descricao:'',entregas:'',link:'',incluir:true,fotos:[],capa:null,videos:[],ordem:nextOrd(state.events)};
+ state.events.push(ev);await store.put('events',ev);a.noPortfolio=ev.id;
+ const t=coToday();const f=coC().feitos[t]=coC().feitos[t]||[];if(!f.includes('p3:'+id))f.push('p3:'+id);coRecord(t);coSave();
+ go('eventos');openEventModal(ev.id);toast('Evento criado no portfólio: adicione as fotos e o vídeo.');
+}
+
+/* ---------------- interface ---------------- */
+let coTab='hoje',coStratCat='',coPbSel='',coCtFlt='',coOpen=new Set();
+const CO_TABS=[['hoje','Hoje','target'],['contatos','Rede de contatos','users'],['agenda','Agenda e roteiros','cal'],['estrategias','Estratégias','book'],['pista','Pista e palco','mic'],['tendencias','Tendências','spark'],['plano','Plano e métricas','chart'],['ia','Pergunte ao coach','chat']];
+const coSrcLinks=ids=>(ids||[]).filter(k=>CO_SRC[k]).map(k=>`<a href="${CO_SRC[k][1]}" target="_blank" rel="noopener">${esc(CO_SRC[k][0])}</a>`).join(' · ');
+function renderCoach(){
+ const c=coC();
+ if(!c.perfil){$('#view').innerHTML=`${pageHead('Coach de carreira','Um plano diário para crescer como DJ: redes sociais, contato direto, networking e roteiros para cada tipo de evento.')}
+  <section class="panel co-intro"><div class="co-hero-ic">${ico('target')}</div><div><h2>Vamos montar o seu plano</h2><p class="sub">Responda 6 perguntas rápidas. O coach usa as respostas para montar uma rotina diária do tamanho do seu tempo, com tarefas de conteúdo, contatos, networking e preparação de eventos, baseadas em estratégias já testadas por outros DJs.</p><button class="btn primary" data-action="co-diag">${ico('spark')}Começar diagnóstico</button></div></section>`;return;}
+ const tabs=CO_TABS.filter(t=>t[0]!=='ia'||aiAvail);
+ $('#view').innerHTML=`<div class="co-top"><div><h1 class="co-h1">Coach de carreira</h1><p class="muted" style="margin:2px 0 0">${esc(coP().nichos.map(n=>CO_NICHOS[n]).join(', '))} · ${esc((CO_ESTAGIOS[coP().estagio]||{}).n||'')} · ${coP().tempo} min por dia</p></div><button class="btn sm ghost" data-action="co-diag">${ico('edit')}Ajustar perfil</button></div>
+  <nav class="co-tabs" role="tablist">${tabs.map(t=>`<button role="tab" aria-selected="${coTab===t[0]}" class="${coTab===t[0]?'on':''}" data-action="co-tab" data-v="${t[0]}">${ico(t[2])}<span>${t[1]}</span>${t[0]==='contatos'&&coLateCount()?`<i class="co-dot">${coLateCount()}</i>`:''}</button>`).join('')}</nav>
+  <div id="coBody"></div>`;
+ ({hoje:coHoje,contatos:coContatos,agenda:coAgenda,estrategias:coEstrategias,pista:coPista,tendencias:coTendencias,plano:coPlano,ia:coIA}[coTab]||coHoje)();
+}
+const coLateCount=()=>(coC().contatos||[]).filter(x=>x.proximo&&x.proximo<coToday()&&!['perdido','fechado'].includes(x.etapa)).length;
+function coTaskHTML(t,done,date){
+ const A=CO_AREAS[t.area]||CO_AREAS.negocio,open=coOpen.has(t.k);
+ return `<div class="co-task ${done?'done':''} ${t.late?'late':''}" style="--ac:${A.c}">
+  <button class="co-chk" type="button" data-action="co-done" data-k="${esc(t.k)}" data-d="${date}" role="checkbox" aria-checked="${done}" aria-label="Marcar como feito">${done?ico('check'):''}</button>
+  <div class="co-tb"><button class="co-tt" type="button" data-action="co-exp" data-k="${esc(t.k)}" aria-expanded="${open}"><span class="co-ar">${ico(A.ic)}${esc(A.n)}${t.min?` · ${t.min} min`:''}</span><b>${esc(t.t)}</b>${t.sub?`<span class="co-sub">${esc(t.sub)}</span>`:''}</button>
+  ${open?`<div class="co-how">${t.como&&t.como.length?`<ol>${t.como.map(x=>`<li>${esc(x)}</li>`).join('')}</ol>`:''}<div class="gx-acts">${t.script?`<button class="btn sm" data-action="co-script" data-s="${t.script}" data-ctx="${esc(JSON.stringify(Object.assign({},t.ctx||{},{ct:t.ct||''})))}">${ico('chat')}Mensagem pronta</button>`:''}${t.act?`<button class="btn sm" data-action="${t.act.a}" data-v="${esc(t.act.d||'')}" data-id="${esc(t.act.d||'')}">${esc(t.act.l)}</button>`:''}${t.ct?`<button class="btn sm ghost" data-action="co-ctdone" data-id="${t.ct}">${ico('check')}Registrar contato feito</button>`:''}${t.custom?`<button class="btn sm ghost danger" data-action="co-xdel" data-id="${esc(t.k.slice(2))}" data-d="${date}">Remover</button>`:''}</div></div>`:''}</div></div>`;
+}
+function coHoje(){
+ const t=coToday(),r=coachDay(t),d=coDone(t),c=coC();
+ const fe=r.main.filter(x=>d.has(x.k)).length,pct=r.main.length?Math.round(fe/r.main.length*100):0;
+ coRecord(t);
+ const streak=coStreak(),ph=coPhase(),F=CO_FASES[ph.i];
+ const week=[...Array(7)].map((_,i)=>{const dd=coAdd(t,i-6);const x=(c.dias||{})[dd];return {dd,p:x&&x.t?x.f/x.t:0,has:!!x};});
+ const prox=(c.agenda||[]).filter(a=>a.status!=='cancelado'&&a.data>=t).sort((a,b)=>a.data.localeCompare(b.data)).slice(0,3);
+ const ring=`<svg viewBox="0 0 44 44" class="co-ring" aria-hidden="true"><circle cx="22" cy="22" r="18" fill="none" stroke="var(--line)" stroke-width="5"/><circle cx="22" cy="22" r="18" fill="none" stroke="var(--brand)" stroke-width="5" stroke-linecap="round" stroke-dasharray="${(pct/100*113.1).toFixed(1)} 113.1" transform="rotate(-90 22 22)"/></svg>`;
+ $('#coBody').innerHTML=`<section class="co-today">
+  <div class="co-sum"><div class="co-ringw">${ring}<b>${pct}%</b></div><div><h2>${esc(coDow[parseD(t).getDay()].replace(/^./,m=>m.toUpperCase()))}, ${esc(fmtFull(t))}</h2><p class="muted">${fe} de ${r.main.length} tarefas · cerca de ${r.min} min planejados${r.min>coP().tempo*1.25?` <span class="co-over">Hoje passa do seu tempo habitual por causa ${r.main.some(x=>x.area==='evento')?'da preparação de evento':'dos retornos agendados'}.</span>`:''}</p></div>
+  <div class="co-kpis"><div><span class="co-fire">${ico('fire')}</span><b>${streak}</b><small>${streak===1?'dia seguido':'dias seguidos'}</small></div><div><b>${F.n}</b><small>Semana ${Math.min(ph.w,12)} do plano</small></div></div></div>
+  <div class="co-week">${week.map(w=>`<div title="${esc(coFmtD(w.dd))}"><i style="height:${Math.max(4,Math.round(w.p*38))}px;opacity:${w.has?1:.35}"></i><span>${esc(coDow[parseD(w.dd).getDay()].slice(0,3))}</span></div>`).join('')}</div>
+ </section>
+ <div class="co-cols"><div>
+  <div class="co-list">${r.main.map(x=>coTaskHTML(x,d.has(x.k),t)).join('')}</div>
+  ${r.extra.length?`<h3 class="co-h3">Se sobrar tempo</h3><div class="co-list">${r.extra.map(x=>coTaskHTML(x,d.has(x.k),t)).join('')}</div>`:''}
+  <button class="btn sm ghost" style="margin-top:12px" data-action="co-xnew">${ico('plus')}Adicionar tarefa minha</button>
+ </div><aside>
+  <section class="panel co-side"><h3>Foco da fase: ${F.n}</h3><p class="hint" style="margin:0 0 8px">${F.sem}</p><ul class="co-ul">${F.it.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></section>
+  <section class="panel co-side"><div class="row between"><h3>Próximas datas</h3><button class="icon-btn" data-action="co-agnew" aria-label="Nova data">${ico('plus')}</button></div>${prox.length?prox.map(a=>`<button class="co-ag" data-action="co-pb" data-id="${a.id}"><b>${esc(a.titulo||CO_PB[a.pb].n)}</b><span>${esc(coFmtD(a.data))} · ${esc(coEm(coDiff(a.data,t)))}</span></button>`).join(''):'<p class="hint" style="margin:0">Cadastre suas próximas datas para o coach preparar cada evento com você.</p>'}</section>
+  <section class="panel co-side"><h3>Retornos</h3><p class="hint" style="margin:0">${coLateCount()?`<b style="color:var(--danger)">${coLateCount()} atrasados.</b> `:''}${(c.contatos||[]).filter(x=>x.proximo===t).length} para hoje · ${(c.contatos||[]).length} contatos na rede</p><button class="btn sm ghost" style="margin-top:8px" data-action="co-tab" data-v="contatos">Abrir rede</button></section>
+ </aside></div>`;
+}
+function coContatos(){
+ const c=coC(),t=coToday(),L=(c.contatos||[]).filter(x=>!coCtFlt||x.etapa===coCtFlt).sort((a,b)=>(a.proximo||'9999').localeCompare(b.proximo||'9999'));
+ const cnt=k=>(c.contatos||[]).filter(x=>x.etapa===k).length;
+ $('#coBody').innerHTML=`<div class="row between wrap gap2" style="margin-bottom:14px"><p class="muted" style="margin:0;max-width:60ch">Sua rede de cerimonialistas, espaços, fornecedores, casas e clientes. O coach agenda os retornos: 5, 7 e 14 dias depois do primeiro contato, sempre com algo novo, e coloca cada um na rotina do dia.</p><button class="btn primary" data-action="co-ct-new">${ico('plus')}Novo contato</button></div>
+  <div class="co-pipe">${Object.entries(CO_ETAPAS).map(([k,v])=>`<button class="${coCtFlt===k?'on':''}" data-action="co-ctflt" data-v="${coCtFlt===k?'':k}" style="--ec:${v.c}"><b>${cnt(k)}</b><span>${v.n}</span></button>`).join('')}</div>
+  ${L.length?`<div class="list">${L.map(x=>{const E=CO_ETAPAS[x.etapa]||CO_ETAPAS.novo;const late=x.proximo&&x.proximo<t&&!['perdido','fechado'].includes(x.etapa);return `<div class="item co-ct"><div class="co-av" style="background:${E.c}">${esc((x.nome||'?').slice(0,1).toUpperCase())}</div><div class="iinfo"><h3>${esc(x.nome)}${x.empresa?` <span class="muted" style="font-weight:500">· ${esc(x.empresa)}</span>`:''}</h3><p><span class="co-badge" style="--ec:${E.c}">${E.n}</span> ${esc(x.tipo||'')}${x.proximo&&!['perdido','fechado'].includes(x.etapa)?` · <span style="${late?'color:var(--danger);font-weight:700':''}">Próximo: ${esc(coFmtD(x.proximo))} (${esc(coEm(coDiff(x.proximo,t)))})</span>`:''}</p></div>
+   <div class="iact"><button class="btn sm" data-action="co-script" data-s="${coScriptFor(x)}" data-ctx="${esc(JSON.stringify({contato:x.nome,empresa:x.empresa,tel:x.telefone,ct:x.id}))}">${ico('chat')}Mensagem</button><button class="btn sm ghost" data-action="co-ctdone" data-id="${x.id}" title="Registrar contato feito e agendar retorno">${ico('check')}Contatei</button>
+   <select class="co-sel" data-action="co-stage" data-id="${x.id}" aria-label="Mudar etapa"><option value="">Mudar etapa…</option>${Object.entries(CO_ETAPAS).filter(([k])=>k!==x.etapa).map(([k,v])=>`<option value="${k}">${v.n}</option>`).join('')}</select>
+   <button class="icon-btn" data-action="co-ct-edit" data-id="${x.id}" aria-label="Editar">${ico('edit')}</button></div></div>`;}).join('')}</div>`
+  :`<div class="empty"><h3>${coCtFlt?'Nenhum contato nesta etapa':'Sua rede começa aqui'}</h3><p>Cadastre os 10 primeiros alvos: cerimonialistas, espaços, fotógrafos, agências ou casas onde você quer tocar. Para cada um, o coach sugere a mensagem e lembra do retorno.</p><button class="btn primary" data-action="co-ct-new">${ico('plus')}Cadastrar contato</button></div>`}`;
+}
+function coEnergySVG(arr){
+ const W=100/arr.length;return `<div class="co-energy" role="img" aria-label="Curva de energia da festa: ${esc(arr.map(([l,v])=>l+' '+v+' de 10').join(', '))}">${arr.map(([l,v])=>`<div><i style="height:${v*6}px"></i><span>${esc(l)}</span></div>`).join('')}</div>`;
+}
+function coPbHTML(key,ag){
+ const pb=CO_PB[key];if(!pb)return '';
+ const ck=(sec,i,txt)=>{if(!ag)return `<li>${esc(txt)}</li>`;const k=sec+i,on=ag.chk&&ag.chk[k];return `<li class="co-cki"><label><input type="checkbox" data-action="co-pbchk" data-id="${ag.id}" data-k="${k}" ${on?'checked':''}><span>${esc(txt)}</span></label></li>`;};
+ return `<div class="co-pb"><p class="co-lead">${esc(pb.resumo)}</p>${coEnergySVG(pb.energia)}
+  <div class="co-pbg">
+  <section><h3>${ico('chat')}Briefing: pergunte antes</h3><ul class="co-ul">${pb.briefing.map((x,i)=>ck('b',i,x)).join('')}</ul></section>
+  <section><h3>${ico('cal')}Preparação</h3><ul class="co-ul">${pb.antes.map((x,i)=>ck('a',i,x)).join('')}</ul></section>
+  <section class="co-hl"><h3>${ico('play')}Como iniciar</h3><ul class="co-ul">${pb.abertura.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></section>
+  <section><h3>${ico('clock')}Momentos, na ordem</h3><ol class="co-tl">${pb.momentos.map(m=>`<li><b>${esc(m[0])}</b><span>${esc(m[1])}</span></li>`).join('')}</ol></section>
+  <section class="co-hl"><h3>${ico('mic')}Como conduzir a pista</h3><ul class="co-ul">${pb.conducao.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></section>
+  <section class="co-hl"><h3>${ico('star')}Como finalizar</h3><ul class="co-ul">${pb.encerramento.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></section>
+  <section><h3>${ico('x')}Erros comuns</h3><ul class="co-ul co-bad">${pb.erros.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></section>
+  </div>${pb.s&&pb.s.length?`<p class="hint co-src">Fontes: ${coSrcLinks(pb.s)}</p>`:''}</div>`;
+}
+function coAgenda(){
+ const c=coC(),t=coToday();const fut=(c.agenda||[]).filter(a=>a.data>=t).sort((a,b)=>a.data.localeCompare(b.data)),pas=(c.agenda||[]).filter(a=>a.data<t&&coDiff(t,a.data)<=60).sort((a,b)=>b.data.localeCompare(a.data));
+ const sel=coPbSel||coP().nichos[0]||'casamento';
+ const row=a=>`<div class="item"><div class="co-date"><b>${parseD(a.data).getDate()}</b><span>${esc(MESES[parseD(a.data).getMonth()])}</span></div><div class="iinfo"><h3>${esc(a.titulo||CO_PB[a.pb].n)}</h3><p>${esc([CO_PB[a.pb].n,a.hora,a.local,a.contratante].filter(Boolean).join(' · '))}${a.status!=='confirmado'?` · <b>${esc({reservado:'Data reservada',proposta:'Proposta enviada',cancelado:'Cancelado'}[a.status]||'')}</b>`:''}</p><p>${esc(coEm(coDiff(a.data,t)))}${a.data<t&&!a.noPortfolio?' · ainda não está no portfólio':''}</p></div><div class="iact"><button class="btn sm" data-action="co-pb" data-id="${a.id}">${ico('book')}Roteiro</button>${a.data<t&&!a.noPortfolio?`<button class="btn sm ghost" data-action="co-toport" data-v="${a.id}">Ao portfólio</button>`:''}<button class="icon-btn" data-action="co-agedit" data-id="${a.id}" aria-label="Editar">${ico('edit')}</button></div></div>`;
+ $('#coBody').innerHTML=`<div class="row between wrap gap2" style="margin-bottom:14px"><p class="muted" style="margin:0;max-width:60ch">Cadastre cada data fechada. O coach coloca na sua rotina a preparação (7, 3 e 1 dia antes), o dia do evento e o pós-evento.</p><button class="btn primary" data-action="co-agnew">${ico('plus')}Nova data</button></div>
+  ${fut.length?`<h3 class="co-h3">Próximas</h3><div class="list" style="margin-bottom:18px">${fut.map(row).join('')}</div>`:'<div class="empty" style="margin-bottom:18px"><h3>Nenhuma data cadastrada</h3><p>Adicione seus próximos eventos para receber o passo a passo de preparação de cada um.</p></div>'}
+  ${pas.length?`<h3 class="co-h3">Últimos 60 dias</h3><div class="list" style="margin-bottom:22px">${pas.map(row).join('')}</div>`:''}
+  <section class="panel"><h2>Roteiros por tipo de evento</h2><p class="sub">Como iniciar, conduzir a pista e finalizar cada tipo de festa. Ao abrir pelo evento da agenda, os itens de briefing e preparação viram uma lista para marcar.</p>
+  <div class="chips">${Object.entries(CO_PB).map(([k,v])=>`<button class="chip-btn ${k===sel?'on':''}" data-action="co-pbsel" data-v="${k}">${esc(v.n)}</button>`).join('')}</div>${coPbHTML(sel)}</section>`;
+}
+function openPbModal(id){
+ const a=coC().agenda.find(x=>x.id===id);if(!a)return;
+ const m=openModal({wide:true,title:`Roteiro: ${a.titulo||CO_PB[a.pb].n}`,html:`<p class="hint" style="margin-top:0">${esc([fmtFull(a.data),a.hora,a.local,a.contratante].filter(Boolean).join(' · '))}</p>${coPbHTML(a.pb,a)}`,footer:`<button class="btn" type="button" data-action="co-agedit" data-id="${a.id}">${ico('edit')}Editar data</button><button class="btn primary" type="button" id="pbok">Fechar</button>`});
+ $('#pbok',m.el).onclick=()=>m.close();
+}
+function coEstrategias(){
+ const cats=[...new Set(CO_STRAT.map(s=>s.cat))];const L=CO_STRAT.filter(s=>!coStratCat||s.cat===coStratCat);
+ $('#coBody').innerHTML=`<p class="muted" style="margin:0 0 14px;max-width:66ch">Estratégias que outros DJs e artistas já usam para conseguir datas, com o passo a passo e como medir. As fontes estão em cada uma.</p>
+  <div class="chips"><button class="chip-btn ${coStratCat?'':'on'}" data-action="co-cat" data-v="">Todas</button>${cats.map(k=>`<button class="chip-btn ${coStratCat===k?'on':''}" data-action="co-cat" data-v="${esc(k)}">${esc(k)}</button>`).join('')}</div>
+  <div class="co-strats">${L.map(s=>`<details class="co-st" id="st_${s.id}" ${coOpen.has(s.id)?'open':''}><summary><span class="co-cat">${esc(s.cat)}</span><b>${esc(s.t)}</b></summary><div class="co-stb"><p>${esc(s.p)}</p><ol>${s.passos.map(x=>`<li>${esc(x)}</li>`).join('')}</ol><p class="co-met">${ico('chart')}<span><b>Como medir:</b> ${esc(s.m)}</span></p>${s.script?`<button class="btn sm" data-action="co-script" data-s="${s.script}" data-ctx="{}">${ico('chat')}Usar mensagem pronta</button>`:''}${s.s&&s.s.length?`<p class="hint co-src">Fontes: ${coSrcLinks(s.s)}</p>`:''}</div></details>`).join('')}</div>
+  <section class="panel" style="margin-top:22px"><h2>Mensagens prontas</h2><p class="sub">Modelos com seu nome, cidade e o link do portfólio já preenchidos. Personalize sempre a primeira linha.</p><div class="co-scripts">${Object.entries(CO_SCRIPTS).map(([k,s])=>`<button class="co-scr" data-action="co-script" data-s="${k}" data-ctx="{}"><b>${esc(s.t)}</b><span>${esc(s.c)}</span></button>`).join('')}</div></section>`;
+}
+function coPista(){
+ $('#coBody').innerHTML=`<p class="muted" style="margin:0 0 14px;max-width:66ch">Como ler a pista, recuperar a energia e se portar no palco, para qualquer tipo de evento. Para o passo a passo de cada festa, veja “Agenda e roteiros”.</p>
+  <div class="co-grid">${CO_PISTA.map(b=>`<section class="panel co-card"><h3>${esc(b.t)}</h3><ul class="co-ul">${b.it.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></section>`).join('')}</div>
+  <section class="panel"><h2>Warm-up, auge e fechamento em casas</h2>${coPbHTML('balada')}</section>
+  <p class="hint co-src">Fontes: ${coSrcLinks(['thom','dub','ddj'])}</p>`;
+}
+function coTendencias(){
+ const P=coP();
+ $('#coBody').innerHTML=`<p class="muted" style="margin:0 0 14px;max-width:66ch">O que mudou e o que funciona agora para DJs crescerem, segundo pesquisa feita em outubro de 2026. Algoritmos mudam: revise a cada trimestre.</p>
+  <div class="co-grid">${CO_TRENDS.map((x,i)=>`<section class="panel co-card"><span class="co-n">${String(i+1).padStart(2,'0')}</span><h3>${esc(x.t)}</h3><p>${esc(x.d)}</p><p class="hint co-src">${coSrcLinks(x.s)}</p></section>`).join('')}</div>
+  <section class="panel"><h2>Banco de ideias de conteúdo</h2><p class="sub">O coach sorteia uma ideia por dia de acordo com o pilar do dia. Aqui estão todas.</p><div class="co-ideas">${Object.entries(CO_IDEIAS).map(([k,v])=>`<div><h3>${esc(CO_PILAR_N[k])}</h3><ul class="co-ul">${v.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`).join('')}</div></section>`;
+}
+function coPlano(){
+ const c=coC(),P=coP(),ph=coPhase(),t=coToday(),wk=coWeek(t);c.metricas=c.metricas||[];
+ const cur=c.metricas.find(x=>x.semana===wk)||{semana:wk};
+ const novos=(c.contatos||[]).filter(x=>x.criado&&x.criado>=wk).length;
+ const hist=c.metricas.slice().sort((a,b)=>a.semana.localeCompare(b.semana)).slice(-10);
+ const bars=(k,lab)=>{const v=hist.map(h=>Number(h[k])||0);const mx=Math.max(1,...v);return `<div class="co-chart"><h3>${lab}</h3>${hist.length?`<div class="co-bars">${hist.map((h,i)=>`<div title="${esc(coFmtD(h.semana))}: ${v[i]}"><i style="height:${Math.round(v[i]/mx*100)}%"></i><b>${v[i]||''}</b><span>${esc(parseD(h.semana).getDate()+'/'+(parseD(h.semana).getMonth()+1))}</span></div>`).join('')}</div>`:'<p class="hint">Preencha o check-in para ver a evolução.</p>'}</div>`;};
+ const mesEv=(c.agenda||[]).filter(a=>a.status!=='cancelado'&&a.data.slice(0,7)===t.slice(0,7)).length;
+ const f=(k,l,ph2='')=>`<div class="field"><label for="mt_${k}">${l}</label><input id="mt_${k}" type="number" min="0" data-mk="${k}" value="${esc(cur[k]??'')}" placeholder="${esc(ph2)}"></div>`;
+ $('#coBody').innerHTML=`<section class="panel"><h2>Plano de 90 dias</h2><p class="sub">Você está na semana ${Math.min(ph.w,12)}${ph.w>12?' (ciclo concluído: comece um novo em Ajustar perfil)':''}. Cada fase tem objetivos claros; a rotina diária trabalha para eles.</p>
+  <div class="co-fases">${CO_FASES.map((F,i)=>`<div class="${i===ph.i?'on':''}"><span>${F.sem}</span><h3>${F.n}</h3><ul class="co-ul">${F.it.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`).join('')}</div></section>
+  <section class="panel"><h2>Meta do mês</h2><div class="co-meta"><div><b>${mesEv}</b><span>de ${P.metaEventos} eventos na agenda deste mês</span></div><div class="gx-usage" style="flex:1"><i style="width:${Math.min(100,mesEv/Math.max(1,P.metaEventos)*100)}%"></i></div></div></section>
+  <section class="panel"><h2>Check-in da semana</h2><p class="sub">Semana de ${esc(fmtFull(wk))}. Leva um minuto e mostra se o plano está funcionando. Esta semana você cadastrou ${novos} ${novos===1?'contato novo':'contatos novos'} na rede.</p>
+  <div class="grid3">${f('ig','Seguidores no Instagram')}${f('tt','Seguidores no TikTok')}${f('pedidos','Pedidos de orçamento')}</div><div class="grid3">${f('contatos','Contatos feitos',String(novos))}${f('propostas','Propostas enviadas')}${f('fechados','Eventos fechados')}</div><div class="grid3">${f('receita','Faturamento fechado (R$)')}</div>
+  <button class="btn primary" data-action="co-msave">${ico('check')}Salvar check-in</button></section>
+  <section class="panel"><h2>Evolução</h2><div class="co-charts">${bars('pedidos','Pedidos de orçamento')}${bars('fechados','Eventos fechados')}${bars('ig','Seguidores no Instagram')}${bars('contatos','Contatos feitos')}</div></section>`;
+}
+function coIA(){
+ const hist=coC().chat||[];
+ $('#coBody').innerHTML=`<section class="panel"><h2>Pergunte ao coach</h2><p class="sub">Faça uma pergunta sobre sua carreira. O coach responde com base no seu perfil, na sua agenda, na sua rede e nas estratégias desta página, e pode sugerir tarefas para a rotina de hoje.</p>
+  <div class="chips">${['Como conseguir mais casamentos nos próximos 30 dias?','Me dê 5 ideias de Reels para esta semana','Como cobrar mais pelos meus pacotes?','Como abordar uma casa noturna que nunca me respondeu?','Monte o bloco de abertura da pista para um casamento com público de 30 a 60 anos'].map(q=>`<button class="chip-btn" data-action="co-q" data-v="${esc(q)}">${esc(q)}</button>`).join('')}</div>
+  <div class="field"><textarea id="co_q" rows="3" placeholder="Escreva sua pergunta…"></textarea></div><button class="btn primary" data-action="co-ask" id="co_askb">${ico('spark')}Perguntar</button></section>
+  <div id="co_ans">${hist.slice(-4).reverse().map(coAnsHTML).join('')}</div>`;
+}
+function coAnsHTML(h){return `<section class="panel co-ans"><p class="co-qq">${esc(h.q)}</p><div class="co-a">${paras(h.r)}</div>${(h.acoes||[]).length?`<h3 class="co-h3">Tarefas sugeridas</h3>${h.acoes.map((a,i)=>`<div class="row between gap2 co-sug"><span><b>${esc(a.titulo)}</b> <span class="muted">· ${esc((CO_AREAS[a.area]||CO_AREAS.negocio).n)}${a.min?` · ${a.min} min`:''}</span></span><button class="btn sm" data-action="co-addsug" data-id="${h.id}" data-i="${i}">${ico('plus')}Hoje</button></div>`).join('')}`:''}</section>`;}
+async function coAsk(q){
+ q=String(q||'').trim();if(!q){toast('Escreva sua pergunta.','err');return;}
+ const b=$('#co_askb');if(b){b.disabled=true;b.textContent='Pensando…';}
+ try{
+  const s=await samplePromise;if(!s)throw new Error('A IA não está disponível aqui.');
+  const c=coC(),P=coP(),t=coToday(),r=coachDay(t);
+  const ctx={perfil:{nome:state.profile.nome,cargo:state.profile.cargo,cidade:state.profile.cidade,nichos:P.nichos.map(n=>CO_NICHOS[n]),estagio:(CO_ESTAGIOS[P.estagio]||{}).n,minutosPorDia:P.tempo,redes:P.redes,estilo:P.estilo,metaEventosMes:P.metaEventos},
+   faseDoPlano:CO_FASES[coPhase().i].n,proximasDatas:(c.agenda||[]).filter(a=>a.data>=t).slice(0,6).map(a=>({data:a.data,tipo:CO_PB[a.pb].n,titulo:a.titulo})),
+   rede:Object.fromEntries(Object.keys(CO_ETAPAS).map(k=>[CO_ETAPAS[k].n,(c.contatos||[]).filter(x=>x.etapa===k).length])),
+   ultimasMetricas:(c.metricas||[]).slice(-3),tarefasDeHoje:r.main.map(x=>x.t),
+   estrategiasDisponiveis:CO_STRAT.map(x=>x.t),pacotes:includedPackages().map(p=>({titulo:p.titulo,valor:p.valor,duracao:fmtDur(p)}))};
+  const prompt=`Você é um coach de carreira para DJs brasileiros, prático e direto. Responda em português do Brasil, sem jargão, em até 5 parágrafos curtos, com passos concretos. Use o contexto do DJ abaixo. Não invente números de mercado; quando citar algo, diga que é uma prática comum. Se a pergunta pedir músicas, sugira estilos e momentos, não letras.\n\nContexto do DJ (JSON):\n${JSON.stringify(ctx)}\n\nPergunta: ${q}\n\nResponda SOMENTE em JSON no formato {"resposta":"texto com parágrafos separados por \\n","acoes":[{"titulo":"tarefa curta","area":"conteudo|prospeccao|rede|musica|evento|negocio","min":15}]} com no máximo 4 ações.`;
+  const out=await s.json(prompt,{modelTier:'default',cache:false});
+  const h={id:uid(),q,r:String(out&&out.resposta||'Não consegui responder agora.'),acoes:Array.isArray(out&&out.acoes)?out.acoes.slice(0,4).map(a=>({titulo:String(a.titulo||'').slice(0,120),area:CO_AREAS[a.area]?a.area:'negocio',min:Math.max(0,Math.min(120,parseInt(a.min)||15))})).filter(a=>a.titulo):[],at:Date.now()};
+  c.chat=(c.chat||[]).concat(h).slice(-12);coSave();
+  const box=$('#co_ans');if(box)box.insertAdjacentHTML('afterbegin',coAnsHTML(h));const qi=$('#co_q');if(qi)qi.value='';
+ }catch(e){toast(e&&e.message?e.message:'Não foi possível consultar o coach agora.','err');}
+ finally{if(b){b.disabled=false;b.innerHTML=`${ico('spark')}Perguntar`;}}
+}
+function coDiag(){
+ const P=coP();
+ const chip=(name,k,label,on,multi)=>`<label class="co-opt"><input type="${multi?'checkbox':'radio'}" name="${name}" value="${k}" ${on?'checked':''}><span>${label}</span></label>`;
+ const m=openModal({wide:true,title:'Diagnóstico do coach',html:`
+  <div class="co-q1"><div class="lbl">1. Quais eventos você quer fazer mais? (escolha até 3)</div><div class="co-opts">${Object.entries(CO_NICHOS).map(([k,v])=>chip('ni',k,v,P.nichos.includes(k),true)).join('')}</div></div>
+  <div class="co-q1"><div class="lbl">2. Em que momento está sua carreira?</div><div class="co-opts">${Object.entries(CO_ESTAGIOS).map(([k,v])=>chip('es',k,`<b>${v.n}</b><small>${v.d}</small>`,P.estagio===k)).join('')}</div></div>
+  <div class="co-q1"><div class="lbl">3. Quanto tempo por dia você pode dedicar à carreira (fora os eventos)?</div><div class="co-opts">${[[30,'30 minutos'],[60,'1 hora'],[120,'2 horas ou mais']].map(([k,v])=>chip('tp',k,v,P.tempo===k)).join('')}</div></div>
+  <div class="co-q1"><div class="lbl">4. Onde você divulga seu trabalho?</div><div class="co-opts">${Object.entries(CO_REDES).map(([k,v])=>chip('rd',k,v,P.redes.includes(k),true)).join('')}</div></div>
+  <div class="grid2"><div class="field"><label for="co_es">5. Seu estilo em poucas palavras</label><input id="co_es" maxlength="80" value="${esc(P.estilo||'')}" placeholder="Ex.: open format, do sertanejo ao house"></div><div class="field"><label for="co_me">6. Meta de eventos por mês</label><input id="co_me" type="number" min="1" max="60" value="${esc(P.metaEventos)}"></div></div>`,
+  footer:`<button class="btn ghost" type="button" id="cdc">Cancelar</button><button class="btn primary" type="button" id="cds">${ico('check')}Montar meu plano</button>`});
+ const el=m.el;
+ el.addEventListener('change',e=>{if(e.target.name==='ni'){const on=$$('input[name=ni]:checked',el);if(on.length>3){e.target.checked=false;toast('Escolha até 3 tipos de evento.');}}});
+ $('#cdc',el).onclick=()=>m.close();
+ $('#cds',el).onclick=()=>{
+  const ni=$$('input[name=ni]:checked',el).map(i=>i.value);if(!ni.length){toast('Escolha pelo menos um tipo de evento.','err');return;}
+  const old=state.coach.perfil;
+  state.coach.perfil={nichos:ni,estagio:($('input[name=es]:checked',el)||{}).value||'iniciante',tempo:Number(($('input[name=tp]:checked',el)||{}).value||60),redes:$$('input[name=rd]:checked',el).map(i=>i.value),estilo:$('#co_es',el).value.trim(),metaEventos:Math.max(1,parseInt($('#co_me',el).value)||4),criado:old&&old.criado&&coDiff(coToday(),old.criado)<=84?old.criado:coToday()};
+  coSave();m.close();coTab='hoje';renderCoach();toast(old?'Plano atualizado':'Plano criado. Comece pela primeira tarefa de hoje!');
+ };
+}
+function coXnew(){
+ const m=openModal({title:'Nova tarefa para hoje',html:`<div class="field"><label for="cx_t">Tarefa</label><input id="cx_t" maxlength="120" placeholder="Ex.: Ligar para o buffet Estrela"></div><div class="grid2"><div class="field"><label for="cx_a">Área</label><select id="cx_a">${Object.entries(CO_AREAS).map(([k,v])=>`<option value="${k}">${v.n}</option>`).join('')}</select></div><div class="field"><label for="cx_m">Minutos</label><input id="cx_m" type="number" min="0" value="15"></div></div>`,footer:`<button class="btn ghost" type="button" id="cxc">Cancelar</button><button class="btn primary" type="button" id="cxs">Adicionar</button>`});
+ $('#cxc',m.el).onclick=()=>m.close();
+ $('#cxs',m.el).onclick=()=>{const t=$('#cx_t',m.el).value.trim();if(!t)return;coAddExtra({t,area:$('#cx_a',m.el).value,min:parseInt($('#cx_m',m.el).value)||0});m.close();};
+}
+function coAddExtra(o){const c=coC(),d=coToday();c.extra=c.extra||{};(c.extra[d]=c.extra[d]||[]).push(Object.assign({id:uid()},o));coSave();toast('Tarefa adicionada à rotina de hoje');if(state.tab==='coach'&&coTab==='hoje')renderCoach();}
+Object.assign(ACT,{
+ 'co-diag':()=>coDiag(),
+ 'co-tab':el=>{coTab=el.dataset.v;if(state.tab!=='coach')go('coach');else renderCoach();window.scrollTo(0,0);},
+ 'co-done':el=>{const c=coC(),d=el.dataset.d,k=el.dataset.k;c.feitos=c.feitos||{};const f=c.feitos[d]=c.feitos[d]||[];const i=f.indexOf(k);if(i>=0)f.splice(i,1);else f.push(k);
+  // limpa histórico antigo para não crescer sem fim
+  const lim=coAdd(coToday(),-120);Object.keys(c.feitos).forEach(x=>{if(x<lim)delete c.feitos[x];});Object.keys(c.extra||{}).forEach(x=>{if(x<lim)delete c.extra[x];});
+  coRecord(d);coSave();const before=coStreak();renderCoach();
+  const r=coachDay(d);if(i<0&&r.main.every(t=>c.feitos[d].includes(t.k)))toast('Rotina de hoje completa. Excelente!');},
+ 'co-exp':el=>{const k=el.dataset.k;if(coOpen.has(k))coOpen.delete(k);else coOpen.add(k);renderCoach();},
+ 'co-script':el=>{let ctx={};try{ctx=JSON.parse(el.dataset.ctx||'{}');}catch(e){}openScript(el.dataset.s,ctx);},
+ 'co-strat':el=>{coTab='estrategias';coStratCat='';coOpen.add(el.dataset.v);renderCoach();setTimeout(()=>{const s=document.getElementById('st_'+el.dataset.v);if(s)s.scrollIntoView({behavior:'smooth',block:'start'});},50);},
+ 'co-cat':el=>{coStratCat=el.dataset.v;renderCoach();},
+ 'co-ct-new':()=>coContactForm(),
+ 'co-ct-edit':el=>coContactForm(el.dataset.id),
+ 'co-ctdone':el=>coContactDone(el.dataset.id),
+ 'co-ctflt':el=>{coCtFlt=el.dataset.v;renderCoach();},
+ 'co-agnew':()=>coAgendaForm(),
+ 'co-agedit':el=>{const t=$('#modal-root').lastElementChild;if(t&&t._api&&t.querySelector('.co-pb'))t._api.close();coAgendaForm(el.dataset.id);},
+ 'co-pb':el=>openPbModal(el.dataset.id),
+ 'co-pbsel':el=>{coPbSel=el.dataset.v;renderCoach();},
+ 'co-pbchk':el=>{const a=coC().agenda.find(x=>x.id===el.dataset.id);if(!a)return;a.chk=a.chk||{};a.chk[el.dataset.k]=el.checked;coSave();},
+ 'co-toport':el=>coToPortfolio(el.dataset.v||el.dataset.id),
+ 'co-msave':()=>{const c=coC(),wk=coWeek(coToday());c.metricas=c.metricas||[];let cur=c.metricas.find(x=>x.semana===wk);if(!cur){cur={semana:wk};c.metricas.push(cur);}$$('[data-mk]').forEach(i=>{cur[i.dataset.mk]=i.value===''?'':Number(i.value);});const t=coToday(),f=c.feitos[t]=c.feitos[t]||[];if(!f.includes('rev:'+t))f.push('rev:'+t);coRecord(t);coSave();toast('Check-in salvo');renderCoach();},
+ 'co-xnew':()=>coXnew(),
+ 'co-xdel':el=>{const c=coC(),d=el.dataset.d;c.extra[d]=(c.extra[d]||[]).filter(x=>x.id!==el.dataset.id);coSave();renderCoach();},
+ 'co-q':el=>{const q=$('#co_q');if(q){q.value=el.dataset.v;q.focus();}},
+ 'co-ask':()=>coAsk(($('#co_q')||{}).value),
+ 'co-addsug':el=>{const h=(coC().chat||[]).find(x=>x.id===el.dataset.id);const a=h&&h.acoes[+el.dataset.i];if(a){coAddExtra({t:a.titulo,area:a.area,min:a.min});el.disabled=true;el.textContent='Adicionada';}}
+});
+/* select de etapa usa evento change */
+document.addEventListener('change',e=>{const s=e.target.closest&&e.target.closest('select[data-action="co-stage"]');if(s&&s.value)coContactStage(s.dataset.id,s.value);});
+FORMS.coach={nome:'item',fields:[]};
 
 /* ---------- inicialização ---------- */
 (async function init(){
